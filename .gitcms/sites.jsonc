@@ -6,6 +6,12 @@
       "display_name": "Pinggy",
       "website_url": "https://pinggy.io/",
       "root_path": "sites/pinggy"
+    },
+    {
+      "key": "inngest",
+      "display_name": "Inngest",
+      "website_url": "https://www.inngest.com",
+      "root_path": "sites/inngest"
     }
   ]
 }
