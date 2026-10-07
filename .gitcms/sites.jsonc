@@ -2,10 +2,10 @@
   "version": 1,
   "sites": [
     {
-      "key": "pinggy",
-      "display_name": "Pinggy",
-      "website_url": "https://pinggy.io/",
-      "root_path": "sites/pinggy"
+      "key": "astro",
+      "display_name": "Astro Test",
+      "website_url": "https://astro-test.gitcms.dev",
+      "root_path": "sites/astro"
     }
   ]
 }
