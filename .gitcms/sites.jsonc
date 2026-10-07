@@ -12,6 +12,18 @@
       "display_name": "Inngest",
       "website_url": "https://www.inngest.com",
       "root_path": "sites/inngest"
+    },
+    {
+      "key": "astro",
+      "display_name": "Astro",
+      "website_url": "https://astro-qa.gitcms.dev",
+      "root_path": "sites/astro"
+    },
+    {
+      "key": "danto-hugo",
+      "display_name": "Danto Hugo",
+      "website_url": "https://danto-qa.gitcms.dev",
+      "root_path": "sites/danto-hugo"
     }
   ]
 }
