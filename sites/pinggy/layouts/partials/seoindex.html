@@ -1,0 +1,34 @@
+<link rel="canonical" href="{{ .Permalink }}" />
+{{- partial "hreflang.html" . -}}
+<meta property="og:locale" content="{{ site.Params.ogLocale | default "en_US" }}" />
+{{ range .Translations }}
+<meta property="og:locale:alternate" content="{{ .Site.Params.ogLocale }}" />
+{{ end }}
+<meta property="og:type" content="website" />
+<meta
+  name="twitter:title"
+  content="{{ if .IsHome }}Pinggy - Simple Localhost Tunnels{{ else }}{{ if .Page.Title }}{{ .Page.Title }} - {{.Site.Title}}{{ end }}{{ end }}"
+/>
+<meta
+  property="og:title"
+  content="{{ if .IsHome }}Pinggy - Simple Localhost Tunnels{{ else }}{{ if .Page.Title }}{{ .Page.Title }} - {{.Site.Title}}{{ end }}{{ end }}"
+/>
+<meta
+  name="description"
+  content="{{ if .Params.description }}{{ .Params.description }}{{ else }}Pinggy is the simplest way to bring your localhost projects online. It the the fastest way to create secure tunnels to localhost with a public url.{{ end }}"
+/>
+<meta
+  property="og:description"
+  content="Pinggy is the simplest way to bring your localhost projects online. It the the fastest way to create secure tunnels to localhost with a public url."
+/>
+<meta
+  name="twitter:description"
+  content="Pinggy is the simplest way to bring your localhost projects online. It the the fastest way to create secure tunnels to localhost with a public url."
+/>
+<meta property="og:url" content="{{ .Permalink }}" />
+<meta property="og:site_name" content="Pinggy" />
+<meta property="og:image" content="https://pinggy.io/assets/pinggy_og_img.jpg" />
+<meta name="author" content="Pinggy" />
+<meta name="twitter:creator" content="Pinggy" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@pinggyio" />

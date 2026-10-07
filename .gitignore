@@ -1,0 +1,7 @@
+# Local dependencies and build output created while exercising fixtures.
+node_modules/
+.next/
+.astro/
+.wrangler/
+.vercel/
+.DS_Store

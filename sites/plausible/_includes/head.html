@@ -1,0 +1,41 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {%- seo -%}
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/icon/apple-touch-icon.png" />
+  <link rel="icon" sizes="32x32" href="/assets/images/icon/favicon.ico" />
+  <link rel="icon" type="image/svg+xml" href="/assets/images/icon/favicon.svg" />
+
+  <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}?v={{ site.time | date:'%s' }}">
+
+  <link rel="preload" href="{{ "/assets/css/tooltip.css" | relative_url }}?v={{ site.time | date:'%s' }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="{{ "/assets/css/tooltip.css" | relative_url }}?v={{ site.time | date:'%s' }};"></noscript>
+
+  <script> if (document.cookie.includes('logged_in=true') && window.location.href == 'https://plausible.io/') window.location.pathname = '/sites'</script>
+  <script {% if page.author %}data-author="{{page.author}}"{% endif %}>
+  window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)},window.plausible.init=function(i){window.plausible.o=i||{}};var script=document.createElement("script");script.type="text/javascript",script.defer=!0,script.src="https://plausible.io/js/pa-6_srOGVV9SLMWJ1ZpUAbG.js";var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(script,r);
+  var props = {
+    browser_language: navigator.language || navigator.userLanguage,
+    logged_in: document.cookie.includes('logged_in=true')
+  }
+  
+  if (document.currentScript.dataset.author) {
+    props.author = document.currentScript.dataset.author
+  }
+
+  plausible.init({
+    formSubmissions: true,
+    customProperties: props,
+    transformRequest: function (payload) {
+      if (payload.n === 'Form: Submission') {
+        payload.n = 'Newsletter signup'
+      }
+      return payload
+    }
+  })
+  </script>
+
+  {%- feed_meta -%}
+</head>

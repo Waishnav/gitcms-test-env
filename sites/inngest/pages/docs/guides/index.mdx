@@ -1,0 +1,71 @@
+import { ResourceGrid, Resource } from 'src/shared/Docs/Resources'
+
+export const metaTitle = "Inngest Guides | Patterns, Integrations & How-Tos"
+export const description = "In-depth guides for building with Inngest: flow control, error handling, scheduled jobs, webhook integrations, fan-out patterns, idempotency, and more."
+export const hidePageSidebar = true;
+
+# Guides
+
+Learn how to build with Inngest:
+
+## Patterns
+
+<ResourceGrid cols={3}>
+
+<Resource resource={{
+  href: "/docs/patterns/jobs/keeping-your-api-fast",
+  name: "Background jobs",
+  icon: "paper-airplane",
+  description: "Run long-running tasks in the background out of the critical path of a request.",
+  pattern: 0,
+}}/>
+
+<Resource resource={{
+  href: "/docs/durable-execution/guides-and-advanced/events-and-triggers/schedules-and-delayed-starts",
+  name: "Enqueueing future jobs",
+  icon: "chevron-double-right",
+  description: "Schedule or delay functions to run in the future.",
+  pattern: 1,
+}}/>
+
+<Resource resource={{
+  href: "/docs/durable-execution/primitives/group-parallel",
+  name: "Parallelize steps",
+  icon: "parallel",
+  description: "Run function steps in parallel to speed up execution.",
+  pattern: 2,
+}}/>
+
+<Resource resource={{
+  href: "/docs/durable-execution/guides-and-advanced/patterns/fan-out",
+  name: "Fan-out",
+  icon: "arrows-pointing-out",
+  description: "Use events to trigger multiple functions at once.",
+  pattern: 3,
+}}/>
+
+<Resource resource={{
+  href: "/docs/durable-execution/flow-control/batching",
+  name: "Batching events",
+  icon: "square-3-stack-3d",
+  description: "Improve efficiency with high-load systems by processing batches of events at once.",
+  pattern: 2,
+}}/>
+
+<Resource resource={{
+  href: "/docs/durable-execution/guides-and-advanced/events-and-triggers/schedules-and-delayed-starts",
+  name: "Scheduled functions",
+  icon: "clock",
+  description: "Run functions periodically on a cron schedule.",
+  pattern: 1,
+}}/>
+
+<Resource resource={{
+  href: "/docs/durable-execution/primitives/step-invoke",
+  name: "Invoking functions directly",
+  icon: "rectangle-group",
+  description: "Call one function from another across multiple apps.",
+  pattern: 0
+}}/>
+
+</ResourceGrid>

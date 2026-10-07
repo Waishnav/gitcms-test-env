@@ -1,0 +1,160 @@
+import { Info, Callout, CodeGroup, Properties, Property, Row, Col, VersionBadge } from "src/shared/Docs/mdx";
+import { InformationCircleIcon } from '@heroicons/react/24/outline'
+
+export const metaTitle = "cancelOn | Cancel on Events (SDK v4)"
+export const description = "Auto-cancel in-flight runs when a matching event arrives, with optional CEL expression filtering."
+
+# Cancel on
+
+
+Stop the execution of a running function when a specific event is received using `cancelOn`.
+
+```ts
+inngest.createFunction(
+  {
+    id: "sync-contacts",
+    triggers: { event: "app/user.created" },
+    cancelOn: [
+      {
+        // Can be a string or EventType
+        event: "app/user.deleted",
+        // ensure the async (future) event's userId matches the trigger userId
+        if: "async.data.userId == event.data.userId",
+      },
+    ],
+  }
+  // ...
+);
+```
+
+Using `cancelOn` is very useful for handling scenarios where a long-running function should be terminated early due to changes elsewhere in your system.
+
+The API for this is similar to the [`step.waitForEvent()`](/docs/reference/typescript/v4/functions/step-wait-for-event) tool, allowing you to specify the incoming event and different methods for matching pieces of data within.
+
+---
+
+## How to use `cancelOn`
+
+The most common use case for cancellation is to cancel a function's execution if a specific field in the incoming event matches the same field in the triggering event. For example, you might want to cancel a sync event for a user if that user is deleted. For this, you need to specify a `match` [expression](/docs/durable-execution/guides-and-advanced/writing-expressions). Let's look at an example function and two events.
+
+This function specifies it will `cancelOn` the `"app/user.deleted"` event only when it and the original `"app/user.created"` event have the same `data.userId` value:
+
+```ts
+inngest.createFunction(
+  {
+    id: "sync-contacts",
+    triggers: { event: "app/user.created" },
+    cancelOn: [
+      {
+        event: "app/user.deleted",
+        // ensure the async (future) event's userId matches the trigger userId
+        if: "async.data.userId == event.data.userId",
+      },
+    ],
+  },
+  // ...
+);
+```
+
+For the given function, this is an example of an event that would trigger the function:
+
+```json
+{
+  "name": "app/user.created",
+  "data": {
+    "userId": "123",
+    "name": "John Doe"
+  }
+}
+```
+
+And this is an example of an event that would cancel the function as it and the original event have the same `data.userId` value of `"123"`:
+
+```json
+{
+  "name": "app/user.deleted",
+  "data": {
+    "userId": "123"
+  }
+}
+```
+
+Match expressions can be simple equalities or be more complex. Read [our guide to writing expressions](/docs/durable-execution/guides-and-advanced/writing-expressions) for more info.
+
+<Callout Icon={InformationCircleIcon}>
+  Functions are cancelled _between steps_, meaning that if there is a `step.run` currently executing, it will finish before the function is cancelled.
+
+  Inngest does this to ensure that steps are treated like atomic operations and each step either completes or does not run at all.
+</Callout>
+
+## Configuration
+
+<Properties>
+  <Property name="cancelOn" type="array of objects">
+    Define events that can be used to cancel a running or sleeping function
+    <Properties nested={true}>
+      <Property name="event" type="string | EventType" required>
+        The event that will be used to cancel. This can be a string event name (e.g. `"app/user.deleted"`) or an event object created with `eventType()`
+      </Property>
+      <Property name="match" type="string">
+        The property to match the event trigger and the cancelling event, using dot-notation, for example, `data.userId`. Read [our guide to writing expressions](/docs/durable-execution/guides-and-advanced/writing-expressions) for more info.
+      </Property>
+      <Property name="if" type="string">
+        An expression on which to conditionally match the original event trigger (`event`) and the wait event (`async`). Cannot be combined with `match`.
+
+        Expressions are defined using the Common Expression Language (CEL) with the events accessible using dot-notation. Read our [guide to writing expressions](/docs/durable-execution/guides-and-advanced/writing-expressions) for more info. Examples:
+
+        * `event.data.userId == async.data.userId && async.data.billing_plan == 'pro'`
+      </Property>
+      <Property name="timeout" type="string | number | Date | Temporal.Duration | Temporal.Instant | Temporal.ZonedDateTime">
+        How long to wait to receive the cancelling event. Either:
+        - A duration string compatible with the [ms](https://npm.im/ms) package, e.g. `"30m"`, `"3 hours"`, or `"2.5d"`,
+        - A `number` of milliseconds,
+        - An absolute `Date`,
+        - A [`Temporal.Duration`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Temporal/Duration) for a relative wait, or
+        - A [`Temporal.Instant`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Temporal/Instant) or [`Temporal.ZonedDateTime`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Temporal/ZonedDateTime) for an absolute deadline.
+      </Property>
+    </Properties>
+  </Property>
+</Properties>
+
+## Examples
+
+### Using an event object
+
+The `event` property also accepts an event object instead of a string. This is useful when you have typed event definitions or want to reference events from a schema.
+
+```ts
+import { userCreatedEvent, userDeletedEvent } from "./events";
+
+inngest.createFunction(
+  {
+    id: "sync-contacts",
+    triggers: userCreatedEvent,
+    cancelOn: [
+      {
+        event: userDeletedEvent,
+        if: "async.data.userId == event.data.userId",
+      },
+    ],
+  }
+  // ...
+);
+```
+
+### With a timeout window
+
+Cancel a function's execution if a matching event is received within a given amount of time from the function being triggered.
+
+```ts
+inngest.createFunction(
+  {
+    id: "sync-contacts",
+    triggers: { event: "app/user.created" },
+    cancelOn: [{ event: "app/user.deleted", match: "data.userId", timeout: "1h" }],
+  }
+  // ...
+);
+```
+
+This is useful when you want to limit the time window for cancellation, ensuring that the function will continue to execute if no matching event is received within the specified time frame.

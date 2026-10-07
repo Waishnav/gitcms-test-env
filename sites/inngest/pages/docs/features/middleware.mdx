@@ -1,0 +1,104 @@
+import { Callout, CodeGroup, VersionBadge, CardGroup, Card } from "src/shared/Docs/mdx";
+import {
+  RiEyeOffLine,
+  RiMistFill,
+  RiPlugLine,
+  RiFileSearchLine,
+} from "@remixicon/react";
+
+export const metaTitle = "Inngest Middleware | Docs Overview"
+export const description = "Extend Inngest's request lifecycle with middleware: inject dependencies, transform data, add logging, integrate Sentry, or encrypt sensitive payloads."
+
+# Middleware
+
+Middleware allows your code to run at various points in an Inngest client's lifecycle, such as during a function's execution or when sending an event. 
+
+This can be used for a wide range of uses:
+
+<CardGroup cols={2}>
+  <Card title="Custom observability" icon={<RiFileSearchLine className="text-basis h-4 w-4"/>} href={'/docs/durable-execution/guides-and-advanced/middleware/creating-middleware'}>
+    Add custom logging, tracing or helpers to your Inngest Functions.
+  </Card>
+  <Card title="Dependency Injection" icon={<RiPlugLine className="text-basis h-4 w-4" />} href={'/docs/features/middleware/dependency-injection'}>
+    Provide shared client instances (ex, OpenAI) to your Inngest Functions.
+  </Card>
+  <Card title="Encryption Middleware" icon={<RiEyeOffLine className="text-basis h-4 w-4" />} href={'/docs/features/middleware/encryption-middleware'}>
+    End-to-end encryption for events, step output, and function output.
+  </Card>
+  <Card title="Sentry Middleware" icon={<RiMistFill className="text-basis h-4 w-4"/>} href={'/docs/durable-execution/guides-and-advanced/middleware/sentry-middleware'}>
+    Quickly setup Sentry for your Inngest Functions.
+  </Card>
+</CardGroup>
+
+
+
+## Middleware SDKs support
+
+Middleware is available in the [TypeScript SDK](/docs/reference/typescript/v4/middleware/lifecycle) and [Python SDK](/docs/reference/python/middleware/lifecycle).
+
+Support in the Go SDK is planned.
+
+## Middleware lifecycle
+
+Middleware can be registered at the Inngest clients or functions level.
+
+Adding middleware contributes to an overall "stack" of middleware. If you register multiple middlewares, the SDK will group and run hooks for each middleware in the following order:
+
+1. Middleware registered on the **client**, in descending order
+2. Middleware registered on the **function**, in descending order
+
+In TypeScript, those stacked transforms also compose at the type level. For a deep dive into how that once went wrong—and how we fixed it—see [Adding a second middleware broke our typescript types](/blog/adding-a-second-middleware-broke-our-typescript-types?ref=docs-middleware).
+
+For example:
+
+<CodeGroup>
+```ts {{ title: "TypeScript" }}
+const inngest = new Inngest({
+  id: "my-app",
+  middleware: [
+    logMiddleware, // This is executed first
+    errorMiddleware, // This is executed second
+  ],
+});
+
+inngest.createFunction(
+  {
+    id: "example",
+    triggers: { event: "test" },
+    middleware: [
+      dbSetupMiddleware, // This is executed third
+      datadogMiddleware, // This is executed fourth
+    ],
+  },
+  async () => {
+    // ...
+  }
+);
+```
+```py {{ title: "Python" }}
+inngest_client = inngest.Inngest(
+    app_id="my_app",
+    middleware=[
+        LogMiddleware, # This is executed first
+        ErrorMiddleware # This is executed second
+    ],
+)
+
+# ...
+
+
+@inngest_client.create_function(
+    fn_id="import-product-images",
+    trigger=inngest.TriggerEvent(event="shop/product.imported"),
+    middleware=[
+        DbSetupMiddleware, # This is executed third
+        DatadogMiddleware # This is executed fourth
+    ],
+)
+async def fn(ctx: inngest.Context):
+    # ...
+
+```
+</CodeGroup>
+
+Learn more about the Middleware hooks and their execution order in ["Creating a Middleware"](/docs/durable-execution/guides-and-advanced/middleware/creating-middleware).

@@ -1,0 +1,364 @@
+import { ResourceGrid, Resource } from "shared/Docs/Resources";
+import { Callout, CodeGroup } from "shared/Docs/mdx";
+
+import { BookOpenIcon, CodeBracketIcon, ComputerDesktopIcon, WrenchScrewdriverIcon } from "@heroicons/react/24/outline";
+
+export const metaTitle = "Inngest Model Context Protocol (MCP)";
+export const description = "Connect AI coding agents to Inngest Cloud or the local Dev Server with MCP to inspect apps, functions, events, runs, traces, and more.";
+
+# Inngest MCP
+
+> Let your coding agent inspect and operate Inngest from your editor, locally or in the cloud.
+
+Inngest runs Model Context Protocol (MCP) servers for Inngest Cloud and the local Dev Server. Connect Claude Code, Codex, Cursor, or another MCP client to list functions, send events, and inspect runs from your coding agent.
+
+Inngest MCP tools match the [REST API v2](https://api-docs.inngest.com/) and [Inngest CLI commands](/docs/cli).
+
+## Choose an MCP server
+
+You can configure both servers in the same MCP client. Use the Dev Server while you build and test locally, then use Cloud MCP to inspect deployed environments and production data.
+
+| MCP server | Use it for | Endpoint | Authentication |
+| --- | --- | --- | --- |
+| **Inngest Cloud** | Deployed apps, functions, events, runs, traces, environments, Insights, sessions, webhooks, and experiments | `https://api.inngest.com/mcp` | OAuth (recommended) or an API key |
+| **Dev Server** | Apps, functions, events, and runs on your local machine, plus embedded Inngest docs | `http://127.0.0.1:8288/mcp` | None |
+
+<Callout variant="warning">
+Some Cloud MCP tools change data, including tools that send events, invoke functions, rerun or cancel runs, sync apps, and manage environments or webhooks. Review a tool call before you approve it, especially in production.
+</Callout>
+
+## Connect to Inngest Cloud
+
+Use OAuth to sign in through your browser and choose the access your coding agent needs. You do not need to create or copy an API key.
+
+### 1. Add Cloud MCP to your client
+
+<CodeGroup>
+
+```bash {{ title: "Claude Code" }}
+claude mcp add --transport http inngest-cloud https://api.inngest.com/mcp
+```
+
+```bash {{ title: "Codex" }}
+codex mcp add inngest-cloud --url https://api.inngest.com/mcp
+codex mcp login inngest-cloud
+```
+
+```json {{ title: "Cursor" }}
+{
+  "mcpServers": {
+    "inngest-cloud": {
+      "url": "https://api.inngest.com/mcp",
+      "auth": {
+        "CLIENT_ID": "inngest-mcp-static"
+      }
+    }
+  }
+}
+```
+
+</CodeGroup>
+
+In Claude Code, run `/mcp`, select `inngest-cloud`, and authenticate. In Cursor, add the configuration to `.cursor/mcp.json` or `~/.cursor/mcp.json`, reload Cursor, and use its sign-in flow. Cursor uses the static `auth.CLIENT_ID` above for OAuth.
+
+The [Cloud MCP setup page](https://app.inngest.com/mcp/setup) also has client configuration and the live tool list.
+
+### 2. Approve access
+
+In your browser, choose the Inngest account, environment access, permissions, and session duration. Grant read access for inspection and debugging; add write access only for resources the agent needs to change.
+
+OAuth scopes limit which operations a session can perform. Every tool call must be allowed by both the session's granted permissions and your current account role, within the selected environment access.
+
+If you previously configured an API key, remove the `Authorization` header or `--bearer-token-env-var` setting before signing in with OAuth.
+
+### 3. Try Cloud MCP
+
+Ask your coding agent to complete a task such as:
+
+```text
+List my Inngest environments, then show the apps in production.
+```
+
+```text
+In production, find recent failed runs for my billing app and explain the first failed step.
+```
+
+```text
+In production, show the available Insights tables, then query event volume for the past 24 hours.
+```
+
+### Alternative: use an API key
+
+For clients without OAuth support or unattended workflows, create an [Inngest API key](/docs/platform-and-operations/keys-and-access?ref=docs-mcp) in the Cloud dashboard, then make it available to your MCP client:
+
+```bash
+export INNGEST_API_KEY=sk-inn-api-...
+```
+
+For key-based authentication, Cloud MCP accepts API keys, not signing keys. Keep the key out of source control and use the narrowest access that your work needs.
+
+Add the key to your client's configuration:
+
+<CodeGroup>
+
+```bash {{ title: "Claude Code" }}
+claude mcp add --transport http inngest-cloud https://api.inngest.com/mcp \
+  --header "Authorization: Bearer $INNGEST_API_KEY"
+```
+
+```bash {{ title: "Codex" }}
+codex mcp add inngest-cloud \
+  --url https://api.inngest.com/mcp \
+  --bearer-token-env-var INNGEST_API_KEY
+```
+
+```json {{ title: "Cursor" }}
+{
+  "mcpServers": {
+    "inngest-cloud": {
+      "url": "https://api.inngest.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${env:INNGEST_API_KEY}"
+      }
+    }
+  }
+}
+```
+
+</CodeGroup>
+
+## Connect to the Dev Server
+
+### 1. Start the Dev Server
+
+The local MCP endpoint starts with the Inngest Dev Server:
+
+```bash
+npx --ignore-scripts=false inngest-cli@latest dev
+```
+
+The default endpoint is `http://127.0.0.1:8288/mcp`.
+
+### 2. Add Dev Server MCP to your client
+
+<CodeGroup>
+
+```bash {{ title: "Claude Code" }}
+claude mcp add --transport http inngest-dev http://127.0.0.1:8288/mcp
+```
+
+```bash {{ title: "Codex" }}
+codex mcp add inngest-dev --url http://127.0.0.1:8288/mcp
+```
+
+```json {{ title: "Cursor" }}
+{
+  "mcpServers": {
+    "inngest-dev": {
+      "url": "http://127.0.0.1:8288/mcp"
+    }
+  }
+}
+```
+
+</CodeGroup>
+
+The Dev Server dashboard also has an MCP setup page with client configuration and the live tool list.
+
+### 3. Try Dev Server MCP
+
+```text
+List my local apps, then list the functions in the checkout app.
+```
+
+```text
+Send an app/order.created event and inspect every run it triggers.
+```
+
+```text
+Inspect the trace for the latest failed run and explain the error.
+```
+
+```text
+Search the Inngest docs for rate limiting examples.
+```
+
+## Available MCP tools
+
+MCP clients receive the live tool list and each tool's input schema when they connect. The tables below summarize the current tools. Because eligible REST API v2 endpoints become MCP tools automatically, your client's tool list is the source of truth if it differs from this page.
+
+A listed tool may require permissions your session does not have. OAuth sessions cannot access credential-management tools such as `fetch_account_event_keys` and `fetch_account_signing_keys`.
+
+### Tools available in Cloud and the Dev Server
+
+| Tool | What it does |
+| --- | --- |
+| `cancel_run` | Cancel an in-progress function run. |
+| `get_app` | Get one app, including sync metadata and function count. |
+| `get_apps` | List active or archived apps. |
+| `get_event_runs` | List the function runs triggered by an event. |
+| `get_function` | Get one function's configuration and status. |
+| `get_run` | Get the summary and optional output for one run. |
+| `get_run_trace` | Get the trace tree and optional span output for one run. |
+| `health` | Check the API service health. |
+| `invoke_function` | Invoke a function and return its run details. |
+| `list_function_runs` | List runs for one function. |
+| `list_functions` | List the functions in one app. |
+| `list_runs` | List runs, with optional app, function, status, and time filters. |
+| `rerun` | Rerun a function from the start or from a selected step. |
+| `send_event` | Send an event and return its event ID. |
+
+### Cloud-only tools
+
+| Tool | What it does |
+| --- | --- |
+| `create_env` | Create a custom environment. |
+| `create_score` | Add scores to a run or its steps. |
+| `create_webhook` | Create an incoming webhook. |
+| `fetch_account` | Get the authenticated account. |
+| `fetch_account_event_keys` | List account event keys, optionally for one environment. |
+| `fetch_account_signing_keys` | List account signing keys, optionally for one environment. |
+| `get_experiment` | Get run counts and score aggregates for an experiment. |
+| `list_envs` | List custom environments. |
+| `list_experiments` | List observed experiments. |
+| `list_insights_event_schemas` | List event schemas observed by Insights. |
+| `list_insights_tables` | List tables available to Insights queries. |
+| `list_session_keys` | List session keys observed in an environment. |
+| `list_session_runs` | List runs for one session. |
+| `list_sessions` | List session IDs for one session key. |
+| `list_webhooks` | List incoming webhooks. |
+| `patch_env` | Archive or unarchive an environment. |
+| `query_insights` | Run an Insights SQL query. |
+| `query_insights_prompt` | Turn a natural-language prompt into an Insights SQL query. |
+| `sync_app` | Sync an app from its Inngest endpoint URL. |
+
+### Dev Server-only tools
+
+| Tool | What it does |
+| --- | --- |
+| `grep_docs` | Search the docs embedded in the Dev Server. |
+| `list_docs` | List embedded documentation categories and counts. |
+| `read_doc` | Read one embedded documentation file. |
+
+For exact parameters and response shapes, inspect the schema shown by your MCP client or use the [REST API v2 reference](https://api-docs.inngest.com/).
+
+## Target a Cloud environment
+
+Cloud tools accept an `env` argument. Your agent sends it when it calls a tool; it is not part of the MCP server setup. If your OAuth session or API key allows all environments, pass an environment slug, such as `production`, for environment-specific operations. A session or key bound to one environment uses that environment and cannot access another one.
+
+Be explicit in prompts that might affect data:
+
+```text
+In the staging environment, send an app/order.created event with orderId test-123.
+```
+
+## Common workflows
+
+### Inspect a failed run
+
+1. Use `list_runs` or `list_function_runs` with a failed status filter.
+2. Use `get_run` to inspect the run summary and output.
+3. Use `get_run_trace` to find the failed step and its error.
+
+### Test an event-driven workflow
+
+1. Use `get_apps` and `list_functions` to confirm the app and its triggers.
+2. Use `send_event` with a test payload.
+3. Use `get_event_runs` with the returned event ID.
+4. Use `get_run` and `get_run_trace` to inspect each run.
+
+### Find implementation guidance locally
+
+1. Use `grep_docs` in the Dev Server to find a term or API name.
+2. Use `read_doc` with a matching path to read the full source.
+3. Apply the guidance, send a test event, and inspect the resulting run.
+
+## Troubleshooting
+
+**Cloud MCP returns `401 Unauthorized`**
+
+- For OAuth, sign in again through your MCP client if the session has expired or been revoked.
+- Remove any old API-key configuration if you intend to use OAuth.
+- For API-key authentication, confirm the client sends `Authorization: Bearer $INNGEST_API_KEY` and restart it after changing environment variables. Signing keys are not supported.
+
+**Cloud MCP returns `403 Forbidden` or `insufficient_scope`**
+
+- Check that the session grants the read or write permission needed by the tool.
+- Check your current account role and the session's environment access. Signing in again cannot grant permissions your role does not allow.
+- If you need more access, authenticate again and approve the required permissions.
+
+**A tool reports that an environment is required**
+
+- Pass `env`, such as `production` or `staging`, when your session or key allows all environments.
+
+**The Dev Server MCP endpoint is not found**
+
+- Confirm the Dev Server is running.
+- Confirm the client uses `http://127.0.0.1:8288/mcp`, or update the port if you changed it.
+- Restart the client after changing its MCP configuration.
+
+**Functions are not listed**
+
+- Call `get_apps` first and pass the returned app ID to `list_functions`.
+- Confirm the app has synced to the selected Cloud environment or local Dev Server.
+- Check app and Dev Server logs for registration errors.
+
+**Runs or events appear to be missing**
+
+- Confirm the Cloud tool call targeted the expected `env`.
+- Check that the event name matches the function trigger.
+- Allow a moment for event and run data to become available, then retry the read tool.
+
+## Resources
+
+<ResourceGrid cols={3}>
+
+<Resource resource={{
+href: "/docs/ai-dev-tools",
+name: "AI and MCP",
+icon: ComputerDesktopIcon,
+description: "Choose among Inngest MCP, agent plugins and skills, CLI workflows, and LLM-ready docs.",
+pattern: 1,
+}}/>
+
+<Resource resource={{
+href: "/docs/ai-dev-tools/agent-skills",
+name: "Agent plugins and skills",
+icon: CodeBracketIcon,
+description: "Install current Inngest guidance for Claude Code, Codex, Cursor, Windsurf, and other agents.",
+pattern: 1,
+}}/>
+
+<Resource resource={{
+href: "/docs/platform-and-operations/keys-and-access",
+name: "Keys and access",
+icon: WrenchScrewdriverIcon,
+description: "Create and manage API keys for Cloud MCP and the REST API.",
+pattern: 1,
+}}/>
+
+<Resource resource={{
+href: "/docs/local-development",
+name: "Local development",
+icon: ComputerDesktopIcon,
+description: "Run Inngest functions and the Dev Server MCP endpoint on your machine.",
+pattern: 1,
+}}/>
+
+<Resource resource={{
+href: "https://api-docs.inngest.com/",
+name: "REST API v2 Reference",
+icon: BookOpenIcon,
+description: "See the endpoints and schemas that power generated MCP tools.",
+pattern: 1,
+}}/>
+
+<Resource resource={{
+href: "https://modelcontextprotocol.io/introduction",
+name: "Model Context Protocol",
+icon: BookOpenIcon,
+description: "Learn about MCP transports, tools, and client capabilities.",
+pattern: 1,
+}}/>
+
+</ResourceGrid>

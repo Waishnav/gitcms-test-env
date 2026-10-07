@@ -1,0 +1,44 @@
+{
+  "sites": [
+    {
+      "directory": "sites/danto-hugo",
+      "repository": "https://github.com/Waishnav/danto-hugo",
+      "commit": "c16d60e2a062ec11c2ce8bf40daf6a77c902c633",
+      "ref": "c16d60e",
+      "framework": "Hugo",
+      "gitlinks": []
+    },
+    {
+      "directory": "sites/pinggy",
+      "repository": "https://github.com/Pinggy-io/pinggy_website",
+      "commit": "b79075276b7bafc3e9c7bbfbbf1bfe733a8faf0c",
+      "ref": "main",
+      "framework": "Hugo",
+      "gitlinks": []
+    },
+    {
+      "directory": "sites/astro",
+      "repository": "https://github.com/withastro/astro.build",
+      "commit": "8ca3ba6b65de3e981ec1aecde8371c39e5d8aaba",
+      "ref": "main",
+      "framework": "Astro",
+      "gitlinks": []
+    },
+    {
+      "directory": "sites/plausible",
+      "repository": "https://github.com/plausible/website",
+      "commit": "a06510cbe08adbd1d51c4a69597998ffe9c0a7c1",
+      "ref": "master",
+      "framework": "Jekyll",
+      "gitlinks": []
+    },
+    {
+      "directory": "sites/inngest",
+      "repository": "https://github.com/inngest/website",
+      "commit": "a2e1e25368f889e761aa3715f433e2a9d6a5f620",
+      "ref": "main",
+      "framework": "Next.js",
+      "gitlinks": []
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+import { GuideGrid, Guide } from 'src/shared/Docs/Guides'
+export const metaTitle = "Inngest Platform Guides | Manage, Monitor & Deploy"
+export const description = "Guides for the Inngest platform: managing environments, monitoring and rerunning runs, configuring webhooks, bulk replay, and observability integrations."
+export const hidePageSidebar = true;
+
+# Platform Guides
+
+Learn how to use the Inngest platform
+
+<GuideGrid cols={4}>
+
+  <Guide
+    href="/docs/platform-and-operations/apps-and-syncs"
+    name="Working with apps"
+    description="Sync your app and functions with the Inngest platform"
+  />
+
+  <Guide
+    href="/docs/platform-and-operations/environments-and-branch-deploys"
+    name="Working with environments"
+    description="How to use production, branch and local environments"
+  />
+
+  <Guide
+    href="/docs/platform-and-operations/keys-and-access"
+    name="Creating an event key"
+    description="Used to send events to your environment"
+  />
+
+  <Guide
+    href="/docs/platform/manage/rerun-function-runs?ref=docs-platform-guides"
+    name="Rerunning function runs"
+    description="Rerun one function run from the beginning or from a selected step"
+  />
+
+  <Guide
+    href="/docs/platform-and-operations/replay-runs-in-bulk"
+    name="Replaying functions"
+    description="Replay many function runs in bulk"
+    />
+
+</GuideGrid>

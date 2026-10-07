@@ -1,0 +1,25 @@
+{
+  "method": "Compared every snapshot file path, Git blob SHA-1, symlink and executable mode to its pinned upstream Git tree; confirmed no nested .git directories or files and all files below GitHub regular-Git 100 MiB limit.",
+  "sites": [
+    {
+      "directory": "sites/danto-hugo",
+      "verified_files": 128
+    },
+    {
+      "directory": "sites/pinggy",
+      "verified_files": 2305
+    },
+    {
+      "directory": "sites/astro",
+      "verified_files": 8154
+    },
+    {
+      "directory": "sites/plausible",
+      "verified_files": 716
+    },
+    {
+      "directory": "sites/inngest",
+      "verified_files": 4207
+    }
+  ]
+}

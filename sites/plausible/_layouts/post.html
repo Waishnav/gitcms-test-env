@@ -1,0 +1,112 @@
+---
+layout: default
+---
+
+<article class="container post mt-16">
+  <div class="max-w-screen-sm mx-auto">
+    <a
+      class="text-indigo-600 uppercase text-sm tracking-wide font-black"
+      href="/blog"
+      onclick="if (document.referrer === '{{ "" | absolute_url }}' || document.referrer === '{{ "/" | absolute_url }}') { history.back(); return false; } else { return true; }"
+      >
+      &larr; All posts
+    </a>
+    <h1 class="text-3xl mt-2 tracking-tight leading-10 font-extrabold text-gray-900 sm:text-4xl sm:leading-none md:text-5xl">{{ page.title | escape }}</h1>
+
+    <div class="mt-2">
+      <time class="uppercase text-xs text-gray-500 font-bold">{{ page.date | date: "%b %-d, %Y" }}</time>
+      {% if page.last_modified_at %}<span class="uppercase text-xs text-gray-500 font-bold">• Updated <time>{{ page.last_modified_at | date: "%b %-d, %Y" }}</time></span>{% endif %}
+      {% assign author = site.data.authors[page.author] %}
+      <span class="text-xs uppercase font-bold text-gray-500">• Written by <a class="uppercase text-xs text-indigo-600 font-bold hover:underline" href="https://twitter.com/{{author.twitter}}">{{ author.name }}</a></span>
+    </div>
+
+    {% if page.image %}
+      <img src="{{ site.baseurl }}{{ page.image }}" alt="{{ page.image-alt | default: 'Featured image' }}" />
+    {% endif %}
+  </div>
+
+  <div class="post-content-layout relative">
+    <aside class="post-toc hidden invisible lg:absolute lg:top-8 lg:bottom-0" aria-label="Table of contents">
+      <div class="post-toc-panel sticky top-6 w-full py-2 overflow-hidden">
+        <div class="post-toc-title ml-3 mb-2 text-gray-500 text-xs font-bold tracking-wider uppercase">On this page</div>
+      </div>
+    </aside>
+    <div class="mt-8 prose post-content max-w-screen-sm mx-auto" data-heading-anchors>
+      {{ content }}
+    </div>
+  </div>
+
+  <div class="mt-8 max-w-screen-sm mx-auto">
+    {% assign author = site.data.authors[page.author] %}
+    <span class="text-xs uppercase font-bold text-gray-500">Written by <a class="uppercase text-xs text-indigo-600 font-bold hover:underline" href="https://twitter.com/{{author.twitter}}">{{ author.name }}</a></span>
+  </div>
+</article>
+
+<hr class="w-full bg-gray-100 my-12" style="height: 1px;">
+
+<div class="bg-gray-50 pb-12">
+  <div class="container mx-auto py-12 lg:py-16 lg:flex lg:items-center lg:justify-between">
+    <h3 class="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
+      Ready to ditch Google Analytics?
+      <br />
+      <span class="text-indigo-600">Start your free trial today</span>
+    </h3>
+    <div class="mt-8 flex lg:flex-shrink-0 lg:mt-0">
+      <div class="inline-flex rounded-md shadow">
+        <a href="/register" onclick="plausible('CTA Click', {props: {position: 'Bottom', type: 'Blog', button: 'Start free trial'}})" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+          Start free trial
+        </a>
+      </div>
+      <div class="ml-3 inline-flex rounded-md shadow">
+        <a href="/plausible.io" onclick="plausible('CTA Click', {props: {position: 'Bottom', type: 'Blog', button: 'View live demo'}})" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-indigo-600 bg-white hover:text-indigo-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+          View live demo
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="w-full bg-gray-100 my-24" style="height: 1px;">
+
+<script>
+(function() {
+  var prose = document.querySelector('article .prose');
+  if (!prose) return;
+  prose.addEventListener('click', function(e) {
+    var a = e.target.closest('a');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    var button = null;
+    if (href === '/register' || href.indexOf('plausible.io/register') !== -1) {
+      button = 'Start free trial';
+    } else if (href === '/plausible.io' || href.indexOf('plausible.io/plausible.io') !== -1) {
+      button = 'View live demo';
+    }
+    if (button) {
+      plausible('CTA Click', {props: {position: 'Inline', type: 'Blog', button: button}});
+    }
+  });
+})();
+</script>
+
+<script type="text/javascript" src="{{ "/assets/js/heading-anchors.js" | relative_url }}?v={{ site.time | date:'%s' }}" defer></script>
+<script type="text/javascript" src="{{ "/assets/js/blog-post.js" | relative_url }}?v={{ site.time | date:'%s' }}" defer></script>
+
+<div class="container max-w-screen-sm mb-24 flex justify-between">
+  <div class="w-1/2">
+    {% if page.next.url %}
+      <div class="text-indigo-500 uppercase text-sm tracking-wide font-black mb-2" href="{{ site.baseurl }}">Next post</div>
+      <a href="{{page.next.url | relative_url }}">
+        <h3 class="text-2xl font-black">{{page.next.title}}</h3>
+      </a>
+    {% endif %}
+  </div>
+  <div class="w-1/2 text-right">
+    {% if page.previous.url %}
+    <div class="text-indigo-500 uppercase text-sm tracking-wide font-black mb-2" href="{{ site.baseurl }}">Previous post</div>
+    <a href="{{page.previous.url | relative_url }}">
+      <h3 class="text-2xl font-black">{{page.previous.title}}</h3>
+    </a>
+    {% endif %}
+  </div>
+</div>

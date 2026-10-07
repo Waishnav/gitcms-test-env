@@ -1,0 +1,2069 @@
+/* ============================================================
+   Design Tokens (see DESIGN_GUIDELINES.md)
+   ============================================================ */
+:root {
+  /* Brand */
+  --brand-600: #3b6fe0;
+  --brand-700: #2f58b8;
+  --brand-500: #5b86e5;
+  --brand-50: #eef3fe;
+  --brand-100: #dce6fc;
+
+  /* Neutrals (ink ramp) */
+  --ink-950: #0b0f19;
+  --ink-900: #111827;
+  --ink-700: #374151;
+  --ink-500: #6b7280;
+  --ink-400: #9ca3af;
+  --ink-300: #d1d5db;
+  --ink-200: #e5e7eB;
+  --ink-100: #f1f3f7;
+  --ink-50: #f7f8fa;
+
+  /* Semantic */
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px 0 rgba(15, 23, 42, 0.04);
+  --shadow-sm: 0 1px 3px 0 rgba(15, 23, 42, 0.06),
+    0 1px 2px -1px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 4px 12px -2px rgba(15, 23, 42, 0.08),
+    0 2px 4px -2px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 12px 32px -8px rgba(15, 23, 42, 0.12),
+    0 4px 8px -4px rgba(15, 23, 42, 0.06);
+  --shadow-focus: 0 0 0 3px rgba(91, 134, 229, 0.25);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.6, 1);
+  --duration-fast: 120ms;
+  --duration-base: 180ms;
+  --duration-slow: 240ms;
+
+  /* Typography */
+  --font-sans: "Uncut Sans", "Inter", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, Consolas,
+    monospace;
+}
+
+/* QuickStart Ribbon */
+.ribbon-element img {
+  width: 3em;
+}
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding-inline: 1rem;
+}
+.marquee-content {
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+  animation: scrolling 40s linear infinite;
+}
+.marquee-content:hover {
+  animation-play-state: paused;
+}
+@keyframes scrolling {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-320em);
+  }
+}
+/* Featured-on badge marquee (homepage). The track holds two copies of
+   the badge set; animating to -50% loops seamlessly. Badges rest dimmed
+   and desaturated; hovering the strip pauses the scroll and restores
+   full color. Edges fade out via a mask so it works on any background. */
+.badge-marquee {
+  width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+.badge-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: badge-scrolling 50s linear infinite;
+}
+.badge-marquee:hover .badge-marquee-track {
+  animation-play-state: paused;
+}
+.badge-marquee-group {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  padding-right: 2.5rem;
+}
+.badge-marquee img {
+  display: block;
+  height: 42px;
+  width: auto;
+  filter: grayscale(1);
+  opacity: 0.55;
+  transition: filter var(--duration-fast) var(--ease-out),
+    opacity var(--duration-fast) var(--ease-out);
+}
+.badge-marquee:hover img {
+  filter: none;
+  opacity: 1;
+}
+.badge-marquee-label {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-500);
+  margin-bottom: 1.5rem;
+}
+@keyframes badge-scrolling {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (min-width: 768px) {
+  .marquee:before,
+  .marquee:after {
+    position: absolute;
+    top: 0;
+    width: 10rem;
+    height: 100%;
+    content: "";
+    z-index: 1;
+  }
+  .marquee:before {
+    left: 0;
+    background: linear-gradient(to right, var(--ink-50) 0%, transparent 50%);
+  }
+  .marquee:after {
+    right: 0;
+    background: linear-gradient(to left, var(--ink-50) 0%, transparent 50%);
+  }
+}
+/*  */
+
+html {
+  background: var(--ink-50);
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--ink-700);
+  background-color: transparent;
+}
+
+/* Page bg wash. Hosted on a position:fixed pseudo-element instead of
+   background-attachment:fixed on body: Firefox repaints the fixed body
+   bg on every scroll event, and combined with the navbar backdrop-filter
+   the compositor backlogs on fast scroll, dropping the hero's paint
+   until the next input event. A position:fixed element is promoted to
+   its own GPU layer and is cheap to keep in view.
+
+   Layered ABOVE the grid canvas (canvas z=-2, wash z=-1): in the
+   negative-z paint step, less-negative paints later, so the wash tones
+   the grid down. Still below in-flow content (z=auto). docs.css and
+   blog.css override just the background-image to wash more aggressively. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(
+      to bottom,
+      rgba(247, 248, 250, 0.2) 0%,
+      rgba(247, 248, 250, 0.75) 45%,
+      rgba(247, 248, 250, 0.92) 80%,
+      #f7f8fa 100%
+    ),
+    radial-gradient(
+      ellipse 80% 50% at 50% -10%,
+      rgba(91, 134, 229, 0.06),
+      transparent 60%
+    );
+}
+
+/* Background grid canvas - fills the viewport, sits behind all in-flow
+   content (cards mask it with their opaque white backgrounds) and
+   beneath the body::before wash that tones it down. Body bg-color must
+   be transparent so this layer is visible. --canvas-opacity is updated
+   by /js/cursorglow.js on scroll to fade the grid out past the hero. */
+.grid-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  pointer-events: none;
+  display: block;
+  opacity: var(--canvas-opacity, 1);
+  will-change: opacity;
+}
+
+/* Skip the canvas grid on small screens - no hover affordance, viewport
+   is too narrow for the effect to read, and it saves the JS/draw cost
+   on the lowest-power devices. */
+@media (max-width: 767.98px) {
+  .grid-canvas {
+    display: none;
+  }
+}
+
+/* ---- Typography ------------------------------------------ */
+.biggestheader {
+  font-size: clamp(2.5rem, 4.5vw, 3.75rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--ink-950);
+}
+
+code,
+kbd,
+pre,
+samp,
+.font-mono {
+  font-family: var(--font-mono);
+  /* Disable ligatures on all code, inline and block. Ligature fonts
+     (Geist Mono, JetBrains Mono) fuse sequences like <->, <--, and
+     --> into single arrow glyphs whose left edge overhangs the
+     previous character, so `client <-> pinggy` looks like the arrow
+     is touching the word, and ASCII diagrams lose their alignment.
+     Rendering code literally avoids both. */
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "calt" 0;
+}
+
+/* ---- Blog list: sort toggle + cards ---------------------- */
+.blog-sort-row {
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.blog-sort-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-500);
+}
+
+/* Segmented control. Calm neutral track with a white sliding thumb
+   marking the active option; color stays reserved for action, so the
+   selection reads through the thumb and text weight, not an accent
+   fill. Thumb follows the toggle-switch spec (white + --shadow-xs). */
+.blog-sort {
+  position: relative;
+  display: inline-flex;
+  padding: 3px;
+  background: var(--ink-100);
+  border: 1px solid var(--ink-200);
+  border-radius: var(--radius-pill);
+}
+
+.blog-sort__thumb {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  left: 3px;
+  width: calc(50% - 3px);
+  background: var(--white);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-xs);
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.blog-sort[data-active="updated"] .blog-sort__thumb {
+  transform: translateX(100%);
+}
+
+.blog-sort__btn {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 0;
+  border: none;
+  background: transparent;
+  color: var(--ink-500);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.blog-sort__btn:hover {
+  text-decoration: none;
+}
+
+.blog-sort__btn:hover:not(.is-active) {
+  color: var(--ink-700);
+}
+
+.blog-sort__btn.is-active {
+  color: var(--ink-900);
+}
+
+.blog-sort__btn:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.blog-card {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--ink-200);
+}
+
+.blog-card:last-child {
+  border-bottom: none;
+}
+
+/* Thumbnail / placeholder: every card keeps the same media box so the
+   list stays even whether or not a post has an image. */
+.blog-card__media {
+  flex: 0 0 auto;
+  display: block;
+  width: 180px;
+  height: 120px;
+  overflow: hidden;
+  border: 1px solid var(--ink-200);
+  border-radius: var(--radius-lg);
+  background: var(--ink-100);
+}
+
+.blog-card__media img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.blog-card__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: var(--ink-300);
+  font-size: 32px;
+}
+
+.blog-card__body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Title: capped at two lines so long headlines do not tower over the
+   thumbnail. */
+.blog-card__titlelink {
+  text-decoration: none;
+}
+
+.blog-card__title {
+  margin: 0 0 6px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--ink-900);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.blog-card__titlelink:hover .blog-card__title {
+  color: var(--brand-700);
+}
+
+.blog-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 0.8125rem;
+  color: var(--ink-500);
+}
+
+.blog-card__tag {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--ink-100);
+  color: var(--ink-700);
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Excerpt: two lines, so every card is the same height and the text
+   block lines up with the thumbnail. */
+.blog-card__excerpt {
+  margin: 0;
+  color: var(--ink-500);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+@media (max-width: 575.98px) {
+  .blog-card {
+    gap: 14px;
+  }
+  .blog-card__media {
+    width: 116px;
+    height: 88px;
+    border-radius: var(--radius-md);
+  }
+  .blog-card__title {
+    font-size: 1.0625rem;
+  }
+  .blog-card__excerpt {
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-sort__thumb {
+    transition: none;
+  }
+}
+
+/* ---- Links ----------------------------------------------- */
+a {
+  color: var(--brand-600);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+a:hover {
+  color: var(--brand-700);
+}
+
+/* ---- Info banner pill (Node.js / Python SDK alert) ------- */
+.alert.alert-info {
+  display: inline-block;
+  width: auto;
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--brand-50);
+  border: 1px solid var(--brand-100);
+  border-radius: var(--radius-pill);
+  color: var(--ink-700);
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 8px 16px !important;
+}
+
+.alert.alert-info b,
+.alert.alert-info strong {
+  color: var(--ink-900);
+  font-weight: 600;
+}
+
+.alert.alert-info a {
+  color: var(--brand-700);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.alert.alert-info a:hover {
+  color: var(--brand-700);
+  text-decoration: underline;
+}
+
+/* ---- Install callout (highlighted quick-start command) --- */
+.install-callout {
+  background-color: var(--brand-50);
+  border: 1px solid var(--brand-100);
+  border-left: 3px solid var(--brand-600);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+}
+
+.install-callout > p:first-child {
+  margin: 0 0 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--brand-700);
+}
+
+.install-callout pre,
+.install-callout .chroma {
+  margin-bottom: 0;
+}
+
+/* ---- Hero entrance animation ----------------------------- */
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.biggestheader,
+#lead2,
+#trialemail,
+#bigcodecolumn {
+  animation: heroFadeUp 400ms var(--ease-out) both;
+}
+
+#lead2 {
+  animation-delay: 120ms;
+}
+
+#trialemail,
+.input-group:has(#trialemail) {
+  animation-delay: 180ms;
+}
+
+#bigcodecolumn {
+  animation-delay: 60ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .marquee-content,
+  .badge-marquee-track {
+    animation: none !important;
+  }
+}
+
+/* ---- Form controls --------------------------------------- */
+.form-control,
+.form-select {
+  border: 1px solid var(--ink-200);
+  background-color: #fff;
+  color: var(--ink-900);
+  font-size: 0.9375rem;
+  padding: 0.625rem 0.875rem;
+  border-radius: var(--radius-md);
+  transition: border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.form-select {
+  padding-right: 2.25rem;
+  min-width: 5.5rem;
+  background-position: right 0.75rem center;
+  background-size: 14px 10px;
+}
+
+/* Pricing seat selector (-/+/number) - the generic .form-control
+   padding above makes the number input taller than the adjacent
+   .btn-outline-dark controls, breaking alignment inside the
+   .input-group. Match heights with a tighter padding. */
+.seat-spinner {
+  display: inline-flex;
+  align-items: stretch;
+  width: fit-content;
+  border: 1px solid var(--ink-300);
+  border-radius: var(--radius-md);
+  background-color: #fff;
+}
+.seat-spinner .form-control {
+  padding: 0.375rem 0.25rem;
+  max-width: 3.5rem;
+  font-weight: 600;
+  border: none;
+  border-left: 1px solid var(--ink-300);
+  border-right: 1px solid var(--ink-300);
+  border-radius: 0;
+  background-color: transparent;
+}
+.seat-spinner .btn {
+  padding: 0.375rem 0;
+  width: 2.25rem;
+  flex: 0 0 auto;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1;
+  border: none;
+  border-radius: 0;
+  color: var(--ink-800);
+  background-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.seat-spinner .btn:first-child {
+  border-top-left-radius: calc(var(--radius-md) - 1px);
+  border-bottom-left-radius: calc(var(--radius-md) - 1px);
+}
+.seat-spinner .btn:last-child {
+  border-top-right-radius: calc(var(--radius-md) - 1px);
+  border-bottom-right-radius: calc(var(--radius-md) - 1px);
+}
+.seat-spinner .btn:hover {
+  background-color: var(--ink-100);
+  color: var(--ink-900);
+}
+.seat-spinner .btn:focus-visible {
+  box-shadow: var(--shadow-focus);
+  outline: none;
+  z-index: 2;
+  position: relative;
+}
+
+/* Compare-page header selector - sits in an ad-hoc flex row next to a
+   .input-group-text "Pinggy vs" label. The generic .form-select vertical
+   padding makes it taller than the label; match Bootstrap's default
+   input-group-text padding (0.375rem) so they read as one joined
+   control. */
+#compareSelect {
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+}
+
+.form-control::placeholder {
+  color: var(--ink-400);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--brand-500);
+  box-shadow: var(--shadow-focus);
+  outline: none;
+}
+
+.input-group .form-control,
+.input-group .form-select {
+  border-radius: var(--radius-md);
+}
+
+.input-group > :not(:last-child),
+.input-group > .input-group-prepend > .form-control,
+.input-group > .input-group-prepend > .form-select {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.input-group > :not(:first-child),
+.input-group > .input-group-append > .form-control,
+.input-group > .input-group-append > .form-select {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-left: -1px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.custom-button {
+  background-color: var(--brand-600);
+  border-color: var(--brand-600);
+  color: #fff;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  transition: background-color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.custom-button:hover {
+  background-color: var(--brand-700);
+  border-color: var(--brand-700);
+  color: #fff;
+}
+
+.custom-button:active {
+  transform: translateY(1px);
+}
+
+.custom-button:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.reset-button {
+  color: var(--brand-600);
+  border-color: var(--brand-600);
+}
+
+.reset-button:hover {
+  color: var(--brand-700);
+  background-color: transparent;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.contentcontainer {
+  margin-top: 4.8em;
+}
+
+.youtube-container {
+  display: block;
+  width: 100%;
+}
+
+.youtube-container > iframe {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+}
+
+#portcommand {
+  background: #fff;
+  color: var(--ink-900) !important;
+  font-size: 0.875rem;
+  font-family: var(--font-mono);
+  line-height: 1.6;
+  border: 1px solid var(--ink-200);
+  /* Square right corners so the textarea joins the copy button cleanly. */
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+  padding: 12px 14px;
+}
+
+.page-link {
+  color: var(--ink-900);
+}
+
+.page-item.active .page-link {
+  background-color: var(--ink-100);
+  border-color: var(--ink-900);
+  color: var(--ink-900);
+}
+
+#finalcommand {
+  background-color: var(--ink-50);
+  border: 1px solid var(--ink-200);
+  border-radius: var(--radius-lg);
+  box-shadow: none;
+  padding: 20px !important;
+  margin-top: 24px;
+}
+
+#finalcommand .btn-light {
+  background-color: var(--ink-100);
+  border: none;
+  color: var(--ink-900);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+#finalcommand .btn-light:hover {
+  background-color: var(--ink-200);
+  color: var(--ink-900);
+}
+
+.btn-pinggy {
+  background-color: var(--ink-900);
+  color: #fff;
+  border-color: var(--ink-900);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  box-shadow: var(--shadow-xs);
+  transition: background-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-slow) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.btn-pinggy-blue {
+  background-color: var(--brand-600);
+  color: #fff;
+  border-color: var(--brand-600);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: background-color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.btn-pinggy-blue:hover {
+  background-color: var(--brand-700);
+  color: #fff;
+  border-color: var(--brand-700);
+}
+
+.btn-pinggy:hover {
+  background-color: var(--ink-950);
+  color: #fff;
+  border-color: var(--ink-950);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.btn-pinggy:active,
+.btn-pinggy-blue:active {
+  transform: translateY(1px);
+}
+
+.btn-pinggy:focus-visible,
+.btn-pinggy-blue:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.btn-outline-pinggy {
+  border: 1px solid var(--ink-300);
+  color: var(--ink-900);
+  background-color: #fff;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: background-color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out);
+}
+
+.btn-outline-pinggy:hover {
+  background-color: var(--ink-100);
+  border-color: var(--ink-300);
+  color: var(--ink-900);
+}
+
+.bg-subtlegray {
+  background: var(--ink-50);
+}
+
+.bg-gray {
+  background-color: var(--ink-900);
+}
+
+.border-gray {
+  border-color: var(--ink-900);
+  border-width: 1px;
+  border-style: solid;
+}
+
+.border-subtlegray {
+  border-color: var(--ink-200);
+  border-width: 1px;
+  border-style: solid;
+}
+
+.border-color-subtlegray {
+  border-color: var(--ink-300) !important;
+}
+
+.pinggy-link {
+  color: var(--brand-600);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.pinggy-link:hover,
+.pinggy-link:focus {
+  color: var(--brand-700);
+}
+
+.pinggy-link > i {
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.pinggy-link:hover > i,
+.pinggy-link:focus > i {
+  transform: translateX(2px);
+}
+
+.pinggy-link :hover {
+  color: var(--brand-700);
+}
+
+#webdebugurl {
+  display: block;
+}
+
+.enablewebdebuglabel {
+  font-weight: 500;
+}
+
+.featureimage {
+  transition: transform var(--duration-slow) var(--ease-out),
+    box-shadow var(--duration-slow) var(--ease-out);
+  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.featureimage:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-lg);
+}
+
+.featurecard {
+  min-height: 18em;
+  border-radius: var(--radius-lg);
+  margin-bottom: 1.6em;
+  background-color: #fff;
+  border: 1px solid var(--ink-200);
+  box-shadow: var(--shadow-sm);
+  padding: 20px;
+  transition: box-shadow var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
+}
+
+.featurecard:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.featurecard h3 {
+  color: var(--ink-900);
+}
+.featurecard b,
+.featurecard strong {
+  font-weight: 600;
+  color: var(--ink-900);
+}
+.featurecard p {
+  margin-bottom: 0;
+  color: var(--ink-500);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+.featurelist li {
+  color: var(--ink-700);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  padding: 0.2rem 0;
+}
+.featurelist li .bi-check2-circle {
+  color: var(--brand-600);
+}
+.featurecard code {
+  font-size: 0.85em;
+  background-color: var(--ink-100);
+  color: var(--ink-900);
+  padding: 0.1em 0.35em;
+  border-radius: var(--radius-sm);
+}
+
+/* Sidebar  -------------------------- */
+
+.sidebar {
+  border-right: 1px solid var(--ink-200);
+  width: 100%;
+  padding-right: 1em;
+  min-height: 100vh;
+}
+
+#sidebarexpandbtn {
+  cursor: pointer;
+  display: none;
+  width: 2em;
+  background-color: var(--ink-50);
+  border: 1px solid var(--ink-200);
+  border-radius: var(--radius-md);
+  position: fixed;
+  top: 4.1em;
+  left: 11px;
+}
+
+#sidebarclosebtn {
+  display: none;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 700px) {
+  .sidebarcol {
+    display: none;
+    position: fixed;
+    background: #fff;
+    border-right: 1px solid var(--ink-200);
+    box-shadow: var(--shadow-lg);
+    top: 4.5em;
+    bottom: 0;
+    left: 0;
+    overflow: scroll;
+    z-index: 9999;
+  }
+
+  #sidebarexpandbtn {
+    display: block;
+    z-index: 100;
+  }
+
+  .doccontent {
+    margin-top: 2em;
+  }
+
+  #sidebarclosebtn {
+    display: inline;
+  }
+}
+
+.btn-toggle,
+.btn-non-toggle {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  width: 100%;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: var(--ink-700);
+  background-color: transparent;
+  border: 0;
+  border-radius: var(--radius-md);
+  transition: background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+
+.btn-toggle:hover,
+.btn-non-toggle:hover,
+.btn-non-toggle:focus,
+.btn-toggle:focus {
+  color: var(--ink-900);
+  background-color: var(--ink-100);
+}
+
+li.doclink.active > a {
+  color: var(--brand-700);
+  background-color: var(--brand-50);
+  font-weight: 600;
+}
+
+.btn-toggle::after {
+  width: 1.25em;
+  margin-left: auto;
+  line-height: 0;
+  content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
+  transition: transform var(--duration-slow) var(--ease-out);
+  transform-origin: 0.5em 50%;
+}
+
+.btn-toggle[aria-expanded="true"] {
+  color: var(--ink-900);
+}
+
+.btn-toggle[aria-expanded="true"]::after {
+  transform: rotate(90deg);
+}
+
+.btn-toggle-nav a {
+  display: inline-flex;
+  padding: 5px 10px;
+  margin-top: 2px;
+  margin-left: 1.25rem;
+  text-decoration: none;
+  color: var(--ink-500);
+  font-size: 0.875rem;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+
+.btn-toggle-nav a:hover,
+.btn-toggle-nav a:focus {
+  background-color: var(--ink-100);
+  color: var(--ink-900);
+}
+
+.scrollarea {
+  overflow-y: auto;
+}
+
+.fw-semibold {
+  font-weight: 600;
+}
+
+.lh-tight {
+  line-height: 1.25;
+}
+
+/* Sidebar end */
+
+.doccontent {
+  max-width: 50em;
+}
+
+.maincontent {
+  min-height: 100vh;
+}
+
+pre > code {
+  background-color: var(--ink-50);
+  color: var(--ink-700) !important;
+}
+/* Background */
+.bg {
+  background-color: var(--ink-50);
+}
+/* PreWrapper */
+.chroma {
+  background-color: var(--ink-50);
+}
+
+/* Navbar --------------------------------- */
+.navbar.navbar-expand-lg {
+  font-size: 1rem;
+  display: block;
+  padding: 0;
+  box-shadow: var(--shadow-xs);
+  border-bottom: 1px solid var(--ink-300);
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  backdrop-filter: saturate(180%) blur(12px);
+}
+
+/* Brand-tinted comet that travels along the bottom edge of the navbar.
+   Mirrors the additive grid pulses in assets/js/cursorglow.js - same
+   brand-500 RGB (91, 134, 229), similar lifecycle (~5.5s, slow fade
+   in/out). The comet is a no-repeat background gradient sized to 25%
+   of the navbar; animating background-position-x slides it across and
+   naturally clips it to the navbar bounds (no overflow:hidden needed,
+   so dropdowns stay visible). drop-shadow gives the additive bloom. */
+.navbar.navbar-expand-lg::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  pointer-events: none;
+  background-image: linear-gradient(
+    90deg,
+    rgba(91, 134, 229, 0) 0%,
+    rgba(91, 134, 229, 0.2) 30%,
+    rgba(91, 134, 229, 0.95) 50%,
+    rgba(91, 134, 229, 0.2) 70%,
+    rgba(91, 134, 229, 0) 100%
+  );
+  background-size: 25% 100%;
+  background-repeat: no-repeat;
+  background-position-x: 0%;
+  /* opacity() in the filter list (not the opacity property) is what the
+     scroll-past-hero fade rides on: the animation drives `opacity` per
+     cycle, and filter:opacity() multiplies the rendered visibility, so
+     the two compose. Both lists below must keep the same function
+     shape (drop-shadow, drop-shadow, opacity) so filter interpolation
+     can smooth the transition; mismatched shapes snap. */
+  filter: drop-shadow(0 0 5px rgba(91, 134, 229, 0.55))
+          drop-shadow(0 0 12px rgba(91, 134, 229, 0.25))
+          opacity(1);
+  opacity: 0;
+  animation: navbarPulse 5.5s var(--ease-in-out) infinite;
+  animation-delay: -2.75s;
+  transition: filter 500ms var(--ease-out);
+}
+
+@keyframes navbarPulse {
+  0% {
+    background-position-x: 0%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    background-position-x: 100%;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar.navbar-expand-lg::after {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/* Past the hero the pulse is pure decoration. Fading the filter's
+   opacity() multiplier to 0 hides it smoothly in both directions
+   without snapping the animation phase. body.is-scrolled is toggled
+   by the inline script in layouts/partials/navbar.html past ~200px. */
+body.is-scrolled .navbar.navbar-expand-lg::after {
+  filter: drop-shadow(0 0 5px rgba(91, 134, 229, 0.55))
+          drop-shadow(0 0 12px rgba(91, 134, 229, 0.25))
+          opacity(0);
+}
+
+@supports not (backdrop-filter: blur(12px)) {
+  .navbar.navbar-expand-lg {
+    background-color: #fff !important;
+  }
+}
+
+.navbar .container {
+  min-height: 72px;
+}
+
+.navbar .logo img {
+  height: 36px !important;
+  width: auto;
+}
+
+.navbar .rainbowborder {
+  height: 0.06em;
+  background-image: linear-gradient(
+    90deg,
+    #44ff9b3a -0.55%,
+    #44b1ff3b 22.86%,
+    #8c44ff3b 48.36%,
+    #ff664433 73.33%,
+    #ecff703f 99.34%
+  );
+  opacity: 0.6;
+}
+
+.nav-link {
+  padding: 6px 12px !important;
+  border-radius: 8px;
+  transition: background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+
+.nav-link span {
+  color: var(--ink-900);
+  font-weight: 500;
+  font-size: 0.9375rem;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  background-color: var(--ink-100);
+}
+
+.nav-link:hover span,
+.nav-link:focus span {
+  color: var(--ink-900);
+}
+
+.nav-link.active span,
+.nav-item .active span {
+  color: var(--ink-950);
+  font-weight: 600;
+}
+
+.nav-item {
+  border-radius: 8px;
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.nav-item:hover {
+  background-color: transparent;
+}
+
+.navbar #LoginBtn {
+  text-decoration: none;
+  border: 1px solid var(--ink-300);
+  border-radius: var(--radius-md);
+  color: var(--ink-900);
+  font-weight: 600;
+  padding: 8px 16px !important;
+  transition: border-color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out);
+}
+
+.navbar #LoginBtn:hover {
+  border: 1px solid var(--ink-900);
+  background-color: transparent;
+}
+
+.navbar #FreeTrailBtn {
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  color: #fff;
+  font-weight: 600;
+  background-color: var(--ink-900);
+  padding: 8px 16px !important;
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.navbar #FreeTrailBtn:hover {
+  background-color: var(--ink-950) !important;
+}
+
+.navbar .dropdown-toggle::after {
+  vertical-align: 0.155em;
+}
+
+.navbar .dropdown-menu {
+  border: 1px solid var(--ink-200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 6px;
+  margin-top: 6px;
+}
+
+.navbar .dropdown-item {
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  font-size: 0.9375rem;
+  color: var(--ink-700);
+  font-weight: 500;
+  transition: background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out);
+}
+
+.navbar .dropdown-item:hover,
+.navbar .dropdown-item:focus {
+  background-color: var(--ink-100);
+  color: var(--ink-900);
+}
+
+/* Footer ----------------------------------------------- */
+footer.bg-dark h1,
+footer.bg-dark h2,
+footer.bg-dark h3,
+footer.bg-dark h4,
+footer.bg-dark h5,
+footer.bg-dark h6,
+footer.bg-dark .h1,
+footer.bg-dark .h2,
+footer.bg-dark .h3,
+footer.bg-dark .h4,
+footer.bg-dark .h5,
+footer.bg-dark .h6 {
+  color: #fff;
+  font-weight: 600;
+}
+
+footer.bg-dark a.link-light {
+  color: rgba(255, 255, 255, 0.78) !important;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+footer.bg-dark a.link-light:hover,
+footer.bg-dark a.link-light:focus {
+  color: #fff !important;
+}
+
+footer.bg-dark .border-color-subtlegray {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Footer column separators: only show between side-by-side columns */
+@media (max-width: 767.98px) {
+  .footer-cols > .footer-col {
+    border-right: 0 !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .footer-cols > .footer-col:nth-child(2n) {
+    border-right: 0 !important;
+  }
+}
+
+/* Big header --------------------------------- */
+
+#lead2 {
+  color: var(--ink-500);
+  margin-top: 0.6em;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  max-width: 460px;
+}
+
+#tryityourselftext {
+  background: var(--ink-100);
+}
+
+#tryityourselfprecommand {
+  color: var(--ink-700);
+  background-color: var(--white, #fff);
+}
+
+#signinbutton {
+  display: inline-block;
+  background-color: var(--ink-900);
+  border: 1px solid var(--ink-900);
+  padding: 0.6em;
+}
+
+#trynow {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  text-align: right;
+  margin-top: 0.6em;
+  border: 0;
+  background: transparent;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+  vertical-align: text-bottom;
+  color: var(--ink-500);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+#trynow:hover {
+  color: var(--brand-700);
+}
+
+.btn-outline-dark {
+  border-color: var(--ink-300);
+}
+
+#bigcodecolumn {
+  background-color: #fff;
+  border: 1px solid var(--ink-200);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  padding: 12px;
+}
+
+#bigcodecolumn h2,
+#bigcodecolumn h5 {
+  color: var(--ink-900);
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+#bigcodecolumn label,
+#bigcodecolumn strong {
+  color: var(--ink-900);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+#textchanger {
+  color: var(--ink-900);
+  font-weight: 700;
+}
+
+.videocontainer {
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+/* Stand-in for <video poster>, so the still can be lazy-loaded. Bootstrap's
+   `.ratio` already stretches it over the video; `hidden` removes it on play. */
+.videocontainer .videoposter {
+  object-fit: cover;
+}
+.videocontainer .videoposter[hidden] {
+  display: none;
+}
+
+/* Pricing section --------------------------  */
+/* ------ Hide monthly prices by default ---- */
+.monthly {
+  display: none;
+}
+
+.pricecard {
+  height: 100%;
+  border: 1px solid var(--ink-200);
+  background-color: #fff;
+  transition: transform var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.pricecard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md) !important;
+}
+
+.pricecard .card-header {
+  background-color: #fff;
+  border-bottom: 1px solid var(--ink-200);
+}
+
+.pricecard--featured {
+  position: relative;
+  border-color: var(--ink-900);
+}
+
+@media (min-width: 768px) {
+  .pricecard--featured {
+    transform: translateY(-12px);
+  }
+  .pricecard--featured:hover {
+    transform: translateY(-14px);
+  }
+}
+
+.pricing-badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--brand-600);
+  color: #fff;
+  padding: 4px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  z-index: 2;
+  box-shadow: var(--shadow-sm);
+}
+
+.pricing-toggle {
+  gap: 4px;
+  margin-bottom: 3rem !important;
+}
+
+.pricing-toggle__savings {
+  color: var(--brand-600);
+  background: var(--brand-50, #eaf1ff);
+  border-radius: var(--radius-pill);
+  padding: 2px 10px;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.pricing-price-block {
+  min-height: 3.5rem;
+  text-align: center;
+}
+
+.pricing-card-title {
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+  font-size: 1.85rem;
+}
+
+.pricing-features {
+  margin: 0;
+  padding: 0;
+}
+
+.pricing-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.22rem 0;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--ink-800);
+  line-height: 1.4;
+}
+
+.pricing-check {
+  color: var(--brand-600);
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.pricing-check--featured {
+  color: var(--brand-600);
+}
+
+.seat-selector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.seat-selector__label {
+  font-size: 0.875rem;
+  color: var(--ink-700);
+  font-weight: 500;
+}
+
+/* ----------  Toggle button ------------- */
+.form-check-input:checked {
+  background-color: var(--brand-600);
+  border-color: var(--brand-700);
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--ink-200);
+  -webkit-transition: background-color var(--duration-slow) var(--ease-out);
+  transition: background-color var(--duration-slow) var(--ease-out);
+  border-radius: var(--radius-pill);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 2px;
+  bottom: 1px;
+  background-color: #fff;
+  box-shadow: var(--shadow-xs);
+  -webkit-transition: transform var(--duration-slow) var(--ease-out);
+  transition: transform var(--duration-slow) var(--ease-out);
+  border-radius: var(--radius-pill);
+}
+
+input:checked + .slider {
+  background-color: var(--brand-600);
+}
+
+input:focus + .slider {
+  box-shadow: var(--shadow-focus);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(18px);
+  -ms-transform: translateX(18px);
+  transform: translateX(18px);
+}
+
+#bigcodecolumn {
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.shadowhighlight {
+  box-shadow: 0px 0px 10px -6px blue !important;
+  transform: scale(1.02);
+}
+
+.shadowhighlight2 {
+  box-shadow: 0px 0px 10px -1px blue !important;
+}
+
+#instructions {
+  color: var(--ink-500);
+  font-size: 0.8125rem;
+}
+
+/* Inline icons - see layouts/partials/icon.html. Sized and baseline-shifted to
+   match how the bootstrap-icons webfont used to render, so swapping a glyph
+   from <i class="bi bi-x"> to an inline SVG is visually a no-op. */
+.pg-ico {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+  flex-shrink: 0;
+}
+
+/* Icons that only exist to hang a tooltip off (the info circles in the
+   pinggytunnel shortcode) should read as explanatory, not clickable. */
+.pg-ico-btn[data-bs-toggle="tooltip"] {
+  cursor: help;
+}
+
+/* Copy to clipboard */
+.highlight {
+  position: relative;
+}
+.copy-to-clipboard {
+  top: -1px;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  color: var(--ink-900);
+  margin-left: -0.2rem;
+  cursor: pointer;
+  margin-bottom: 1px;
+  background-color: var(--ink-100);
+  border-radius: var(--radius-sm);
+  padding: 0.2em;
+}
+
+span.copy-to-clipboard.clicked {
+  background-color: #f4f8f0 !important;
+  border: 1px solid #d1e5cf;
+}
+
+.copy-to-clipboard > i {
+  padding: 0.1em;
+}
+
+.copy-to-clipboard:hover {
+  background-color: #e8e2cd;
+}
+
+pre .copy-to-clipboard {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  border-radius: 2px;
+}
+
+pre .copy-to-clipboard:hover {
+  background-color: #565656;
+  color: #fff;
+}
+
+pre {
+  color: var(--ink-700);
+  padding: 1.2em 1.2em;
+  margin: 1em 0em;
+  border: 1px solid var(--ink-200);
+  background-color: var(--ink-50);
+  border-radius: var(--radius-md);
+}
+
+/* TABS ==== */
+.tab-nav-button {
+  border-width: 1px 1px 1px 1px !important;
+  border-color: #d5d5d5 !important;
+  border-radius: 4px 4px 0 0 !important;
+  background-color: #f1f1f1 !important;
+  float: left;
+  display: block;
+  position: relative;
+  margin-left: 4px;
+  bottom: -1px;
+}
+
+.tab-nav-button:first-child {
+  margin-left: 0px;
+}
+
+.tab-nav-button.active {
+  background-color: #fff !important;
+  border-bottom-color: #fff !important;
+}
+
+.tab-panel {
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+#advancedSettingsTabContent {
+  border: 0;
+}
+
+.tab-content {
+  display: block;
+  clear: both;
+  padding: 8px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #d5d5d5;
+  border-radius: 0em 4px 4px 4px;
+}
+
+.tab-content .tab-item {
+  display: none;
+}
+
+.tab-content .tab-item.active {
+  display: block;
+}
+
+.tab-item pre {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+/* ===== Site footer (adapted to design tokens) ===== */
+.pgf {
+  --pgf-gutter: clamp(20px, 5vw, 48px);
+  margin-top: 72px;
+  border-top: 1px solid var(--ink-700);
+  background: var(--ink-950);
+  font-family: var(--font-sans);
+}
+
+.pgf__inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 56px var(--pgf-gutter) 32px;
+  display: grid;
+  grid-template-columns: 1.3fr repeat(3, 1fr);
+  gap: 40px;
+}
+
+.pgf__logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+.pgf__logo img {
+  height: 32px;
+  width: auto;
+  /* Render the wordmark light for the dark footer (no white asset exists). */
+  filter: brightness(0) invert(1);
+  /* Nudge left to align the wordmark's visual edge with the text below it. */
+  transform: translate(-7px, 0px);
+}
+
+.pgf__tag {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-400);
+  margin: 14px 0 18px;
+  max-width: 240px;
+}
+
+.pgf__social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.pgf__social a {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-400);
+  background: var(--ink-900);
+  border: 1px solid var(--ink-700);
+  transition: color var(--duration-fast) var(--ease-out),
+    background var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out);
+}
+.pgf__social a:hover {
+  color: #fff;
+  background: var(--brand-600);
+  border-color: var(--brand-600);
+}
+.pgf__social a:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+.pgf__social svg {
+  width: 16px;
+  height: 16px;
+}
+.pgf__forum-icon {
+  width: 16px;
+  height: 16px;
+  background-color: currentColor;
+  -webkit-mask: url(/assets/pinggy_forum_logo.png) center / contain no-repeat;
+  mask: url(/assets/pinggy_forum_logo.png) center / contain no-repeat;
+}
+
+.pgf__h {
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-400);
+  margin: 0 0 16px;
+}
+.pgf__col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.pgf__col li {
+  margin: 0 0 11px;
+  padding: 0;
+}
+.pgf__col li a {
+  font-size: 14.5px;
+  color: var(--ink-300);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+.pgf__col li a:hover {
+  color: var(--brand-500);
+}
+.pgf__col li a:focus-visible,
+.pgf__legal a:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+  border-radius: var(--radius-sm);
+}
+
+.pgf__bar {
+  border-top: 1px solid var(--ink-700);
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 20px var(--pgf-gutter);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+}
+.pgf__bar > span {
+  font-size: 13.5px;
+  color: var(--ink-400);
+}
+.pgf__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+}
+.pgf__legal a {
+  font-size: 13.5px;
+  color: var(--ink-400);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+.pgf__legal a:hover {
+  color: var(--brand-500);
+}
+
+@media (max-width: 860px) {
+  .pgf__inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
+@media (max-width: 520px) {
+  .pgf__inner {
+    grid-template-columns: 1fr;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pgf * {
+    transition: none !important;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Language switcher
+   Shared by the blog navbar (.bp-nav) and the product navbar (.navbar), so it
+   lives here rather than in blog.css and uses the site tokens. Only rendered
+   on pages that have a translation; Bootstrap supplies the open/close
+   behaviour and the rules below replace its default .dropdown-menu chrome.
+   --------------------------------------------------------------------------- */
+.lang-switch { position: relative; }
+.lang-switch__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 34px;
+  padding: 0 9px;
+  border: 1px solid var(--ink-200);
+  border-radius: var(--radius-md);
+  background: var(--ink-50);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--ink-500);
+  cursor: pointer;
+  transition: color var(--duration-fast), background var(--duration-fast),
+    border-color var(--duration-fast);
+}
+.lang-switch__toggle:hover,
+.lang-switch__toggle[aria-expanded="true"] {
+  color: var(--ink-900);
+  background: var(--brand-50);
+  border-color: var(--brand-100);
+}
+.lang-switch__toggle:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+.lang-switch__flag { display: block; border-radius: 2px; flex: none; }
+.lang-switch__chev {
+  width: 13px;
+  height: 13px;
+  flex: none;
+  opacity: 0.7;
+  transition: transform var(--duration-fast);
+}
+.lang-switch__toggle[aria-expanded="true"] .lang-switch__chev { transform: rotate(180deg); }
+
+.lang-switch__menu.dropdown-menu {
+  min-width: 168px;
+  padding: 5px;
+  margin: 0;
+  border: 1px solid var(--ink-200);
+  border-radius: var(--radius-lg);
+  background: #fff;
+  box-shadow: var(--shadow-lg);
+}
+.lang-switch__item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--ink-700);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--duration-fast), background var(--duration-fast);
+}
+.lang-switch__item:hover { color: var(--ink-900); background: var(--ink-50); }
+.lang-switch__item.is-active { color: var(--brand-700); }
+.lang-switch__item:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+.lang-switch__check {
+  width: 15px;
+  height: 15px;
+  margin-left: auto;
+  flex: none;
+  opacity: 0;
+  color: var(--brand-600);
+}
+.lang-switch__item.is-active .lang-switch__check { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lang-switch__toggle,
+  .lang-switch__chev,
+  .lang-switch__item { transition: none; }
+}
+
+/* Below ~420px drop the language name and keep flag + chevron only. */
+@media (max-width: 420px) {
+  .lang-switch__cur { display: none; }
+  .lang-switch__toggle { gap: 4px; padding: 0 7px; }
+}

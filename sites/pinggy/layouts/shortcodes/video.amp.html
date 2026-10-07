@@ -1,0 +1,14 @@
+{{ $poster := .Get "poster" }} {{ $src := .Get "src" }}
+
+<amp-video
+  controls
+  width="640"
+  height="360"
+  layout="responsive"
+  poster="{{ $poster }}"
+>
+  <source src="{{ $src }}" />
+  <div fallback>
+    <p>{{ i18n "videoUnsupported" }}</p>
+  </div>
+</amp-video>

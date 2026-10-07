@@ -1,0 +1,78 @@
+import { CardGroup, Card } from "src/shared/Docs/mdx";
+import { WelcomeGrid, PlatformGrid, UseCaseGrid, StartBuilding } from "src/shared/Docs/DocsHome";
+import InngestIcon from "src/shared/Icons/InngestIcon";
+import SkillsMDIcon from "src/shared/Icons/SkillsMD";
+import MCPIcon from "src/shared/Icons/MCP";
+import LLMsTXTIcon from "src/shared/Icons/LLMsTxt";
+
+export const metaTitle = "Inngest Documentation";
+export const description = "Build reliable background jobs, durable workflows, and AI agents in TypeScript, Python, and Go that survive failures, with no queues or infrastructure.";
+export const hidePageSidebar = true;
+
+# Introducing Inngest
+
+> Build durable, observable, failure-resistant code with sandboxing, agent evals, and A/B tests built in.
+
+Inngest is the platform for building durable workflows and agents that survive failures, without managing orchestration infrastructure. Write functions in your existing code and add steps. Inngest runs each step, saves its result, and retries failed work from the step that failed.
+
+<WelcomeGrid />
+
+## The Inngest platform
+
+Durable execution, isolated Sandboxes, outcome scores, and live updates all share the same run, so you can follow the whole job in one trace.
+
+<PlatformGrid />
+
+For example, a support agent can call tools and run code in a Sandbox while it answers a request. Inngest retries failed steps and records the work in a trace. When feedback arrives later, a score links it to the run and experiment variant, so you can compare the outcomes of agent changes.
+
+## Explore use cases
+
+See how teams use Inngest to run agents, background jobs, generated code, and experiments in production.
+
+<UseCaseGrid />
+
+## Start building
+
+Pick your language to build your first durable workflow. Use [Local Development](/docs/local-development) to run and inspect it on your machine.
+
+<StartBuilding />
+
+## Coding agent resources
+
+<CardGroup cols={2}>
+  <Card
+    href="/docs/ai-dev-tools?ref=docs-home"
+    title={"AI development tools"}
+    icon={<InngestIcon className="text-basis h-12 w-12" />}
+    iconPlacement="top"
+  >
+    Resources for using Inngest with AI coding agents, MCP, CLI workflows, and LLM-ready documentation.
+  </Card>
+
+  <Card
+    href={"/docs/ai-dev-tools/agent-skills?ref=docs-home"}
+    title={"Agent Plugins and Skills"}
+    icon={<SkillsMDIcon square={false} className="text-basis h-16 w-32" />}
+    iconPlacement="top"
+  >
+    Official plugins and skills that teach coding agents how to write, test, and debug Inngest functions.
+  </Card>
+
+  <Card
+    href={"/docs/ai-dev-tools/mcp?ref=docs-home"}
+    title={"Inngest MCP"}
+    icon={<MCPIcon className="text-basis h-16 w-16" />}
+    iconPlacement="top"
+  >
+    Connect coding agents to Inngest Cloud or your local Dev Server to inspect functions, send events, and debug runs.
+  </Card>
+
+  <Card
+    href={"/docs/ai-dev-tools#llm-docs"}
+    title={"LLM Docs"}
+    icon={<LLMsTXTIcon square={false} className="text-basis h-16 w-16" />}
+    iconPlacement="top"
+  >
+    Full Inngest documentation in markdown format for LLM context windows. Also available as a table of contents.
+  </Card>
+</CardGroup>

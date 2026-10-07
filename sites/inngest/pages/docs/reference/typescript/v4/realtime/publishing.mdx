@@ -1,0 +1,182 @@
+import { Info, Properties, Property, Row, Col } from "src/shared/Docs/mdx";
+
+
+export const metaTitle = "Publishing Realtime Messages | TypeScript SDK v4"
+export const description = "Publish typed messages to realtime channels from Inngest functions or server-side code with inngest.realtime.publish() and step.realtime.publish() in TypeScript SDK v4."
+
+# Publishing
+
+There are two ways to publish realtime messages in the v4 SDK.
+
+<Info>
+  Prefer `step.realtime.publish()` whenever you can. It is durable and
+  memoized, so it will not run again if the function retries. Reach for
+  `inngest.realtime.publish()` only when you specifically need non-durable
+  behavior, such as high-frequency token streaming or publishing from code
+  outside a function.
+</Info>
+
+| Method | Durable | Usable outside functions | Step ID | Best for |
+|--------|---------|------------------------|---------|----------|
+| `inngest.realtime.publish()` | No | Yes | - | High-frequency progress, and publishing from routes, webhooks, or server-side code |
+| `step.realtime.publish()` | Yes | No | Required | State transitions, final results, deduped publishes |
+
+---
+
+## `inngest.realtime.publish(topicRef, data)`
+
+Publishes from your `Inngest` client. Use this anywhere you already have the client available, such as API routes, webhooks, or other server-side code. Inside a function run, `inngest.realtime.publish()` also attaches the current run ID automatically.
+
+<Row>
+  <Col>
+    <Properties>
+      <Property name="topicRef" type="TopicRef<TData>" required>
+        A topic accessor from a channel instance.
+      </Property>
+      <Property name="data" type="TData" required>
+        The message payload. Must match the topic's schema.
+      </Property>
+    </Properties>
+
+    Returns `Promise<void>`.
+  </Col>
+  <Col>
+  ```ts
+  import { inngest } from "./client";
+  import { alertsChannel } from "./channels";
+
+  export async function POST(req: Request) {
+    const body = await req.json();
+
+    //
+    // Non-durable by design. Prefer step.realtime.publish() when this work
+    // lives inside a function and duplicates on retry would be a problem.
+    await inngest.realtime.publish(alertsChannel.alert, {
+      message: body.message,
+      severity: body.severity,
+    });
+
+    return new Response("OK");
+  }
+  ```
+  </Col>
+</Row>
+
+<Info>
+  `inngest.realtime.publish()` works at the top level of your function handler
+  and inside `step.run()` blocks. It is non-durable in both cases, so it fires
+  again on retry.
+</Info>
+
+Inside a function, this is the method to reach for when publishing at high
+frequency, such as streaming model output token by token:
+
+```ts
+inngest.createFunction(
+  { id: "stream-tokens", triggers: [{ event: "app/generate" }] },
+  async ({ event, step }) => {
+    const ch = pipelineChannel({ contentId: event.data.contentId });
+
+    await step.run("generate", async () => {
+      const stream = await openai.responses.create({
+        model: "gpt-5",
+        input: [{ role: "user", content: event.data.prompt }],
+        stream: true,
+      });
+
+      let full = "";
+      for await (const chunk of stream) {
+        if (chunk.type === "response.output_text.delta") {
+          full += chunk.delta;
+
+          //
+          // Non-durable on purpose. This can run again on retry, which is
+          // usually acceptable for token streams.
+          await inngest.realtime.publish(ch.tokens, { token: chunk.delta });
+        }
+      }
+
+      return full;
+    });
+  },
+);
+```
+
+## `step.realtime.publish(id, topicRef, data)`
+
+A durable step that memoizes the publish. If the function retries past this step, the publish won't re-fire. The message appears in the function's execution graph. Best for important state transitions and final results.
+
+<Row>
+  <Col>
+    <Properties>
+      <Property name="id" type="string" required>
+        A unique step ID. Used for memoization and appears in function logs.
+      </Property>
+      <Property name="topicRef" type="TopicRef<TData>" required>
+        A topic accessor from a channel instance.
+      </Property>
+      <Property name="data" type="TData" required>
+        The message payload. Must match the topic's schema.
+      </Property>
+    </Properties>
+
+    Returns `Promise<TData>`, the published data.
+  </Col>
+  <Col>
+  ```ts
+  inngest.createFunction(
+    { id: "process-upload", triggers: [{ event: "app/upload" }] },
+    async ({ event, step }) => {
+      const ch = uploadsChannel({ uploadId: event.data.uploadId });
+
+      //
+      // This status update is ephemeral, so non-durable publish is fine.
+      await inngest.realtime.publish(ch.status, { message: "Processing..." });
+
+      const result = await step.run("process", async () => {
+        return processUpload(event.data);
+      });
+
+      //
+      // Prefer the durable publish for important state that should not
+      // duplicate if the function retries.
+      await step.realtime.publish("publish-result", ch.result, {
+        success: true,
+        url: result.url,
+      });
+    },
+  );
+  ```
+  </Col>
+</Row>
+
+## Choosing a publish method
+
+Prefer **`step.realtime.publish()`** by default when the publish happens inside a
+function and duplicates would be incorrect or noisy.
+
+Use **`inngest.realtime.publish()`** when:
+- Streaming tokens, progress percentages, or log lines
+- The data is ephemeral and duplicates on retry are fine
+- You want minimum latency (no step overhead)
+- Publishing from outside a function (API routes, webhooks, cron jobs)
+
+Use **`step.realtime.publish()`** when:
+- Publishing a final result or state transition
+- You need exactly-once delivery semantics (memoized)
+- The publish should appear in the function's execution graph
+
+## Type safety
+
+Both methods validate data against the topic's schema at both compile time and runtime:
+
+```ts
+const ch = pipelineChannel({ contentId: "abc" });
+
+// TypeScript error - missing required field
+await inngest.realtime.publish(ch.status, { message: "ok" }); // ✓
+await inngest.realtime.publish(ch.status, { wrong: "field" }); // ✗ compile error
+
+// Runtime validation - throws if data doesn't match Zod schema
+await inngest.realtime.publish(ch.status, someUntypedData); // validated at runtime
+```

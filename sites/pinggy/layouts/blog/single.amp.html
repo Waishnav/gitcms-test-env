@@ -1,0 +1,25 @@
+{{ define "main" }}
+<h1 class="blogtitle">{{.Title}}</h1>
+
+<div class="blogbody">
+  {{ if ne .Lastmod .Date }}
+  <span class="info">
+    <br />
+    {{ i18n "updatedOn" }} {{ time.Format (i18n "datefmtAmp") .Lastmod }}</span
+  >
+  {{ else }}
+  <span class="info">{{ time.Format (i18n "datefmtAmp") .Date }}</span>
+  {{ end }}
+  <span class="info">
+    <span>·</span> {{ .ReadingTime }} {{ i18n "minRead" }}</span
+  >
+
+  <div class="badge-container">
+    {{ range (.GetTerms "tags") }}
+    <span class="badge">{{ .LinkTitle }}</span>
+    {{ end }}
+  </div>
+</div>
+
+<div class="blogbody">{{ .Content }}</div>
+{{ end }}

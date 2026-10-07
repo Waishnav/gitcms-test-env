@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+
+  {%- include head.html -%}
+
+  <body class="flex flex-col h-full bg-gray-50">
+
+    {%- include nav.html -%}
+
+    <main class="flex-1">
+      {{ content }}
+    </main>
+
+    {%- include footer.html -%}
+
+    <script> </script> <!-- https://stackoverflow.com/a/42969608 -->
+    <script type="text/javascript" src="{{ "/assets/js/alpine.js" | relative_url }}?v={{ site.time | date:'%s' }}" defer></script>
+  </body>
+</html>

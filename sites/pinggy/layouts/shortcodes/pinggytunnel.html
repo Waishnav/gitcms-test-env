@@ -1,0 +1,940 @@
+{{ $seed := "foo" }}
+{{ $random := delimit (shuffle (split (md5 $seed) "" )) "" }}
+{{ $tunnelstring := .Get "tunnelstring" | default "Paste this command to star a tunnel:" }}
+{{ $portstring := .Get "portstring" | default "Local Port" }}
+{{ $localport := .Get "localport" | default "8000" }}
+{{ $webdebugport := .Get "webdebugport" | default "4300" }}
+{{ $webdebugenabled := .Get "webdebugenabled" | default false }}
+{{ $keepalive := .Get "keepalive" | default false }}
+{{ $passwordCheck := .Get "passwordCheck" | default false }}
+{{ $basicusername := .Get "basicusername" | default "" }}
+{{ $basicpass := .Get "basicpass" | default "" }}
+{{ $qrcheck := .Get "qrcheck" | default false }}
+{{ $reconnect := .Get "reconnect" | default false }}
+{{ $manuallycheckkey := .Get "manuallycheckkey" | default false }}
+{{ $mode := .Get "mode" | default "http" }}
+{{ $keyauthentication := .Get "keyauthentication" | default false }}
+{{ $keyauthentications := .Get "keyauthentications" | default "[]" }}
+{{ $ipwhitelistcheck := .Get "ipwhitelistcheck" | default false }}
+{{ $ipwhitelist := .Get "ipwhitelist" | default "[]" }}
+{{ $headermodifications := .Get "headermodifications" | default "[]" }}
+{{ $tryYourselfText := .Get "tryYourselfText" | default "" }}
+{{ $localServerTLS := .Get "localServerTLS" | default false }}
+{{ $localServerTLSSNI := .Get "localServerTLSSNI" | default "" }}
+{{ $noReverseProxy := .Get "noReverseProxy" | default false }}
+{{ $httpsonly := .Get "httpsonly" | default false }}
+{{ $forwardHost := .Get "forwardHost" | default false }}
+{{ $forwardHostAddress := .Get "forwardHostAddress" | default "127.0.0.1" }}
+{{ $force := .Get "force" | default false }}
+{{ $corsPreflight := .Get "corsPreflight" | default false }}
+{{ $xForwardedFor := .Get "xForwardedFor" | default false }}
+{{ $fullUrl := .Get "fullUrl" | default false }}
+{{ $selectedRegion := .Get "selectedRegion" | default "free.pinggy.io" }}
+
+<div
+  class="mb-3"
+  data-pagefind-ignore
+  x-data="{
+    data: { tunnelString: '{{ $tunnelstring }}',
+        portString: '{{ $portstring }}',
+        localPort: '{{ $localport }}',
+        webDebugPort: '{{ $webdebugport }}',
+        webDebugEnabled: {{ $webdebugenabled }},
+        keepAlive: {{ $keepalive }},
+        passwordCheck: {{ $passwordCheck }},
+        basicusername: '{{ $basicusername }}',
+        basicpass: '{{ $basicpass }}',
+        qrCheck: {{ $qrcheck }},
+        reconnect: {{ $reconnect }},
+        connectiontype: 'ssh',
+        platformselect: 'unix',
+        manuallyCheckKey: {{ $manuallycheckkey }},
+        mode: '{{ $mode }}',
+        keyAuthentication: {{ $keyauthentication }},
+        keyAuthentications: {{ $keyauthentications }},
+        ipWhitelistCheck: {{ $ipwhitelistcheck }},
+        ipWhitelist: {{ $ipwhitelist }},
+        headerModifications: {{ $headermodifications }},
+        localServerTLS: {{ $localServerTLS }},
+        localServerTLSSNI: '{{ $localServerTLSSNI }}',
+        noReverseProxy: {{ $noReverseProxy }},
+        httpsonly: {{ $httpsonly }},
+        forwardHost: {{ $forwardHost }},
+        forwardHostAddress: '{{ $forwardHostAddress }}',
+        force: {{ $force }},
+        corsPreflight: {{ $corsPreflight }},
+        xForwardedFor: {{ $xForwardedFor }},
+        fullUrl: {{ $fullUrl }},
+        accesstoken: false,
+        accesstokenvalue: ''
+    }
+  }"
+  x-init="data.platformselect = getOS() == 'windows' ? 'windows_powershell' : 'unix'"
+>
+    
+  {{ if ne $tryYourselfText "" }}
+  <p class="font-weight-bold fs-5">{{ $tryYourselfText }}</p>
+  {{ end }}
+  <div
+    class="pinggytunnelshortcode"
+    {{ with .Get "box" }}
+    style="
+      padding: 1em;
+      border-radius: 0.4em;
+      box-shadow: 0 0 7px 0px #00000029;
+    "
+    {{ end }}
+    data-headermodifications="{{ $headermodifications }}"
+    data-mode="{{ $mode }}"
+  >
+  {{ with .Get "showTabs" }}
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+          <button class="nav-link {{ if eq $mode "http" }} active {{ end }}" id="http-tab" data-bs-toggle="tab"
+              data-bs-target="#tab-pane" type="button" role="tab" aria-controls="http-tab-pane"
+              aria-selected="true" @click="data.mode = 'http'">HTTP(S)</button>
+      </li>
+      <li class="nav-item" role="presentation">
+          <button class="nav-link {{ if eq $mode "tcp" }} active {{ end }}" id="tcp-tab" data-bs-toggle="tab" data-bs-target="#tab-pane"
+              type="button" role="tab" aria-controls="tcp-tab-pane" aria-selected="false"
+              @click="data.mode = 'tcp'">TCP</button>
+      </li>
+      <li class="nav-item" role="presentation">
+          <button class="nav-link {{ if eq $mode "tls" }} active {{ end }}" id="tls-tab" data-bs-toggle="tab" data-bs-target="#tab-pane"
+              type="button" role="tab" aria-controls="tls-tab-pane" aria-selected="false"
+              @click="data.mode = 'tls'">TLS</button>
+      </li>
+      <li class="nav-item" role="presentation">
+          <button class="nav-link {{ if eq $mode "udp" }} active {{ end }}" id="udp-tab" data-bs-toggle="tab" data-bs-target="#tab-pane"
+              type="button" role="tab" aria-controls="udp-tab-pane" aria-selected="false"
+              @click="data.mode = 'udp'">UDP</button>
+      </li>
+    </ul>
+  {{ end }}
+
+    {{ .Inner }}
+    <div class="pinggytunnelshortcode_formwrapper tab-pane fade show active" id="tab-pane">
+      <form>
+        <div
+          class="d-flex justify-content-sm-start justify-content-md-end gap-2"
+          style="width: 100%;
+                margin-top: 8px;
+          "
+        >
+          <div class="dropdown">
+            <div
+              class="btn btn-sm dropdown-toggle"
+              style="
+                background-color: #2b3039;
+                border-radius: 4px;
+                color: white;
+                font-size: 0.75rem;
+              "
+              role="button"
+              id="dropdownMenuButtonConnectionType"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              x-text="data.mode === 'udp' ? 'CLI' : (data.connectiontype === 'ssh' ? 'SSH' : 'CLI')"
+            ></div>
+            <div
+              x-show="data.mode !== 'udp'"
+              class="dropdown-menu"
+              aria-labelledby="dropdownMenuButtonConnectionType"
+            >
+              <span
+                class="dropdown-item"
+                x-on:click="data.connectiontype = 'ssh'"
+                style="cursor: pointer"
+                >SSH</span
+              >
+              <span
+                class="dropdown-item"
+                x-on:click="data.connectiontype = 'cli'"
+                style="cursor: pointer"
+                >CLI</span
+              >
+            </div>
+          </div>
+          <div class="dropdown">
+            <div
+              class="btn btn-sm dropdown-toggle"
+              style="
+                background-color: #2b3039;
+                border-radius: 4px;
+                color: white;
+                font-size: 0.75rem;
+              "
+              role="button"
+              id="dropdownMenuButtonPlatform"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              x-text="data.platformselect === 'unix' ? 'Mac / Linux' : data.platformselect === 
+                'windows_powershell' ? 'Windows Powershell' : 'Windows CMD'"
+            ></div>
+            <div
+              class="dropdown-menu"
+              aria-labelledby="dropdownMenuButtonPlatform"
+            >
+              <span
+                class="dropdown-item"
+                x-on:click="data.platformselect = 'unix'"
+                style="cursor: pointer"
+                >Mac / Linux</span
+              >
+              <span
+                class="dropdown-item"
+                x-on:click="data.platformselect = 'windows_powershell'"
+                style="cursor: pointer"
+                >Windows Powershell</span
+              >
+              <span
+                class="dropdown-item"
+                x-on:click="data.platformselect = 'windows_cmd'"
+                style="cursor: pointer"
+                >Windows CMD</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <label class="text-bold">
+          <strong x-text="data.tunnelString"></strong>
+        </label>
+        <div class="input-group mt-1">
+          <textarea
+            style="background: #fafaff; font-size: 0.9rem"
+            class="form-control font-monospace pinggytunnelshortcode_advancedcommand"
+            :rows="data.reconnect ? 3 : 2"
+            x-text="$store.pinggyTunnelData.advancedCommand(data)"
+            readonly
+          ></textarea>
+          <button
+            class="btn btn-outline-dark pinggytunnelshortcode_copybutton"
+            type="button"
+          >
+            <span class="pg-ico-btn">{{ partial "icon.html" "clipboard" }}</span>
+          </button>
+        </div>
+        <template x-if="data.mode === 'http'">
+          <div
+            class="mt-3 shortcode_webdebugurl"
+            x-show="data.webDebugEnabled"
+            x-transition.duration.300ms
+            style="font-size: 0.8rem"
+            x-html="'Web Debugger URL: <a href=http://localhost:' + data.webDebugPort + ' target=_blank>http://localhost:' + data.webDebugPort + '</a>'"
+          ></div>
+        </template>
+        <div
+          class="alert alert-warning mt-2 p-2 shortcode_alert"
+          style="font-size: 0.9rem"
+          role="alert"
+          id="shortcode_alert_{{ $random }}"
+          x-show="data.reconnect && (data.connectiontype === 'ssh')"
+          x-transition.duration.300ms
+        >
+          When the tunnel reconnects, your public URL will change. Upgrade to
+          <a href="/#prices">Pinggy Pro</a> for persistent URLs.
+        </div>
+        <hr />
+        <label class="text-bold"><strong>Settings:</strong></label>
+        <div class="row mt-2">
+          <div class="col col-12 col-lg-6">
+            <div class="form-floating mb-3">
+              <input
+                type="number"
+                class="form-control shortcode_localPort"
+                id="shortcode_localPort_{{ $random }}"
+                x-model="data.localPort"
+                :placeholder="data.portString"
+              />
+              <label
+                for="shortcode_localPort_{{ $random }}"
+                x-text="data.portString"
+              ></label>
+            </div>
+          </div>
+          <div class="col col-12 col-lg-6">
+            <div class="form-floating mb-3">
+                <select class="form-select" id="shortcode_regionselect"
+                    x-model="data.selectedRegion"
+                >
+                    <option value="free.pinggy.io">Auto</option>
+                    <option value="us.free.pinggy.io">USA</option>
+                    <option value="eu.free.pinggy.io">Europe</option>
+                    <option value="ap.free.pinggy.io">Asia</option>
+                </select>
+                <label for="shortcode_regionselect" id="shortcode_regionselector">Region</label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col col-12 col-lg-6" x-show="data.mode === 'http'">
+            <div class="form-check form-switch mb-3">
+              <input
+                class="form-check-input shortcode_passwordCheck"
+                id="shortcode_passwordCheck_{{ $random }}"
+                type="checkbox"
+                x-on:click="data.keyAuthentication = false"
+                x-model="data.passwordCheck"
+              />
+              <label
+                class="form-check-label"
+                for="shortcode_passwordCheck_{{ $random }}"
+                >Password Protect
+                <span class="pg-ico-btn"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="right"
+                  data-bs-html="true"
+                  title="Enable basic authentication">{{ partial "icon.html" "info-circle" }}</span>
+              </label>
+            </div>
+          </div>
+          <div class="col col-12 col-lg-6" x-show="data.mode === 'http'">
+            <div class="form-check form-switch mb-3">
+              <input
+                class="form-check-input shortcode_qrcheck"
+                type="checkbox"
+                id="shortcode_qrcheck_{{ $random }}"
+                x-model="data.qrCheck"
+              />
+              <label
+                class="form-check-label"
+                for="shortcode_qrcheck_{{ $random }}"
+                >QR Code
+                <span class="pg-ico-btn"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="right"
+                  data-bs-html="true"
+                  title="Show QR Code for the URL">{{ partial "icon.html" "info-circle" }}</span></label>
+            </div>
+          </div>
+          <template x-if="data.passwordCheck && (data.mode === 'http')">
+            <div class="row shortcode_passwordfields">
+              <div class="col col-12 col-lg-6">
+                <div class="form-floating mb-3">
+                  <input
+                    class="form-control shortcode_basicusername"
+                    :class="{'is-invalid' : data.basicusername.includes(':')}"
+                    id="shortcode__basicusername_{{ $random }}"
+                    placeholder="Username"
+                    x-model="data.basicusername"
+                  />
+                  <div
+                    class="invalid-feedback"
+                    x-show="data.basicusername.includes(':')"
+                  >
+                    Username cannot contain ':'
+                  </div>
+                  <label for="shortcode_basicusername_{{ $random }}"
+                    >Username</label
+                  >
+                </div>
+              </div>
+              <div class="col col-12 col-lg-6">
+                <div class="form-floating mb-3">
+                  <input
+                    class="form-control shortcode_basicpass"
+                    :class="{'is-invalid' : data.basicpass.includes(':')}"
+                    id="shortcode_basicpass_{{ $random }}"
+                    placeholder="Password"
+                    x-model="data.basicpass"
+                  />
+                  <div
+                    class="invalid-feedback"
+                    x-show="data.basicpass.includes(':')"
+                  >
+                    Password cannot contain ':'
+                  </div>
+                  <label for="shortcode_basicpass_{{ $random }}"
+                    >Password</label
+                  >
+                </div>
+              </div>
+            </div>
+          </template>
+          <div class="col col-12 col-lg-6" x-show="data.connectiontype != 'cli'">
+            <div class="form-check form-switch mb-3">
+              <input
+                class="form-check-input shortcode_keepalive"
+                id="shortcode_keepalive_{{ $random }}"
+                type="checkbox"
+                x-model="data.keepAlive"
+              />
+              <label
+                class="form-check-label"
+                for="shortcode_keepalive_{{ $random }}"
+              >
+                Keep Alive
+                <span class="pg-ico-btn"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="right"
+                  title="Send keep alive packets for a stable tunnel">{{ partial "icon.html" "info-circle" }}</span>
+              </label>
+            </div>
+          </div>
+          <div class="col col-12 col-lg-6" x-show="data.connectiontype != 'cli'">
+            <div class="form-check form-switch mb-3">
+              <input
+                class="form-check-input shortcode_restart"
+                type="checkbox"
+                id="shortcode_restart_{{ $random }}"
+                x-model="data.reconnect"
+              />
+              <label
+                class="form-check-label"
+                for="shortcode_restart_{{ $random }}"
+                >Auto Reconnect
+                <span class="pg-ico-btn"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="right"
+                  title="Automatically reconnect tunnel on failure.">{{ partial "icon.html" "info-circle" }}</span></label>
+            </div>
+          </div>
+          <div class="col col-12 col-lg-6" x-show="data.mode === 'http'">
+            <div class="form-check form-switch mb-3">
+              <input
+                class="form-check-input shortcode_webdebugCheck"
+                type="checkbox"
+                id="shortcode_webdebugCheck_{{ $random }}"
+                x-model="data.webDebugEnabled"
+              />
+              <label
+                class="form-check-label"
+                for="shortcode_webdebugCheck_{{ $random }}"
+                >Web Debugger</label
+              >
+            </div>
+          </div>
+          <div class="col col-12 col-lg-6" x-show="data.connectiontype != 'cli'" x-transition.duration.150ms>
+            <div class="form-check form-switch mb-3">
+              <input
+                class="form-check-input shortcode_rsaCheck"
+                type="checkbox"
+                id="shortcode_rsaCheck_{{ $random }}"
+                x-model="data.manuallyCheckKey"
+              />
+              <label
+                class="form-check-label"
+                for="shortcode_rsaCheck_{{ $random }}"
+                >Manually check host key
+                <span class="pg-ico-btn"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="right"
+                  title="Type 'yes' to manually validate host key">{{ partial "icon.html" "info-circle" }}</span></label>
+            </div>
+          </div>
+          <div class="col col-12 col-lg-6" x-show="data.mode !== 'http'">
+            <div class="form-check form-switch mb-3">
+              <input
+                class="form-check-input shortcode_ipWhitelistCheck"
+                type="checkbox"
+                id="adv_ipWhitelist"
+                x-model="data.ipWhitelistCheck"
+              />
+              <label
+                class="form-check-label"
+                for="shortcode_ipWhitelistCheck_{{ $random }}"
+              >
+                IP Whitelist
+                <span class="pg-ico-btn"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="right"
+                  title="Allow specified IPs to access the tunnel">{{ partial "icon.html" "info-circle" }}</span>
+              </label>
+            </div>
+            <div
+              class="col col-12"
+              x-show="data.ipWhitelistCheck"
+              x-transition.duration.300ms
+            >
+              <div id="ipwhitelistinputcontainer">
+                <div class="input-group ipwhitelistgroup">
+                  <input
+                    type="text"
+                    aria-label="ip to whitelist"
+                    :class="{'is-invalid' : data.ipWhitelist[0] 
+                        && ipCidrValidator(data.ipWhitelist[0]) === false}"
+                    placeholder="IP in CIDR (e.g. 10.2.3.4/16)"
+                    class="form-control ipval"
+                    x-model.debounce.500ms="data.ipWhitelist[0]"
+                  />
+                  <button
+                    class="btn btn-outline-dark addipinput"
+                    type="button"
+                    @click="data.ipWhitelist.push('')"
+                  >
+                    <span class="pg-ico-btn">{{ partial "icon.html" "plus" }}</span>
+                  </button>
+                  <div
+                    class="invalid-feedback"
+                    x-show="data.ipWhitelist[0] && ipCidrValidator(data.ipWhitelist[0]) === false"
+                  >
+                    Invalid CIDR Format
+                  </div>
+                </div>
+                <template x-for="(ip, index) in data.ipWhitelist" :key="index">
+                  <div x-show="index > 0" class="input-group ipwhitelistgroup">
+                    <input
+                      type="text"
+                      aria-label="ip to whitelist"
+                      :class="{'is-invalid' : data.ipWhitelist[index] 
+                            && ipCidrValidator(data.ipWhitelist[index]) === false}"
+                      placeholder="IP in CIDR (e.g. 10.2.3.4/16)"
+                      class="form-control ipval"
+                      x-model.debounce.500ms="data.ipWhitelist[index]"
+                    />
+                    <button
+                      class="btn btn-outline-danger removeipinput"
+                      type="button"
+                      @click="data.ipWhitelist.splice(index, 1)"
+                    >
+                      <span class="pg-ico-btn">{{ partial "icon.html" "x" }}</span>
+                    </button>
+                    <div
+                      class="invalid-feedback"
+                      x-show="data.ipWhitelist[index] && ipCidrValidator(data.ipWhitelist[index]) === false"
+                    >
+                      Invalid CIDR Format
+                    </div>
+                  </div>
+                </template>
+              </div>
+            </div>
+          </div>
+          <div class="col col-12 col-lg-6" x-show="data.mode === 'http'">
+            <div class="form-check form-switch mb-3">
+              <input
+                class="form-check-input shortcode_keyAuthentication"
+                type="checkbox"
+                id="adv_keyAuthentication"
+                x-model="data.keyAuthentication"
+                x-on:click="data.passwordCheck = false"
+              />
+              <label
+                class="form-check-label"
+                for="shortcode_keyAuthentication_{{ $random }}"
+              >
+                Key / Token Authentication
+                <span class="pg-ico-btn"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="right"
+                  title="Bearer token authentication">{{ partial "icon.html" "info-circle" }}</span>
+              </label>
+            </div>
+            <div class="col col-12 mb-3"
+              x-show="data.keyAuthentication"
+              x-transition.duration.300ms
+            >
+              <div id="keyauthinputcontainer">
+                <div class="input-group keyauthgroup">
+                  <input
+                    type="text"
+                    aria-label="key / token"
+                    placeholder="Key / token"
+                    class="form-control keyauthval"
+                    x-model="data.keyAuthentications[0]"
+                  />
+                  <button
+                    class="btn btn-outline-dark addkeyauthinput"
+                    type="button"
+                    @click="data.keyAuthentications.push('')"
+                  >
+                    <span class="pg-ico-btn">{{ partial "icon.html" "plus" }}</span>
+                  </button>
+                </div>
+                <template
+                  x-for="(keyauth, index) in data.keyAuthentications"
+                  :key="index"
+                >
+                  <div x-show="index > 0" class="input-group keyauthgroup">
+                    <input
+                      type="text"
+                      aria-label="key / token"
+                      placeholder="Key / token"
+                      class="form-control keyauthval"
+                      x-model="data.keyAuthentications[index]"
+                    />
+                    <button
+                      class="btn btn-outline-danger removekeyauthinput"
+                      type="button"
+                      @click="data.keyAuthentications.splice(index, 1)"
+                    >
+                      <span class="pg-ico-btn">{{ partial "icon.html" "x" }}</span>
+                    </button>
+                  </div>
+                </template>
+              </div>
+            </div>
+          </div>
+          <div class="col col-12 col-lg-6" x-show="data.mode === 'http'">
+            <div class="form-check form-switch mb-3">
+              <input
+                class="form-check-input shortcode_ipWhitelistCheck"
+                type="checkbox"
+                id="adv_ipWhitelist"
+                x-model="data.ipWhitelistCheck"
+              />
+              <label
+                class="form-check-label"
+                for="shortcode_ipWhitelistCheck_{{ $random }}"
+              >
+                IP Whitelist
+                <span class="pg-ico-btn"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="right"
+                  title="Allow specified IPs to access the tunnel">{{ partial "icon.html" "info-circle" }}</span>
+              </label>
+            </div>
+            <div class="col col-12 mb-3"
+              x-show="data.ipWhitelistCheck"
+              x-transition.duration.300ms
+            >
+              <div id="ipwhitelistinputcontainer">
+                <div class="input-group ipwhitelistgroup">
+                  <input
+                    type="text"
+                    aria-label="ip to whitelist"
+                    :class="{'is-invalid' : data.ipWhitelist[0] 
+                        && ipCidrValidator(data.ipWhitelist[0]) === false}"
+                    placeholder="IP in CIDR (e.g. 10.2.3.4/16)"
+                    class="form-control ipval"
+                    x-model.debounce.500ms="data.ipWhitelist[0]"
+                  />
+                  <button
+                    class="btn btn-outline-dark addipinput"
+                    type="button"
+                    @click="data.ipWhitelist.push('')"
+                  >
+                    <span class="pg-ico-btn">{{ partial "icon.html" "plus" }}</span>
+                  </button>
+                  <div
+                    class="invalid-feedback"
+                    x-show="data.ipWhitelist[0] && ipCidrValidator(data.ipWhitelist[0]) === false"
+                  >
+                    Invalid CIDR Format
+                  </div>
+                </div>
+                <template x-for="(ip, index) in data.ipWhitelist" :key="index">
+                  <div x-show="index > 0" class="input-group ipwhitelistgroup">
+                    <input
+                      type="text"
+                      aria-label="ip to whitelist"
+                      :class="{'is-invalid' : data.ipWhitelist[index] 
+                            && ipCidrValidator(data.ipWhitelist[index]) === false}"
+                      placeholder="IP in CIDR (e.g. 10.2.3.4/16)"
+                      class="form-control ipval"
+                      x-model.debounce.500ms="data.ipWhitelist[index]"
+                    />
+                    <button
+                      class="btn btn-outline-danger removeipinput"
+                      type="button"
+                      @click="data.ipWhitelist.splice(index, 1)"
+                    >
+                      <span class="pg-ico-btn">{{ partial "icon.html" "x" }}</span>
+                    </button>
+                    <div
+                      class="invalid-feedback"
+                      x-show="data.ipWhitelist[index] && ipCidrValidator(data.ipWhitelist[index]) === false"
+                    >
+                      Invalid CIDR Format
+                    </div>
+                  </div>
+                </template>
+              </div>
+            </div>
+          </div>
+          <div class="col col-12 col-lg-6" x-show="data.mode === 'http'">
+            <div class="form-check form-switch mb-3">
+              <input
+                class="form-check-input shortcode_httpsonly"
+                type="checkbox"
+                id="adv_httpsonly_{{ $random }}"
+                x-model="data.httpsonly"
+              />
+              <label
+                class="form-check-label"
+                for="shortcode_httpsonly_{{ $random }}"
+                >HTTPS only
+                <span class="pg-ico-btn"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="right"
+                  title="Only allow HTTPS requests">{{ partial "icon.html" "info-circle" }}</span>
+              </label>
+            </div>
+          </div>
+          <div class="col col-12 col-lg-6">
+            <div class="form-check form-switch mb-3">
+              <input
+                class="form-check-input shortcode_forwardhost"
+                type="checkbox"
+                id="adv_forwardhost_{{ $random }}"
+                x-model="data.forwardHost"
+              />
+              <label
+                class="form-check-label"
+                for="shortcode_forwardhost_{{ $random }}"
+                >Forward to other hosts
+                <span class="pg-ico-btn"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="right"
+                  title="Forwarding to addresses other than localhost">{{ partial "icon.html" "info-circle" }}</span>
+              </label>
+            </div>
+            <div class="col col-12 mb-3" x-show="data.forwardHost" x-transition.duration.300ms>
+              <input
+                type="text"
+                aria-label="forward to other hosts"
+                placeholder="Address"
+                class="form-control forwardhostval"
+                x-model="data.forwardHostAddress"
+            />
+            </div>
+          </div>
+          <div class="col col-12 col-lg-6" x-show="data.mode === 'http'">
+            <div class="form-check form-switch mb-3">
+              <input
+                class="form-check-input shortcode_localServerTLS"
+                type="checkbox"
+                id="adv_localServerTLS"
+                x-model="data.localServerTLS"
+              />
+              <label
+                class="form-check-label"
+                for="shortcode_accesstoken_{{ $random }}"
+                >Connect to HTTPS Server
+                <span class="pg-ico-btn"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="right"
+                  title="Connect to an HTTPS(TLS) server running locally">{{ partial "icon.html" "info-circle" }}</span>
+              </label>
+            </div>
+            <div class="col col-12 mb-3" 
+              x-show="data.localServerTLS"
+              x-transition.duration.300ms
+            >
+              <input
+              type="text"
+              aria-label="localServerTLS"
+              placeholder="Local Server Name (SNI)"
+              class="form-control localServerTLSval"
+              x-model="data.localServerTLSSNI"
+            />
+            </div>
+          </div>
+          <div class="col col-12 col-lg-6" x-show="data.mode === 'http'">
+            <div class="form-check form-switch mb-3">
+              <input
+                class="form-check-input shortcode_noReverseProxy"
+                type="checkbox"
+                id="adv_noReverseProxy_{{ $random }}"
+                x-model="data.noReverseProxy"
+              />
+              <label
+                class="form-check-label"
+                for="shortcode_noReverseProxy_{{ $random }}"
+                >No Reverse Proxy
+                <span class="pg-ico-btn"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="right"
+                  title="Disable reverse proxy headers">{{ partial "icon.html" "info-circle" }}</span>
+              </label>
+            </div>
+          </div>
+          <div class="col col-12 col-lg-6">
+            <div class="form-check form-switch mb-3">
+              <input
+                class="form-check-input shortcode_force"
+                type="checkbox"
+                id="shortcode_force_{{ $random }}"
+                x-model="data.force"
+              />
+              <label
+                class="form-check-label"
+                for="shortcode_force_{{ $random }}"
+                >Force
+                <span class="pg-ico-btn"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="right"
+                  data-bs-html="true"
+                  title="Forcefully close existing tunnels and establish a new tunnel">{{ partial "icon.html" "info-circle" }}</span></label>
+            </div>
+          </div>
+          <div class="col col-12 col-lg-6" x-show="data.mode === 'http'">
+            <div class="form-check form-switch mb-3">
+              <input
+                class="form-check-input shortcode_corsPreflight"
+                type="checkbox"
+                id="shortcode_corsPreflight_{{ $random }}"
+                x-model="data.corsPreflight"
+              />
+              <label
+                class="form-check-label"
+                for="shortcode_corsPreflight_{{ $random }}"
+                >Allow CORS preflight
+                <span class="pg-ico-btn"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="right"
+                  data-bs-html="true"
+                  title="Key authentication / password authentication will block
+                  all unauthenticated requests to Pinggy URLs. To allow
+                  CORS preflight requests, enable this option.">{{ partial "icon.html" "info-circle" }}</span></label>
+            </div>
+          </div>
+          <div class="col col-12 col-lg-6" x-show="data.mode === 'http'">
+            <div class="form-check form-switch mb-3">
+              <input
+                class="form-check-input shortcode_xForwardedFor"
+                type="checkbox"
+                id="shortcode_xForwardedFor_{{ $random }}"
+                x-model="data.xForwardedFor"
+              />
+              <label
+                class="form-check-label"
+                for="shortcode_xForwardedFor_{{ $random }}"
+                >X-Forwarded-For header
+                <span class="pg-ico-btn"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="right"
+                  data-bs-html="true"
+                  title="Add X-Forwarded-For header to every request">{{ partial "icon.html" "info-circle" }}</span></label>
+            </div>
+          </div>
+          <div class="col col-12 col-lg-6" x-show="data.mode === 'http'">
+            <div class="form-check form-switch mb-3">
+              <input
+                class="form-check-input shortcode_fullUrl"
+                type="checkbox"
+                id="shortcode_fullUrl_{{ $random }}"
+                x-model="data.fullUrl"
+              />
+              <label
+                class="form-check-label"
+                for="shortcode_fullUrl_{{ $random }}"
+                >Original request url header
+                <span class="pg-ico-btn"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="right"
+                  data-bs-html="true"
+                  title="Original uri for every request in X-Pinggy-Url header">{{ partial "icon.html" "info-circle" }}</span></label>
+            </div>
+          </div>
+          <div class="col col-12 col-lg-6">
+            <div class="form-check form-switch mb-3">
+              <input
+                class="form-check-input shortcode_accesstoken"
+                type="checkbox"
+                id="adv_accesstoken"
+                x-model="data.accesstoken"
+              />
+              <label
+                class="form-check-label"
+                for="shortcode_accesstoken_{{ $random }}"
+                >Use Token
+                <span class="pg-ico-btn"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="right"
+                  title="Use your Pinggy token">{{ partial "icon.html" "info-circle" }}</span>
+              </label>
+            </div>
+            <div class="col col-12 mb-2" x-show="data.accesstoken" x-transition.duration.300ms>
+              <input
+                type="text"
+                aria-label="token"
+                placeholder="Access Token"
+                :class="{'is-invalid': /[^a-zA-Z0-9-]/.test(data.accesstokenvalue)}"
+                class="form-control accesstokenval"
+                x-model="data.accesstokenvalue"
+              />
+              <div
+                class="invalid-feedback"
+                x-show="/[^a-zA-Z0-9-]/.test(data.accesstokenvalue) === true"
+              >
+                Alphanumeric characters only
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2" style="--bs-gutter-x: 0"  x-show="data.mode === 'http'">
+          <div
+            class="form-floating mb-3 shortcode_webdebuggerportselector col"
+            id="shortcode_webdebuggerportselector_{{ $random }}"
+            x-show="data.webDebugEnabled"
+            x-transition.duration.300ms
+          >
+            <input
+              type="number"
+              class="form-control shortcode_webdebugPort"
+              id="shortcode_webdebugPort_{{ $random }}"
+              :placeholder="data.webDebugPort"
+              x-model="data.webDebugPort"
+            />
+            <label for="shortcode_webdebugPort_{{ $random }}"
+              >Web Debugger Port</label
+            >
+          </div>
+        </div>
+        <div x-show="data.mode === 'http'">
+          <label class="form-check-label"
+            >Live Header Modifications
+            <span class="pg-ico-btn"
+              data-bs-toggle="tooltip"
+              data-bs-placement="right"
+              data-bs-html="true"
+              title="Change request headers on the fly - <a href='/docs/advanced/live_header/' target='_blank'>read more.</a>">{{ partial "icon.html" "info-circle" }}</span></label>
+
+          <div>
+            <button
+              type="button"
+              class="btn btn-primary mb-3 mt-2 custom-button"
+              @click="data.headerModifications.push({ mode: 'a', headername: '', headerval: '' })"
+            >
+              <span class="pg-ico-btn">{{ partial "icon.html" "plus" }}</span> Add header modification rule
+            </button>
+          </div>
+
+          <div class="headermodificationcontainer">
+            <template
+              x-for="(headerMod, index) in data.headerModifications"
+              :key="index"
+            >
+              <div class="input-group shortcode_headermodificationgroup">
+                <select
+                  class="form-select shortcode_headermodificationmode"
+                  x-model="data.headerModifications[index].mode"
+                >
+                  <option value="a">Add</option>
+                  <option value="u">Replace</option>
+                  <option value="r">Remove</option>
+                </select>
+                <input
+                  type="text"
+                  aria-label="header name"
+                  placeholder="Header Name"
+                  class="form-control shortcode_headername"
+                  x-model="data.headerModifications[index].headername"
+                />
+                <input
+                  type="text"
+                  aria-label="header value"
+                  placeholder="Value"
+                  class="form-control shortcode_headerval"
+                  x-model="data.headerModifications[index].headerval"
+                  :disabled="data.headerModifications[index].mode === 'r'"
+                  :value="data.headerModifications[index].mode === 'r' ? '' : data.headerModifications[index].headerval"
+                />
+                <button
+                  class="btn btn-outline-danger shortcode_removeheadermodificationrow"
+                  type="button"
+                  @click="data.headerModifications.splice(index, 1)"
+                >
+                  <span class="pg-ico-btn">{{ partial "icon.html" "x" }}</span>
+                </button>
+              </div>
+            </template>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

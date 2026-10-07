@@ -1,0 +1,95 @@
+import { CardGroup, Card, Steps, Step } from "src/shared/Docs/mdx";
+import { RiTerminalBoxLine } from "@remixicon/react";
+import InngestIcon from "src/shared/Icons/InngestIcon";
+import SkillsMDIcon from "src/shared/Icons/SkillsMD";
+import MCPIcon from "src/shared/Icons/MCP";
+import LLMsTXTIcon from "src/shared/Icons/LLMsTxt";
+
+export const metaTitle = "AI Development Tools | MCP, Skills & CLI";
+export const description =
+  "Use Inngest with AI coding agents, MCP, CLI workflows, and LLM-ready docs to build, test, and debug durable functions faster.";
+
+# AI and MCP
+
+> Give your coding agent current Inngest knowledge and direct access to your functions and runs.
+
+Plugins and skills teach your agent how to write Inngest code. MCP and the CLI let it run that code, send test events, and inspect runs, so it can build and debug in one loop.
+
+<CardGroup cols={2}>
+  <Card
+    href="/docs/ai-dev-tools/mcp"
+    title={"Inngest MCP"}
+    icon={<MCPIcon className="text-basis h-12 w-12" />}
+    iconPlacement="top"
+  >
+    Connect Claude Code, Codex, Cursor, and other MCP clients to Inngest Cloud or your local Dev Server to inspect and operate functions and runs.
+  </Card>
+
+  <Card
+    href="/docs/ai-dev-tools/agent-skills"
+    title={"Agent plugins and skills"}
+    icon={<SkillsMDIcon square={false} className="text-basis h-16 w-32" />}
+    iconPlacement="top"
+  >
+    Install Inngest plugins and portable skills so coding agents have current guidance for setup, durable functions, steps, flow control, realtime, and migrations.
+  </Card>
+
+  <Card
+    href="/docs/ai-patterns/cli-for-coding-agents"
+    title={"CLI for coding agents"}
+    icon={<RiTerminalBoxLine className="text-basis h-10 w-10" />}
+    iconPlacement="top"
+  >
+    Use the Inngest CLI from an agent session to start the Dev Server, trigger events, inspect runs, and keep local debugging grounded in real execution.
+  </Card>
+
+  <Card
+    href="#llm-docs"
+    title={"LLM Docs"}
+    icon={<LLMsTXTIcon square={false} className="text-basis h-16 w-32" />}
+    iconPlacement="top"
+  >
+    Give AI tools compact or full-text documentation context with `llms.txt` and `llms-full.txt`.
+  </Card>
+</CardGroup>
+
+## Recommended setup
+
+<Steps>
+  <Step title="Install the plugin or skills">
+    Add the Inngest plugin for Claude Code or Codex, or the portable skills for other agents. See [Agent plugins and skills](/docs/ai-dev-tools/agent-skills).
+  </Step>
+  <Step title="Connect Inngest MCP">
+    Add the Dev Server MCP endpoint for local work, and Cloud MCP when your agent needs to inspect deployed environments. See [Inngest MCP](/docs/ai-dev-tools/mcp).
+  </Step>
+  <Step title="Build against the Dev Server">
+    Start the [Dev Server](/docs/local-development), then ask your agent to send a test event and inspect the run it starts.
+  </Step>
+</Steps>
+
+## LLM Docs
+
+An LLM-friendly version of the Inngest docs is available in two formats:
+
+- [inngest.com/llms.txt](https://www.inngest.com/llms.txt) - a table of contents for smaller context windows or tools that can crawl selected docs.
+- [inngest.com/llms-full.txt](https://www.inngest.com/llms-full.txt) - the full docs in markdown format.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card
+    href="/docs/local-development"
+    title={"Local development"}
+    icon={<InngestIcon className="text-basis h-8 w-8" />}
+  >
+    Run the Dev Server and test your functions on your machine.
+  </Card>
+
+  <Card
+    href="/docs/getting-started"
+    title={"Get started"}
+    icon={<InngestIcon className="text-basis h-8 w-8" />}
+  >
+    Build your first durable function in TypeScript, Python, or Go.
+  </Card>
+</CardGroup>

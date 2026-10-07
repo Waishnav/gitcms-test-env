@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.Lang }}">
+  <head>
+    {{- partial "header.html" . -}}
+    {{- partial "blogcss.html" . -}}
+    {{- partial "seoblogs.html" . -}}
+  </head>
+
+  <body>
+    {{- partial "navbar.html" .}} {{- block "main" . }}{{- end }} {{- partial
+    "footer.html" . -}}
+  </body>
+
+  {{- partial "jslibraries.html" . -}}
+
+  <!-- PAGE SPECIFIC JS -->
+  {{- block "pagespecificjs" . }}{{- end }}
+</html>

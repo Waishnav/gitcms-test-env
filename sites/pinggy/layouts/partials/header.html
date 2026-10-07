@@ -1,0 +1,26 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Bing Webmaster Tools site verification -->
+<meta name="msvalidate.01" content="7E230311747B9D56F75A216CC3F17D20" />
+
+<title>
+  {{- if .IsHome }}Pinggy - Simple Localhost Tunnels
+  {{- else if and (eq .Section "blog") (eq .Kind "page") }}{{ .Title }} | Pinggy Blog
+  {{- else if .Page.Title }}{{ .Page.Title }}{{ end -}}
+</title>
+
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="/assets/favicon2.ico" />
+
+<!-- Core theme CSS (includes Bootstrap)-->
+{{/* Fingerprinted so netlify.toml can serve /css/* as immutable. Without the
+     content hash these sit at stable URLs and a year-long cache would strand
+     returning visitors on stale styles. */}}
+{{ $styles := resources.Get "/css/style.css" | resources.Minify | resources.Fingerprint }}
+{{ $syntax := resources.Get "/css/syntax.css" | resources.Minify | resources.Fingerprint }}
+{{ $customization := resources.Get "/css/customization.css" | resources.Minify | resources.Fingerprint }}
+
+<link rel="stylesheet" href="{{ $styles.RelPermalink }}" />
+<link rel="stylesheet" href="{{ $syntax.RelPermalink }}" />
+<link rel="stylesheet" href="{{ $customization.RelPermalink }}" />

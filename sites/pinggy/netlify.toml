@@ -1,0 +1,106 @@
+[build]
+command = "hugo --gc --minify && npx -y pagefind@1.1.0 --site public --glob \"{docs,quickstart}/**/*.html\""
+publish = "public"
+
+[context.production.environment]
+HUGO_VERSION = "0.164.0"
+HUGO_ENV = "production"
+
+# Hugo does not build /es/ (the Spanish home kind is disabled), so send it to
+# the Spanish blog. Must stay above the /* catch-all below.
+[[redirects]]
+  from = "/es"
+  to = "/es/blog/"
+  status = 301
+
+[[redirects]]
+  from = "/es/"
+  to = "/es/blog/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/top_5_local_llm_tools_and_models_2025"
+  to = "/blog/top_5_local_llm_tools_and_models/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/top_5_local_llm_tools_and_models_2025/"
+  to = "/blog/top_5_local_llm_tools_and_models/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/best_playit_gg_alternatives_in_2025"
+  to = "/blog/best_playit_gg_alternatives/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/best_playit_gg_alternatives_in_2025/"
+  to = "/blog/best_playit_gg_alternatives/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/best_self_hosted_apps_in_2025"
+  to = "/blog/best_self_hosted_apps/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/best_self_hosted_apps_in_2025/"
+  to = "/blog/best_self_hosted_apps/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/top_5_best_self_hosted_vpns_2025"
+  to = "/blog/top_5_best_self_hosted_vpns/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/top_5_best_self_hosted_vpns_2025/"
+  to = "/blog/top_5_best_self_hosted_vpns/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/top_5_n8n_alternatives_in_2025"
+  to = "/blog/top_5_n8n_alternatives/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/top_5_n8n_alternatives_in_2025/"
+  to = "/blog/top_5_n8n_alternatives/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/404/"
+  status = 404
+
+# Cache headers. Netlify's default for every asset is
+# `public,max-age=0,must-revalidate`, so even content-hashed bundles were
+# revalidated on every navigation. Hugo fingerprints CSS/JS (the filename
+# changes when the contents do), and the self-hosted fonts are versioned by
+# name, so all of them are safe to cache immutably. HTML is deliberately left
+# on the default so content edits go live immediately.
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

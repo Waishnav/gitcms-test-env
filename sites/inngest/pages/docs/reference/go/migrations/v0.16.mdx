@@ -1,0 +1,63 @@
+import { Info } from "src/shared/Docs/mdx";
+
+export const metaTitle = "Go SDK Migration: v0.15 → v0.16"
+export const description = "Migration guide for upgrading the Inngest Go SDK from v0.15 to v0.16."
+
+# Go SDK migration guide: v0.15 to v0.16
+
+This guide will help you migrate your Inngest Go SDK from v0.15 to v0.16 by providing a summary of the breaking changes.
+
+## `AllowInBandSync`
+
+The `ClientOpts.AllowInBandSync` option was removed. Authed sync requests now always perform the authenticated sync flow.
+
+```go
+// Before
+client, err := inngestgo.NewClient(inngestgo.ClientOpts{
+	AppID:            "my-app",
+	AllowInBandSync: inngestgo.Ptr(true),
+})
+
+// After
+client, err := inngestgo.NewClient(inngestgo.ClientOpts{
+	AppID: "my-app",
+})
+```
+
+The `INNGEST_ALLOW_IN_BAND_SYNC` environment variable was also removed.
+
+## Unauthenticated sync requests
+
+Unauthenticated sync requests in cloud mode are now rejected by default. Local development still allows unauthenticated sync requests because the Dev Server does not sign requests.
+
+<Info>
+Unauthenticated app syncs do not send app configuration back to the unauthenticated caller. Instead, the SDK makes an outgoing authenticated request to the configured Inngest API. Requiring authentication on the incoming sync request adds defense in depth.
+</Info>
+
+If you depend on unauthenticated sync requests in cloud mode, use `ServeOpts.EnableUnauthedSync`:
+
+```go
+handler := client.ServeWithOpts(inngestgo.ServeOpts{
+	EnableUnauthedSync: inngestgo.Ptr(true),
+})
+```
+
+You can also set `INNGEST_ENABLE_UNAUTHED_SYNC=true`.
+
+If you require unauthenticated sync requests with Inngest Cloud, we recommend migrating to the [API-based sync flow](/docs/platform-and-operations/apps-and-syncs?ref=docs-go-v0-15-to-v0-16-migration#programmatically) instead of relying on unauthenticated requests to your served SDK endpoint.
+
+If you're self-hosting an Inngest server then you'll always need to enable unauthenticated syncs, since self-hosted doesn't yet have authenticated syncs.
+
+## Unauthorized responses
+
+Unauthorized responses now return a minimal response body:
+
+```json
+{
+  "message": "Unauthorized"
+}
+```
+
+These responses no longer include diagnostic fields such as `code`, `authentication_succeeded`, `function_count`, `mode`, `sdk_version`, or signing key hashes.
+
+Unauthorized and unsupported method responses now only expose `X-Inngest-SDK-Handled: true` from the `x-inngest-*` response headers.

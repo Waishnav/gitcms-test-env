@@ -1,0 +1,173 @@
+baseURL: "https://pinggy.io"
+title: "Pinggy"
+
+# Multilingual: English is the default and stays at the site root, so every
+# existing /blog/... URL is unchanged. Spanish lives under /es/ and covers the
+# blog only - a post becomes bilingual by adding a sibling `<name>.es.md`.
+# Taxonomy/term/RSS are off for Spanish because tags are not translated, and
+# `home` is off so /es/ is not built at all: it 301s to /es/blog/ via
+# netlify.toml. That also stops Hugo pairing / and /es/ as hreflang alternates,
+# which they never were - / is the product homepage and is not translated.
+defaultContentLanguage: en
+defaultContentLanguageInSubdir: false
+
+languages:
+  en:
+    label: "English"
+    weight: 1
+    params:
+      ogLocale: "en_US"
+    menus:
+      main:
+        - name: Home
+          identifier: home
+          url: "/"
+          weight: 90
+        - name: Pricing
+          identifier: pricing
+          url: /#prices
+          weight: 100
+        - name: Docs
+          identifier: docs
+          url: /docs/
+          weight: 120
+        - name: Download
+          identifier: download
+          url: /app/
+          weight: 123
+        - name: Compare
+          identifier: compare
+          url: /compare/
+          weight: 125
+        - name: Quickstart
+          identifier: quickstart
+          url: /quickstart/
+          weight: 130
+        - name: Blog
+          identifier: blog
+          url: /blog/
+          weight: 140
+        - name: Help
+          identifier: help
+          url: /help/
+          weight: 150
+  es:
+    label: "Español"
+    weight: 2
+    disableKinds: ["home", "taxonomy", "term", "rss"]
+    params:
+      ogLocale: "es_ES"
+    menus:
+      main:
+        - name: Inicio
+          identifier: home
+          url: "/"
+          weight: 90
+        - name: Precios
+          identifier: pricing
+          url: /#prices
+          weight: 100
+        - name: Documentación
+          identifier: docs
+          url: /docs/
+          weight: 120
+        - name: Descargar
+          identifier: download
+          url: /app/
+          weight: 123
+        - name: Comparativas
+          identifier: compare
+          url: /compare/
+          weight: 125
+        - name: Quickstart
+          identifier: quickstart
+          url: /quickstart/
+          weight: 130
+        - name: Blog
+          identifier: blog
+          url: /blog/
+          weight: 140
+        - name: Ayuda
+          identifier: help
+          url: /help/
+          weight: 150
+
+markup:
+  highlight:
+    anchorLineNos: false
+    codeFences: true
+    guessSyntax: false
+    hl_Lines: ""
+    hl_inline: false
+    lineAnchors: ""
+    lineNoStart: 1
+    lineNos: false
+    lineNumbersInTable: true
+    noClasses: false
+    noHl: false
+    style: manni
+    tabWidth: 4
+  goldmark:
+    renderer:
+      unsafe: true
+  # Drives the blog post table of contents (.bp-rail / .bp-toc in
+  # layouts/blog/single.html). These match Hugo's defaults, but are set
+  # explicitly so the h2 + h3 depth is intentional rather than inherited.
+  tableOfContents:
+    startLevel: 2
+    endLevel: 3
+    ordered: false
+
+taxonomies:
+  tag: tags
+
+pagination:
+  pagerSize: 10
+
+# AMP is not a site-wide format. Only the blog and know_your_port sections have
+# AMP templates (layouts/*/baseof.amp.html); every other page rendered into the
+# AMP output format got the regular Bootstrap + Alpine layout copied under
+# /amp/, which is invalid AMP, self-canonical, and linked from nowhere. The two
+# sections that do have templates opt in through `cascade` in their _index.md.
+outputs:
+  home: ["HTML", "llmstxt"]
+  page: ["HTML"]
+
+outputFormats:
+  HTML:
+    mediaType: "text/html"
+    baseName: "index"
+    isPlainText: false
+
+  AMP:
+    isPlainText: false
+    mediaType: "text/html"
+    path: "amp"
+    permalinkable: true
+
+  Markdown:
+    mediaType: "text/markdown"
+    baseName: "index"
+    isPlainText: true
+    path: ""
+
+  llmstxt:
+    mediaType: "text/plain"
+    baseName: "llms"
+    isPlainText: true
+    rel: "alternate"
+
+  # Machine-readable latest Pinggy App version, driven by data/app_releases.yaml.
+  # Attached to the /app/ page, so it is served at /app/version.json. The app's
+  # update check reads this instead of a hardcoded S3 file.
+  appversion:
+    mediaType: "application/json"
+    baseName: "version"
+    isPlainText: true
+    notAlternative: true
+
+minify:
+  minifyOutput: true
+  tdewolff:
+    html:
+      keepQuotes: true

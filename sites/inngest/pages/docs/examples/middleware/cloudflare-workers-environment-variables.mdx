@@ -1,0 +1,113 @@
+import { CodeGroup } from "src/shared/Docs/mdx";
+
+export const metaTitle = "Cloudflare Workers: Env Variables via Middleware"
+export const description = "Access Cloudflare Workers environment bindings and context inside Inngest functions using middleware for dependency injection."
+
+# Cloudflare Workers environment variables and context
+
+Cloudflare Workers does not set environment variables a global object like Node.js does with `process.env`. Workers [binds environment variables](https://developers.cloudflare.com/workers/configuration/environment-variables/) to the worker's special `fetch` event handler thought a specific `env` argument.
+
+This means accessing environment variables within Inngest function handlers isn't possible without explicitly passing them through from the worker event handler to the Inngest function handler.
+
+We can accomplish this by use the [middleware](/docs/durable-execution/guides-and-advanced/middleware) feature for Workers or when using [Hono](/docs/learn/serving-inngest-functions#framework-hono).
+
+## Creating middleware
+
+You can create middleware which extracts the `env` argument from the Workers `fetch` event handler arguments for either Workers or Hono:
+
+1. Use `wrapRequest` to capture the raw request arguments via `requestArgs` and store them as instance state.
+2. Return the `env` object via `transformFunctionInput` to inject it into the function handler's context.
+
+The `requestArgs` property in `wrapRequest` provides the raw arguments passed to the serve handler. For Workers, these are `[request, env, ctx]`. For Hono, this is `[honoContext]`.
+
+<CodeGroup>
+
+```ts {{ title: "Workers" }}
+import { Inngest, Middleware } from 'inngest';
+
+class WorkersBindingsMiddleware extends Middleware.BaseMiddleware {
+  id = "workers-bindings";
+  private env!: Env;
+
+  async wrapRequest({ next, requestArgs }: Middleware.WrapRequestArgs) {
+    // requestArgs contains the raw arguments passed to the Workers fetch handler
+    // For Workers, these are [request, env, ctx]
+    this.env = requestArgs[1] as Env;
+    return await next();
+  }
+
+  transformFunctionInput(args: Middleware.TransformFunctionInputArgs) {
+    return {
+      ...args,
+      ctx: {
+        ...args.ctx,
+        // Return the env object to the function handler's input args
+        env: this.env,
+      },
+    };
+  }
+}
+
+// Include the middleware when creating the Inngest client
+export const inngest = new Inngest({
+  id: 'my-workers-app',
+  middleware: [WorkersBindingsMiddleware],
+});
+```
+
+```ts {{ title: "Hono" }}
+import { Inngest, Middleware } from 'inngest';
+import { type Context } from 'hono';
+
+type Bindings = {
+  MY_VAR: string;
+  DB_URL: string;
+  MY_BUCKET: R2Bucket;
+};
+
+class HonoBindingsMiddleware extends Middleware.BaseMiddleware {
+  id = "hono-bindings";
+  private env!: Bindings;
+
+  async wrapRequest({ next, requestArgs }: Middleware.WrapRequestArgs) {
+    // requestArgs contains the raw arguments passed to the Hono handler
+    // For Hono, this is [honoContext]
+    const honoCtx = requestArgs[0] as Context<{ Bindings: Bindings }>;
+    this.env = honoCtx.env;
+    return await next();
+  }
+
+  transformFunctionInput(args: Middleware.TransformFunctionInputArgs) {
+    return {
+      ...args,
+      ctx: {
+        ...args.ctx,
+        // Return the context's env object to the function handler's input args
+        env: this.env,
+      },
+    };
+  }
+}
+
+// Include the middleware when creating the Inngest client
+export const inngest = new Inngest({
+  id: 'my-hono-app',
+  middleware: [HonoBindingsMiddleware],
+});
+```
+
+</CodeGroup>
+
+Within your functions, you can now access the environment variables via the `env` object argument that you returned in `transformFunctionInput` above. Here's an example function:
+
+```ts
+const myFn = inngest.createFunction(
+  { id: 'my-fn', triggers: { event: 'demo/event.sent' } },
+  // The "env" argument returned in transformFunctionInput is passed through:
+  async ({ event, step, env }) => {
+
+    // The env object will be typed as well:
+    console.log(env.MY_VAR);
+  }
+);
+```

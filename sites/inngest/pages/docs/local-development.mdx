@@ -1,0 +1,172 @@
+import { CodeGroup, DocsCallout } from "src/shared/Docs/mdx";
+
+export const metaTitle = "Local Development with the Inngest Dev Server";
+export const description = "Run Inngest functions locally with one command. The Dev Server gives you full observability, event replay, and the same execution model as production.";
+
+# Local Development
+
+> Build, test, and run Inngest functions locally in a single command.
+
+You can run Inngest locally in a single command to build, test, and iterate locally, exactly as code runs on production.  The Inngest Dev Server is a fully-featured and [**open-source**](https://github.com/inngest/inngest) local version of the [**Inngest Platform**](/docs/durable-execution/deploying-functions) enabling a seamless transition from your local development to feature, staging and production environments.
+
+The Dev Server records local events and function runs, so you can test steps, waits, retries, and errors before you deploy.  The Dev Server also bundles in a full tracing UI and allows you to replay local and production functions to easily fix issues.
+
+## Running the dev server locally
+
+<DocsCallout>
+
+Start the Dev Server with one of the commands below:
+
+<CodeGroup>
+```bash {{ title: "Bash installer" }}
+curl -sSfL https://cli.inngest.com/install.sh | sh
+inngest dev -u http://localhost:3000/api/inngest
+```
+```bash {{ title: "Brew" }}
+brew install inngest/tap/inngest
+inngest dev -u http://localhost:3000/api/inngest
+```
+```bash {{ title: "NPX" }}
+npx --ignore-scripts=false inngest-cli@latest dev
+
+# -u supplies the app URL when discovery does not find it.
+npx --ignore-scripts=false inngest-cli@latest dev -u http://localhost:3000/api/inngest
+```
+```bash {{ title: "Docker" }}
+docker run -p 8288:8288 -p 8289:8289 inngest/inngest \
+  inngest dev -u http://host.docker.internal:3000/api/inngest
+```
+</CodeGroup>
+
+</DocsCallout>
+
+If Homebrew blocks the tap as untrusted, run `brew trust --cask inngest/tap/inngest` and retry the install.
+
+## Connecting your Inngest functions
+
+Start your app with `INNGEST_DEV=1`. This puts all SDKs in local development mode and sends its events to the Dev Server instead of the cloud.
+
+```bash
+INNGEST_DEV=1 npm run dev
+```
+
+If you run the Dev Server in a container, set `INNGEST_DEV` to its URL:
+
+```bash
+INNGEST_DEV=http://127.0.0.1:8288 npm run dev
+```
+
+Replace `npm run dev` with the command that starts your app. Open [http://localhost:8288](http://localhost:8288). The **Apps** page should show your app, and the **Functions** page should list its functions.
+
+The Dev Server can discover common local ports and endpoint paths. The `-u` flag gives it the exact address and makes setup easier to check. You can connect more than one app by passing another `-u` URL.
+
+## AI-assisted local development
+
+The Dev Server also exposes a local Model Context Protocol (MCP) integration at [http://127.0.0.1:8288/mcp](http://127.0.0.1:8288/mcp). Connect Claude Code, Cursor, or another MCP-compatible coding agent to list registered functions, send test events, invoke functions, and inspect run status while your app is running locally.
+
+## Use a local Connect worker
+
+If your app uses `connect()` instead of an HTTP `serve()` endpoint, start the Dev Server and run the worker process with `INNGEST_DEV=1`. The worker connects to the Dev Server and syncs its functions automatically; you do not pass an HTTP `-u` URL for that worker. Local Connect requires no signing or event key. Keep the worker process running while you test. See the [Connect local development guide](/docs/durable-execution/deploying-functions) for the worker setup and runtime requirements.
+
+## Test a function
+
+Open **Functions** and select **Invoke** to call one function with a JSON payload. To test an event trigger, select **Test Event** and send a JSON event whose `name` matches the function's trigger. For example:
+
+```json
+{
+  "name": "ticket/created",
+  "data": {
+    "ticketId": "ticket-123"
+  }
+}
+```
+
+Open **Runs** and select the new run. Inspect the steps, output, errors, and trace. Change the payload or your function code, then run it again. The Dev Server polls your app for function changes.
+
+You can also send an event from your application with `inngest.send()` while the app runs with `INNGEST_DEV=1`. If your app needs `INNGEST_EVENT_KEY` locally, the Dev Server accepts a dummy value. See [Get started](/docs/durable-execution/quick-start/typescript-quick-start) for a complete TypeScript v4 example that creates and tests a function.
+
+## Configuration file
+
+If you use several options or connect multiple apps with `-u`, put them in an `inngest.json` file. The `dev` command searches the current directory and its parent directories for the file. It also supports `yaml`, `yml`, `toml`, and `properties` formats. Run `inngest dev --help` to list all options.
+
+These examples configure two app URLs and disable auto-discovery:
+
+<CodeGroup>
+```json {{ title: "inngest.json" }}
+{
+  "sdk-url": [
+    "http://localhost:3000/api/inngest",
+    "http://localhost:3030/api/inngest"
+  ],
+  "no-discovery": true
+}
+```
+```yaml {{ title: "inngest.yaml" }}
+sdk-url:
+  - "http://localhost:3000/api/inngest"
+  - "http://localhost:3030/api/inngest"
+no-discovery: true
+```
+</CodeGroup>
+
+## Inngest SDK debug endpoint
+
+Send a `GET` request to your app's [SDK `serve()` endpoint](/docs/durable-execution/deploying-functions) to inspect its local configuration. Open the URL in a browser or use `curl`. For an app at `http://localhost:3000/api/inngest`, a response can look like this:
+
+```bash
+curl -s http://localhost:3000/api/inngest | jq
+```
+
+```json
+{
+  "message": "Inngest endpoint configured correctly.",
+  "hasEventKey": false,
+  "hasSigningKey": false,
+  "functionsFound": 1
+}
+```
+
+## Auto-discovery
+
+The Dev Server detects apps on common ports and endpoint paths. To disable discovery and provide the `serve()` URL yourself, pass `--no-discovery` with `-u`:
+
+```bash
+npx --ignore-scripts=false inngest-cli@latest dev --no-discovery -u http://localhost:3000/api/inngest
+```
+
+Common endpoint paths:
+
+```text
+/api/inngest
+/x/inngest
+/.netlify/functions/inngest
+/.redwood/functions/inngest
+```
+
+Common ports include `80` and `443`, `3000`–`3010` for Rails, Express, Next.js, Nuxt, and Nest, `5000` for Django, `5173` for Vite and SvelteKit, `8000`, `8080`, `8081`, and `8888` for other apps, `8910`–`8915` for Redwood, and `8787` for Cloudflare Workers.
+
+## CLI flags
+
+`inngest-cli dev` supports these flags:
+
+| Long form | Short form | Type | Default value | Description |
+| --- | --- | --- | --- | --- |
+| `--config` | — | string | — | Path to an Inngest configuration file |
+| `--help` | `-h` | — | — | Output the help information |
+| `--host` | — | string | `http://localhost` | Inngest server host |
+| `--no-discovery` | — | boolean | `false` | Disable app auto-discovery |
+| `--no-poll` | — | boolean | `false` | Disable polling of apps for updates |
+| `--port` | `-p` | int | `8288` | Inngest server port |
+| `--sdk-url` | `-u` | strings | `http://localhost:3000/api/inngest` | App `serve()` URLs to sync |
+
+## If your functions do not appear
+
+- Check that your app process is running and that the `-u` URL uses its actual port and path.
+- Open the `serve()` URL in a browser, or run `curl http://localhost:3000/api/inngest` with your app's URL. Its diagnostic response should report that the endpoint is configured and show `functionsFound`.
+- Check that you passed the app's `serve()` URL, not the Dev Server's `http://localhost:8288` URL.
+
+## If events go to Inngest Cloud
+
+Set `INNGEST_DEV=1` **on the app process** and restart it. The TypeScript SDK defaults to cloud mode when you do not set a mode. If your Dev Server uses a different host or port, set `INNGEST_BASE_URL` in the app to its full URL, such as `http://localhost:8290`. Set these values on the app process, then restart it.
+
+The Dev Server supports local development and testing. When you deploy, connect your app to its Inngest environment. For a function you can run locally now, continue with [Get started](/docs/durable-execution/quick-start/typescript-quick-start).

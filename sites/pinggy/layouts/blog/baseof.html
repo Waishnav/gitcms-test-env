@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.Lang }}">
+  <head>
+    {{- partial "analytics.html" . -}}
+    {{- partial "header.html" . -}} {{- with .OutputFormats.Get "AMP" }}
+    <link rel="amphtml" href="{{ .RelPermalink | absURL }}" />
+    {{- end }}
+    {{/* Fonts are self-hosted (@font-face lives in blog.css). The Google Fonts
+         stylesheet used to render-block for ~1s on mobile before it could even
+         start fetching the woff2 files off a third origin. Only the two faces
+         needed for the first paint - the h1 and the body copy - are preloaded;
+         JetBrains Mono and the latin-ext cuts load on demand. */}}
+    <link rel="preload" href="/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/source-sans-3-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
+    {{- partial "blogcss.html" . -}}
+    {{- partial "seoblogs.html" . -}}
+  </head>
+
+  <body class="blog{{ if eq .Kind "page" }} blogpost{{ end }}">
+    {{- partial "grid_canvas.html" . }}
+    {{- partial "blog-navbar.html" .}}
+
+    <div class="container py-3 contentcontainer maincontent">
+      <div class="row flex-nowrap row justify-content-evenly">
+        <div class="col-lg-12 blogcontent">{{- block "main" . }}{{- end }}</div>
+      </div>
+    </div>
+
+    {{- partial "footer.html" . -}}
+  </body>
+
+  {{- partial "jslibraries.html" . -}}
+
+  <!-- PAGE SPECIFIC JS -->
+  {{- block "pagespecificjs" . }}{{- end }}
+</html>
