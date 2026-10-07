@@ -24,6 +24,12 @@
       "display_name": "Danto Hugo",
       "website_url": "https://danto-qa.gitcms.dev",
       "root_path": "sites/danto-hugo"
+    },
+    {
+      "key": "plausible",
+      "display_name": "Plausible",
+      "website_url": "https://plausible.io",
+      "root_path": "sites/plausible"
     }
   ]
 }

@@ -1,0 +1,158 @@
+{
+  "version": "1.2",
+  "media": {
+    "default_library": "repo_media",
+    "libraries": [
+      {
+        "key": "repo_media",
+        "label": "Repository media",
+        "references": {
+          "write": {
+            "mode": "root_relative",
+            "base_path": "/assets/images"
+          },
+          "allow_default_library_fallback": true
+        },
+        "limits": {
+          "max_file_size_mb": 10
+        },
+        "driver": "git",
+        "storage": {
+          "root_path": "assets/images"
+        }
+      }
+    ]
+  },
+  "ssg_framework": "jekyll",
+  "frontmatter_format": "yaml",
+  "publishing_mode": "editorial_workflow",
+  "collections": [
+    {
+      "name": "_posts",
+      "git_path": "/_posts/",
+      "file_extension": ".md",
+      "filename_pattern": "",
+      "collection_type": "flat",
+      "frontmatter_schema": [
+        {
+          "name": "title",
+          "type": "title",
+          "label": "Title",
+          "required": false
+        },
+        {
+          "name": "layout",
+          "type": "text",
+          "label": "Layout",
+          "required": false
+        },
+        {
+          "name": "date",
+          "type": "datetime",
+          "label": "Date",
+          "required": false
+        },
+        {
+          "name": "author",
+          "type": "text",
+          "label": "Author",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "_changes",
+      "git_path": "/_changes/",
+      "file_extension": ".md",
+      "filename_pattern": "",
+      "collection_type": "flat",
+      "frontmatter_schema": [
+        {
+          "name": "title",
+          "type": "title",
+          "label": "Title",
+          "required": false
+        },
+        {
+          "name": "layout",
+          "type": "text",
+          "label": "Layout",
+          "required": false
+        },
+        {
+          "name": "date",
+          "type": "datetime",
+          "label": "Date",
+          "required": false,
+          "withTime": true
+        }
+      ]
+    },
+    {
+      "name": "_articles",
+      "git_path": "/_articles/",
+      "file_extension": ".md",
+      "filename_pattern": "",
+      "collection_type": "flat",
+      "frontmatter_schema": [
+        {
+          "name": "title",
+          "type": "title",
+          "label": "Title",
+          "required": false
+        },
+        {
+          "name": "layout",
+          "type": "text",
+          "label": "Layout",
+          "required": false
+        },
+        {
+          "name": "description",
+          "type": "richtext",
+          "label": "Description",
+          "required": false
+        },
+        {
+          "name": "permalink",
+          "type": "text",
+          "label": "Permalink",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "jobs",
+      "git_path": "/jobs/",
+      "file_extension": ".md",
+      "filename_pattern": "",
+      "collection_type": "flat",
+      "frontmatter_schema": [
+        {
+          "name": "title",
+          "type": "title",
+          "label": "Title",
+          "required": false
+        },
+        {
+          "name": "layout",
+          "type": "text",
+          "label": "Layout",
+          "required": false
+        },
+        {
+          "name": "description",
+          "type": "richtext",
+          "label": "Description",
+          "required": false
+        },
+        {
+          "name": "permalink",
+          "type": "text",
+          "label": "Permalink",
+          "required": false
+        }
+      ]
+    }
+  ]
+}
