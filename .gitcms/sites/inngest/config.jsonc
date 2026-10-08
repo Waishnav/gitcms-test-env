@@ -1,0 +1,204 @@
+{
+  "version": "1.2",
+  "media": {
+    "default_library": "repo_media",
+    "libraries": [
+      {
+        "key": "repo_media",
+        "label": "Repository media",
+        "references": {
+          "write": {
+            "mode": "root_relative",
+            "base_path": "/"
+          },
+          "allow_default_library_fallback": true
+        },
+        "limits": {
+          "max_file_size_mb": 10
+        },
+        "driver": "git",
+        "storage": {
+          "root_path": "public"
+        }
+      }
+    ]
+  },
+  "ssg_framework": "nextjs",
+  "frontmatter_format": "yaml",
+  "publishing_mode": "editorial_workflow",
+  "collections": [
+    {
+      "name": "docs",
+      "git_path": "/pages/docs/",
+      "file_extension": ".mdx",
+      "filename_pattern": "",
+      "label": "Docs",
+      "collection_type": "grouped",
+      "frontmatter_schema": []
+    },
+    {
+      "name": "blog",
+      "git_path": "/content/blog/",
+      "file_extension": ".mdx",
+      "filename_pattern": "",
+      "label": "Blog",
+      "collection_type": "flat",
+      "frontmatter_schema": [
+        {
+          "name": "heading",
+          "type": "title",
+          "label": "Heading",
+          "required": false
+        },
+        {
+          "name": "tags",
+          "type": "multiselect",
+          "label": "Tags",
+          "required": false,
+          "options": [
+            "Queues & Flow Control",
+            "Workflows & Orchestration",
+            "Tutorials & Guides",
+            "Engineering"
+          ],
+          "allowCustom": true,
+          "color": "blue"
+        },
+        {
+          "name": "focus",
+          "type": "boolean",
+          "label": "Focus",
+          "required": false,
+          "default": false
+        },
+        {
+          "name": "subtitle",
+          "type": "text",
+          "label": "Subtitle",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "date",
+          "type": "datetime",
+          "label": "Date",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "changelog",
+      "git_path": "/content/changelog/",
+      "file_extension": ".mdx",
+      "filename_pattern": "",
+      "label": "Changelog",
+      "collection_type": "flat",
+      "frontmatter_schema": []
+    },
+    {
+      "name": "customers",
+      "git_path": "/content/customers/",
+      "file_extension": ".mdx",
+      "filename_pattern": "",
+      "label": "Customers",
+      "collection_type": "flat",
+      "frontmatter_schema": [
+        {
+          "name": "title",
+          "type": "title",
+          "label": "Title",
+          "required": false
+        },
+        {
+          "name": "companyName",
+          "type": "text",
+          "label": "Company Name",
+          "required": false
+        },
+        {
+          "name": "logo",
+          "type": "image",
+          "label": "Logo",
+          "required": false
+        },
+        {
+          "name": "companyIndustry",
+          "type": "text",
+          "label": "Company Industry",
+          "required": false
+        },
+        {
+          "name": "companyUseCase",
+          "type": "richtext",
+          "label": "Company Use Case",
+          "required": false
+        },
+        {
+          "name": "quote",
+          "type": "json",
+          "label": "Quote",
+          "required": false
+        },
+        {
+          "name": "companyURL",
+          "type": "url",
+          "label": "Company URL",
+          "required": false
+        },
+        {
+          "name": "companyDescription",
+          "type": "text",
+          "label": "Company Description",
+          "required": false
+        },
+        {
+          "name": "ogImage",
+          "type": "image",
+          "label": "Og Image",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "shared",
+      "git_path": "/shared/",
+      "file_extension": ".mdx",
+      "filename_pattern": "",
+      "label": "Shared",
+      "collection_type": "grouped",
+      "frontmatter_schema": []
+    },
+    {
+      "name": "(pages)",
+      "git_path": "/app/(v0)/landing/(pages)/",
+      "file_extension": ".mdx",
+      "filename_pattern": "",
+      "label": "(pages)",
+      "collection_type": "grouped",
+      "frontmatter_schema": []
+    },
+    {
+      "name": "docs",
+      "git_path": "/docs/",
+      "file_extension": ".md",
+      "filename_pattern": "",
+      "label": "Docs",
+      "collection_type": "grouped",
+      "frontmatter_schema": []
+    },
+    {
+      "name": "snippets",
+      "git_path": "/snippets/",
+      "file_extension": ".md",
+      "filename_pattern": "",
+      "label": "Snippets",
+      "collection_type": "grouped",
+      "frontmatter_schema": []
+    }
+  ]
+}
