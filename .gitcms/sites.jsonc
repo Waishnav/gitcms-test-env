@@ -12,6 +12,12 @@
       "display_name": "Plausible",
       "website_url": "https://plausible.io",
       "root_path": "sites/plausible"
+    },
+    {
+      "key": "astro",
+      "display_name": "Astro",
+      "website_url": "https://astro-qa.gitcms.dev",
+      "root_path": "sites/astro"
     }
   ]
 }
