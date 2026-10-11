@@ -39,6 +39,19 @@
       "ref": "main",
       "framework": "Next.js",
       "gitlinks": []
+    },
+    {
+      "directory": "sites/opencode",
+      "repository": "https://github.com/anomalyco/opencode",
+      "commit": "e31136bdbdb43e934d8bbd81e75a2065a2625699",
+      "ref": "dev",
+      "framework": "Astro",
+      "source_path": "services/www",
+      "gitlinks": [],
+      "additional_files": {
+        "LICENSE": "LICENSE",
+        "upstream-package.json": "package.json"
+      }
     }
   ]
 }

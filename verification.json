@@ -20,6 +20,13 @@
     {
       "directory": "sites/inngest",
       "verified_files": 4207
+    },
+    {
+      "directory": "sites/opencode",
+      "source_path": "services/www",
+      "verified_files": 112,
+      "website_files": 110,
+      "additional_upstream_files": 2
     }
   ]
 }

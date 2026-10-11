@@ -4,7 +4,7 @@ Private, real-world content-as-code fixtures for testing GitCMS onboarding,
 editing, media handling, editorial workflows, and multiple independent sites in
 one repository.
 
-Each `sites/<name>` directory is a complete source snapshot with its original
+Each `sites/<name>` directory is a source snapshot with its original
 content, assets, build configuration, dependency lockfiles, and upstream notices.
 These are ordinary files in this repository: no submodules, nested repositories,
 or dependency on upstream Git history.
@@ -17,6 +17,8 @@ or dependency on upstream Git history.
 | `sites/plausible` | Jekyll | [plausible/website](https://github.com/plausible/website/tree/a06510cbe08adbd1d51c4a69597998ffe9c0a7c1) | `_posts`, `_articles`, `_changes`, root pages |
 | `sites/inngest` | Next.js | [inngest/website](https://github.com/inngest/website/tree/a2e1e25368f889e761aa3715f433e2a9d6a5f620) | `content/blog`, `content/changelog`, `content/customers`, `pages/docs` |
 
+| `sites/opencode` | Astro | [anomalyco/opencode — services/www](https://github.com/anomalyco/opencode/tree/e31136bdbdb43e934d8bbd81e75a2065a2625699/services/www) | `src/docs/content` (nested MDX docs), `src/pages` (website routes) |
+
 Inngest supplies a real product marketing and documentation site with a substantial
 file-based MDX corpus, rather than a starter template. Plausible supplies Jekyll
 coverage in addition to the requested Hugo, Astro, and Next.js examples.
@@ -24,8 +26,9 @@ coverage in addition to the requested Hugo, Astro, and Next.js examples.
 ## Using the fixtures
 
 Connect this repository to GitCMS and onboard each directory as a separate site.
-GitCMS configuration is intentionally not pre-generated: the pristine import can
-exercise discovery and onboarding before configuration is committed.
+The existing five sites have repository-owned configuration under `.gitcms`.
+OpenCode is newly imported without pre-generated GitCMS configuration, so it can
+exercise discovery and onboarding.
 
 Content paths and assets are relative to each site's root. Preserve that boundary
 when testing collection detection, entry saves, and media paths. Use a separate
@@ -40,7 +43,10 @@ site directories, so they are not active repository-root GitHub workflows.
 ## Provenance and verification
 
 `sources.json` records the full upstream commit for every snapshot. All sources
-other than Danto use their default branch tip at import time. This repository has
+other than Danto use their default branch tip at import time. OpenCode imports
+only `services/www`, with its monorepo source path recorded in `sources.json`.
+Its root MIT license and dependency catalog are preserved as `LICENSE` and
+`upstream-package.json` inside the fixture; no other OpenCode packages are copied. This repository has
 its own Git history; upstream commits are provenance, not imported history.
 
 `verification.json` records the initial snapshot integrity check. Every imported
@@ -51,7 +57,11 @@ the initial import; later GitCMS edits will naturally differ from upstream.
 
 Website builds and GitCMS end-to-end workflows have not been run as part of this
 source import. Some websites use external services and remotely hosted assets;
-those integrations remain as upstream configured them.
+those integrations remain as upstream configured them. OpenCode also retains its
+upstream Bun scripts and `catalog:` dependency references: its schema-generation
+scripts expect the upstream CLI/protocol packages. This is a faithful content and
+website source fixture, not a standalone build extraction. Its generated OpenAPI
+files are included, and `upstream-package.json` records the catalog versions.
 
 ## Upstream ownership
 
