@@ -16,7 +16,6 @@ or dependency on upstream Git history.
 | `sites/astro` | Astro | [withastro/astro.build](https://github.com/withastro/astro.build/tree/8ca3ba6b65de3e981ec1aecde8371c39e5d8aaba) | `src/content/blog`, `src/content/pages`, `src/content/caseStudies`, other collections |
 | `sites/plausible` | Jekyll | [plausible/website](https://github.com/plausible/website/tree/a06510cbe08adbd1d51c4a69597998ffe9c0a7c1) | `_posts`, `_articles`, `_changes`, root pages |
 | `sites/inngest` | Next.js | [inngest/website](https://github.com/inngest/website/tree/a2e1e25368f889e761aa3715f433e2a9d6a5f620) | `content/blog`, `content/changelog`, `content/customers`, `pages/docs` |
-
 | `sites/opencode` | Astro | [anomalyco/opencode — services/www](https://github.com/anomalyco/opencode/tree/e31136bdbdb43e934d8bbd81e75a2065a2625699/services/www) | `src/docs/content` (nested MDX docs), `src/pages` (website routes) |
 
 Inngest supplies a real product marketing and documentation site with a substantial
