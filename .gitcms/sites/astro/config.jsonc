@@ -163,7 +163,12 @@
       "name": "pages",
       "git_path": "/src/content/pages/",
       "file_extension": ".md",
-      "filename_pattern": "",
+      "filename_pattern": [
+        {
+          "type": "field",
+          "field": "slug"
+        }
+      ],
       "label": "Pages",
       "collection_type": "grouped",
       "frontmatter_schema": [
