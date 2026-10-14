@@ -1,6 +1,6 @@
 ---
-slug: /overige-paginas/it-activeren-salesforce-integratie-outlook-gmail
+slug: /overige-paginas/qa-pr452-nested-slug
 pageLayout: default
 ---
 
-QA fixture: nested-slug regression verification.
+QA fixture: nested-slug regression verification. Browser save attempt.QA fixture: nested-slug regression verification.
