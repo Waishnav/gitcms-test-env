@@ -25,7 +25,7 @@
   },
   "ssg_framework": "astro",
   "frontmatter_format": "yaml",
-  "publishing_mode": "editorial_workflow",
+  "publishing_mode": "direct_publish",
   "collections": [
     {
       "name": "blog",
@@ -183,6 +183,11 @@
           "name": "image",
           "type": "image",
           "label": "Image",
+          "required": false
+        },
+        {
+          "name": "slug",
+          "type": "slug",
           "required": false
         }
       ]
