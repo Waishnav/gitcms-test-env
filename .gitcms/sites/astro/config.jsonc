@@ -184,6 +184,11 @@
           "type": "image",
           "label": "Image",
           "required": false
+        },
+        {
+          "name": "slug",
+          "type": "slug",
+          "required": false
         }
       ]
     },
