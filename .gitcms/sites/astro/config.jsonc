@@ -25,7 +25,7 @@
   },
   "ssg_framework": "astro",
   "frontmatter_format": "yaml",
-  "publishing_mode": "direct_publish",
+  "publishing_mode": "editorial_workflow",
   "collections": [
     {
       "name": "blog",
@@ -163,12 +163,7 @@
       "name": "pages",
       "git_path": "/src/content/pages/",
       "file_extension": ".md",
-      "filename_pattern": [
-        {
-          "type": "field",
-          "field": "slug"
-        }
-      ],
+      "filename_pattern": "",
       "label": "Pages",
       "collection_type": "grouped",
       "frontmatter_schema": [
@@ -188,11 +183,6 @@
           "name": "image",
           "type": "image",
           "label": "Image",
-          "required": false
-        },
-        {
-          "name": "slug",
-          "type": "slug",
           "required": false
         }
       ]
