@@ -1,0 +1,51 @@
+{
+  "label": "Authors",
+  "git_path": "/content/authors/",
+  "file_extension": ".md",
+  "filename_pattern": "",
+  "collection_type": "grouped",
+  "frontmatter_schema": [
+    {
+      "name": "name",
+      "type": "title",
+      "label": "Name",
+      "required": false
+    },
+    {
+      "name": "image",
+      "type": "image",
+      "label": "Image",
+      "required": false
+    },
+    {
+      "name": "location",
+      "type": "text",
+      "label": "Location",
+      "required": false
+    },
+    {
+      "name": "website",
+      "type": "text",
+      "label": "Website",
+      "required": false
+    },
+    {
+      "name": "facebook",
+      "type": "url",
+      "label": "Facebook",
+      "required": false
+    },
+    {
+      "name": "twitter",
+      "type": "url",
+      "label": "Twitter",
+      "required": false
+    },
+    {
+      "name": "instagram",
+      "type": "url",
+      "label": "Instagram",
+      "required": false
+    }
+  ]
+}

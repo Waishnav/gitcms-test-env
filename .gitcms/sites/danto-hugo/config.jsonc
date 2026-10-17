@@ -1,5 +1,5 @@
 {
-  "version": "1.2",
+  "version": "1.4",
   "media": {
     "default_library": "repo_media",
     "libraries": [
@@ -27,121 +27,7 @@
   "frontmatter_format": "yaml",
   "publishing_mode": "editorial_workflow",
   "collections": [
-    {
-      "name": "posts",
-      "git_path": "/content/posts/",
-      "file_extension": ".md",
-      "filename_pattern": "",
-      "label": "Posts",
-      "collection_type": "flat",
-      "frontmatter_schema": [
-        {
-          "name": "title",
-          "type": "title",
-          "label": "Title",
-          "required": false
-        },
-        {
-          "name": "description",
-          "type": "richtext",
-          "label": "Description",
-          "required": false
-        },
-        {
-          "name": "date",
-          "type": "datetime",
-          "label": "Date",
-          "required": false,
-          "withTime": true
-        },
-        {
-          "name": "authors",
-          "type": "multiselect",
-          "label": "Authors",
-          "required": false,
-          "options": [
-            "kaiya"
-          ],
-          "allowCustom": true,
-          "color": "blue"
-        },
-        {
-          "name": "image",
-          "type": "image",
-          "label": "Image",
-          "required": false
-        },
-        {
-          "name": "tags",
-          "type": "multiselect",
-          "label": "Tags",
-          "required": false,
-          "options": [
-            "people"
-          ],
-          "allowCustom": true,
-          "color": "blue"
-        },
-        {
-          "name": "featured",
-          "type": "boolean",
-          "label": "Featured",
-          "required": false,
-          "default": true
-        }
-      ]
-    },
-    {
-      "name": "authors",
-      "git_path": "/content/authors/",
-      "file_extension": ".md",
-      "filename_pattern": "",
-      "label": "Authors",
-      "collection_type": "grouped",
-      "frontmatter_schema": [
-        {
-          "name": "name",
-          "type": "title",
-          "label": "Name",
-          "required": false
-        },
-        {
-          "name": "image",
-          "type": "image",
-          "label": "Image",
-          "required": false
-        },
-        {
-          "name": "location",
-          "type": "text",
-          "label": "Location",
-          "required": false
-        },
-        {
-          "name": "website",
-          "type": "text",
-          "label": "Website",
-          "required": false
-        },
-        {
-          "name": "facebook",
-          "type": "url",
-          "label": "Facebook",
-          "required": false
-        },
-        {
-          "name": "twitter",
-          "type": "url",
-          "label": "Twitter",
-          "required": false
-        },
-        {
-          "name": "instagram",
-          "type": "url",
-          "label": "Instagram",
-          "required": false
-        }
-      ]
-    }
+    "posts",
+    "authors"
   ]
 }
