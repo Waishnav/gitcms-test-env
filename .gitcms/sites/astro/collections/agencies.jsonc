@@ -1,0 +1,51 @@
+{
+  "label": "Agencies",
+  "git_path": "/src/content/agencies/",
+  "file_extension": ".md",
+  "filename_pattern": "",
+  "collection_type": "flat",
+  "frontmatter_schema": [
+    {
+      "name": "name",
+      "type": "title",
+      "label": "Name",
+      "required": false
+    },
+    {
+      "name": "location",
+      "type": "text",
+      "label": "Location",
+      "required": false
+    },
+    {
+      "name": "url",
+      "type": "url",
+      "label": "Url",
+      "required": false
+    },
+    {
+      "name": "image",
+      "type": "image",
+      "label": "Image",
+      "required": false
+    },
+    {
+      "name": "imageAlt",
+      "type": "text",
+      "label": "Image Alt",
+      "required": false
+    },
+    {
+      "name": "contactLink",
+      "type": "url",
+      "label": "Contact Link",
+      "required": false
+    },
+    {
+      "name": "description",
+      "type": "richtext",
+      "label": "Description",
+      "required": false
+    }
+  ]
+}
