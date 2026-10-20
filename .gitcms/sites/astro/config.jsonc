@@ -25,6 +25,7 @@
   },
   "ssg_framework": "astro",
   "frontmatter_format": "yaml",
+  "sitemap_url": "https://astro.build/sitemap-index.xml",
   "publishing_mode": "editorial_workflow",
   "collections": [
     "blog",
@@ -33,6 +34,8 @@
     "agencies",
     "quotes",
     "careers",
-    "partials"
+    "partials",
+    "test-collection",
+    "fourth-collection"
   ]
 }

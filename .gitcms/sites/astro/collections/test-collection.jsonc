@@ -1,0 +1,8 @@
+{
+  "label": "Test Collection",
+  "description": "",
+  "git_path": "/src/content/test/",
+  "file_extension": ".md",
+  "filename_pattern": "",
+  "frontmatter_schema": []
+}
