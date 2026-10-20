@@ -1,5 +1,6 @@
 {
-  "label": "Blog",
+  "label": "Latest Blog Posts",
+  "description": "",
   "git_path": "/src/content/blog/",
   "file_extension": ".mdx",
   "filename_pattern": "",
