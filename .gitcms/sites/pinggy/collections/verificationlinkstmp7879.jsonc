@@ -1,0 +1,44 @@
+{
+  "label": "Verificationlinkstmp7879",
+  "git_path": "/content/verificationlinkstmp7879/",
+  "file_extension": ".md",
+  "filename_pattern": "",
+  "collection_type": "flat",
+  "frontmatter_schema": [
+    {
+      "name": "title",
+      "type": "title",
+      "label": "Title",
+      "required": false
+    },
+    {
+      "name": "date",
+      "type": "datetime",
+      "label": "Date",
+      "required": false,
+      "withTime": true
+    },
+    {
+      "name": "draft",
+      "type": "boolean",
+      "label": "Draft",
+      "required": false,
+      "default": false
+    },
+    {
+      "name": "sitemap",
+      "type": "object",
+      "label": "Sitemap",
+      "required": false,
+      "fields": [
+        {
+          "name": "disable",
+          "type": "boolean",
+          "label": "Disable",
+          "required": false,
+          "default": true
+        }
+      ]
+    }
+  ]
+}

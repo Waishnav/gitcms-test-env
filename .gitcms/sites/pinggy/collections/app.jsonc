@@ -1,0 +1,34 @@
+{
+  "label": "App",
+  "git_path": "/content/app/",
+  "file_extension": ".md",
+  "filename_pattern": "",
+  "collection_type": "flat",
+  "frontmatter_schema": [
+    {
+      "name": "title",
+      "type": "title",
+      "label": "Title",
+      "required": false
+    },
+    {
+      "name": "lastmod",
+      "type": "datetime",
+      "label": "Lastmod",
+      "required": false,
+      "withTime": true
+    },
+    {
+      "name": "outputs",
+      "type": "multiselect",
+      "label": "Outputs",
+      "required": false,
+      "options": [
+        "HTML",
+        "appversion"
+      ],
+      "allowCustom": true,
+      "color": "blue"
+    }
+  ]
+}

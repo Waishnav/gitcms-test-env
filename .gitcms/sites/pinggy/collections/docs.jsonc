@@ -1,0 +1,8 @@
+{
+  "label": "Docs",
+  "git_path": "/content/docs/",
+  "file_extension": ".md",
+  "filename_pattern": "",
+  "collection_type": "grouped",
+  "frontmatter_schema": []
+}

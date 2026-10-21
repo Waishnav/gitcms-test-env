@@ -1,0 +1,53 @@
+{
+  "label": "Tools",
+  "git_path": "/content/tools/",
+  "file_extension": ".md",
+  "filename_pattern": "",
+  "collection_type": "flat",
+  "frontmatter_schema": [
+    {
+      "name": "title",
+      "type": "title",
+      "label": "Title",
+      "required": false
+    },
+    {
+      "name": "description",
+      "type": "richtext",
+      "label": "Description",
+      "required": false
+    },
+    {
+      "name": "date",
+      "type": "datetime",
+      "label": "Date",
+      "required": false,
+      "withTime": true
+    },
+    {
+      "name": "draft",
+      "type": "boolean",
+      "label": "Draft",
+      "required": false,
+      "default": false
+    },
+    {
+      "name": "sitename",
+      "type": "text",
+      "label": "Sitename",
+      "required": false
+    },
+    {
+      "name": "schemahowto",
+      "type": "richtext",
+      "label": "Schemahowto",
+      "required": false
+    },
+    {
+      "name": "og_image",
+      "type": "image",
+      "label": "Og image",
+      "required": false
+    }
+  ]
+}
