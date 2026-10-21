@@ -1,9 +1,11 @@
 {
   "label": "Blog",
+  "description": "",
   "git_path": "/content/blog/",
   "file_extension": ".md",
   "filename_pattern": "",
   "collection_type": "grouped",
+  "route": "/blog/{path}/",
   "frontmatter_schema": [
     {
       "name": "title",
