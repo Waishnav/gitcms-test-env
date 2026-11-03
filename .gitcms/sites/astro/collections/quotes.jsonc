@@ -1,0 +1,49 @@
+{
+  "label": "Quotes",
+  "git_path": "/src/content/quotes/",
+  "file_extension": ".md",
+  "filename_pattern": "",
+  "collection_type": "flat",
+  "frontmatter_schema": [
+    {
+      "name": "author",
+      "type": "object",
+      "label": "Author",
+      "required": false,
+      "fields": [
+        {
+          "name": "handle",
+          "type": "text",
+          "label": "Handle",
+          "required": false
+        },
+        {
+          "name": "avatar",
+          "type": "object",
+          "label": "Avatar",
+          "required": false,
+          "fields": [
+            {
+              "name": "src",
+              "type": "url",
+              "label": "Src",
+              "required": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "url",
+      "type": "url",
+      "label": "Url",
+      "required": false
+    },
+    {
+      "name": "published",
+      "type": "datetime",
+      "label": "Published",
+      "required": false
+    }
+  ]
+}

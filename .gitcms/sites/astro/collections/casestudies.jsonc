@@ -1,0 +1,94 @@
+{
+  "label": "Case studies",
+  "git_path": "/src/content/caseStudies/",
+  "file_extension": ".mdx",
+  "filename_pattern": "",
+  "collection_type": "flat",
+  "frontmatter_schema": [
+    {
+      "name": "title",
+      "type": "title",
+      "label": "Title",
+      "required": false
+    },
+    {
+      "name": "description",
+      "type": "richtext",
+      "label": "Description",
+      "required": false
+    },
+    {
+      "name": "seo",
+      "type": "object",
+      "label": "Seo",
+      "required": false,
+      "fields": [
+        {
+          "name": "title",
+          "type": "title",
+          "label": "Title",
+          "required": false
+        },
+        {
+          "name": "description",
+          "type": "richtext",
+          "label": "Description",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "coverGradientFrom",
+      "type": "text",
+      "label": "Cover Gradient From",
+      "required": false
+    },
+    {
+      "name": "coverGradientTo",
+      "type": "text",
+      "label": "Cover Gradient To",
+      "required": false
+    },
+    {
+      "name": "publishDate",
+      "type": "datetime",
+      "label": "Publish Date",
+      "required": false
+    },
+    {
+      "name": "authors",
+      "type": "multiselect",
+      "label": "Authors",
+      "required": false,
+      "options": [
+        "astro-team"
+      ],
+      "allowCustom": true,
+      "color": "blue"
+    },
+    {
+      "name": "lang",
+      "type": "text",
+      "label": "Lang",
+      "required": false
+    },
+    {
+      "name": "socialImage",
+      "type": "image",
+      "label": "Social Image",
+      "required": false
+    },
+    {
+      "name": "coverImage",
+      "type": "image",
+      "label": "Cover Image",
+      "required": false
+    },
+    {
+      "name": "headerImage",
+      "type": "image",
+      "label": "Header Image",
+      "required": false
+    }
+  ]
+}
