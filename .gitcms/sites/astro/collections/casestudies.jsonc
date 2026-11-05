@@ -89,6 +89,47 @@
       "type": "image",
       "label": "Header Image",
       "required": false
+    },
+    {
+      "name": "imageObj",
+      "type": "object",
+      "label": "Image obj",
+      "required": false,
+      "fields": [
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "alt",
+          "type": "text",
+          "label": "Alt",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "image_list",
+      "type": "list",
+      "label": "Image list",
+      "required": false,
+      "fields": [
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "alt",
+          "type": "text",
+          "label": "Alt",
+          "required": false
+        }
+      ]
     }
+
   ]
 }
