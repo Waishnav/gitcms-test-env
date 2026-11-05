@@ -1,0 +1,122 @@
+---
+title: Remark LLMs
+description: Export the Markdown of your documents for LLMs.
+---
+
+The `remarkLLMs` plugin exports the Markdown of a document as `_markdown`, for LLMs. It keeps the Markdown you wrote. See [Stringification](/docs/headless/mdx/stringification) for how it's generated.
+
+```mdx tab="Input"
+import { Callout } from 'fumadocs-ui/components/callout';
+
+## Getting Started
+
+<Callout>Hello **world**.</Callout>
+```
+
+```md tab="Output"
+## Getting Started [#getting-started]
+
+<Callout>Hello **world**.</Callout>
+```
+
+ESM is removed, headings get their IDs (see `headingIds`), and included content is expanded with Fumadocs MDX.
+
+## Usage
+
+`remarkLLMs` is a remark plugin. Enable it in Fumadocs MDX with `includeProcessedMarkdown`, on both unified and Sätteri:
+
+```ts title="source.config.ts"
+import { defineDocs } from 'fumadocs-mdx/config';
+
+export const docs = defineDocs({
+  docs: {
+    postprocess: {
+      // `true`, or the options of `remarkLLMs`
+      includeProcessedMarkdown: true,
+    },
+  },
+});
+```
+
+Read it from your pages:
+
+```ts
+const markdown = await page.data.getText('processed');
+```
+
+## Images
+
+Images beside your pages, imported by [Remark Image](/docs/headless/mdx/remark-image), get the URLs your bundler serves them at:
+
+```md tab="Input"
+![How a calculation flows](./flow.png)
+```
+
+```md tab="Output"
+![How a calculation flows](/assets/flow-Dxg6sAyC.png)
+```
+
+Images in the public directory keep their address. Vite inlines images smaller than [`build.assetsInlineLimit`](https://vite.dev/config/build-options#build-assetsinlinelimit) as `data:` URLs.
+
+## JSX Elements
+
+JSX elements are kept as you wrote them. To change them:
+
+| Option               | Elements                                      |
+| -------------------- | --------------------------------------------- |
+| `filterElement`      | Removed, or replaced by their children        |
+| `mdxAsPlaceholder`   | Turned into placeholders, rendered at runtime |
+| `output: 'function'` | Rendered by their components, into Markdown   |
+
+On Sätteri, `filterElement` and `mdxAsPlaceholder` are unavailable.
+
+### Placeholders
+
+List the components to output as placeholders:
+
+```ts
+import type { LLMsOptions } from 'fumadocs-core/mdx-plugins/remark-llms';
+
+const llmsOptions: LLMsOptions = {
+  mdxAsPlaceholder: ['Callout'],
+};
+```
+
+Then render them, from runtime data if needed:
+
+```ts
+import { renderPlaceholder } from 'fumadocs-core/mdx-plugins/remark-llms.runtime';
+
+const markdown = await renderPlaceholder(await page.data.getText('processed'), {
+  // `children` is the Markdown of its content
+  Callout: ({ attributes, children }) => `> **${attributes.title}**\n>\n> ${children}`,
+});
+```
+
+### Function Output [#output]
+
+With `output: 'function'`, `_markdown` is a component: Markdown stays as you wrote it and JSX elements are rendered by your components.
+
+```ts
+import type { LLMsOptions } from 'fumadocs-core/mdx-plugins/remark-llms';
+
+const llmsOptions: LLMsOptions = {
+  output: 'function',
+};
+```
+
+Render it with your components:
+
+```tsx
+import { getMDXComponents } from '@/components/mdx';
+
+const markdown = await page.data.getText('processed', {
+  components: getMDXComponents(),
+});
+```
+
+Components define their Markdown form with `asMarkdown()`. Others are kept as JSX. See [Markdown Rendering](/docs/headless/utils/markdown).
+
+## Options
+
+<auto-type-table type="import('fumadocs-core/mdx-plugins/remark-llms').LLMsOptions" />

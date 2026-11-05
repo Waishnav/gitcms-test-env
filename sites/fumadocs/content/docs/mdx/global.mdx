@@ -1,0 +1,70 @@
+---
+title: Global Options
+description: Customize Fumadocs MDX
+---
+
+## Global Options
+
+Shared options of Fumadocs MDX.
+
+```ts title="source.config.ts"
+import { defineConfig } from 'fumadocs-mdx/config';
+
+export default defineConfig({
+  // global options
+});
+```
+
+<auto-type-table path="./props.ts" name="GlobalConfig" />
+
+### MDX Options
+
+Customize the [default preset](/docs/mdx/mdx) of collections. `mdxOptions` applies to collections compiled with unified, and `satteriOptions` to collections with `compiler: 'satteri'`.
+
+```ts tab="unified" title="source.config.ts"
+import { defineConfig } from 'fumadocs-mdx/config';
+import { myPlugin } from './remark-plugin';
+
+export default defineConfig({
+  mdxOptions: {
+    // When order matters
+    remarkPlugins: (v) => [myPlugin, ...v],
+  },
+});
+```
+
+```ts tab="Sätteri" title="source.config.ts"
+import { defineConfig } from 'fumadocs-mdx/config';
+import { myPlugin } from './mdast-plugin';
+
+export default defineConfig({
+  satteriOptions: {
+    // When order matters
+    mdastPlugins: (v) => [myPlugin(), ...v],
+  },
+});
+```
+
+Or using the minimal preset:
+
+```ts tab="unified" title="source.config.ts"
+import { defineConfig } from 'fumadocs-mdx/config';
+
+export default defineConfig({
+  mdxOptions: {
+    preset: 'minimal',
+    // now it accepts only MDX processor options
+  },
+});
+```
+
+```ts tab="Sätteri" title="source.config.ts"
+import { defineConfig } from 'fumadocs-mdx/config';
+
+export default defineConfig({
+  satteriOptions: {
+    preset: 'minimal',
+    // now it accepts only Sätteri compile options
+  },
+});
+```

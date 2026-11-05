@@ -1,0 +1,34 @@
+{
+  "label": "Docs",
+  "description": "Official Fumadocs MDX with Callout, Cards, Tabs, and Steps",
+  "git_path": "/content/docs/",
+  "file_extension": ".mdx",
+  "filename_pattern": "",
+  "collection_type": "grouped",
+  "frontmatter_schema": [
+    {
+      "name": "title",
+      "type": "title",
+      "label": "Title",
+      "required": false
+    },
+    {
+      "name": "description",
+      "type": "text",
+      "label": "Description",
+      "required": false
+    },
+    {
+      "name": "icon",
+      "type": "text",
+      "label": "Icon",
+      "required": false
+    },
+    {
+      "name": "full",
+      "type": "boolean",
+      "label": "Full width",
+      "required": false
+    }
+  ]
+}

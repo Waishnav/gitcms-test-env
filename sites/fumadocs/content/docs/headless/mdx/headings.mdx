@@ -1,0 +1,83 @@
+---
+title: Headings
+description: Process headings from your document
+---
+
+## Remark Heading
+
+A remark plugin that applies ids to headings. Fumadocs MDX enables it by default. Pass options with `remarkHeadingOptions`.
+
+### Custom Ids [#custom-heading-id]
+
+You can customize the heading id with `[#slug]`.
+
+```md
+# heading [#slug]
+```
+
+To disable it:
+
+```ts tab="unified" title="source.config.ts"
+import { defineConfig } from 'fumadocs-mdx/config';
+
+export default defineConfig({
+  mdxOptions: {
+    remarkHeadingOptions: {
+      customId: false,
+    },
+  },
+});
+```
+
+```ts tab="Sätteri" title="source.config.ts"
+import { defineConfig, defineDocs } from 'fumadocs-mdx/config';
+
+export const docs = defineDocs({
+  docs: { compiler: 'satteri' },
+});
+
+export default defineConfig({
+  satteriOptions: {
+    remarkHeadingOptions: {
+      customId: false,
+    },
+  },
+});
+```
+
+### Extract TOC
+
+By default, it also extracts the headings (table of contents) of a document to the file data as `toc`, an array of `TOCItemType`.
+Fumadocs MDX turns it off with `generateToc: false` and exports the table of contents with [Rehype TOC](#rehype-toc) instead.
+
+<auto-type-table path="../props.ts" name="TOCItemType" />
+
+## Rehype TOC
+
+A rehype plugin that exports the table of contents (an array of `TOCItemType`). Unlike Remark Heading, it keeps JSX nodes in heading titles.
+
+Fumadocs MDX enables it by default. On Sätteri, pass options with `rehypeTocOptions`.
+
+### Output
+
+For a Markdown document:
+
+```md
+## Hello `code`
+```
+
+An export will be created:
+
+```jsx
+export const toc = [
+  {
+    title: (
+      <>
+        Hello <code>code</code>
+      </>
+    ),
+    depth: 2,
+    url: '#hello-code',
+  },
+];
+```

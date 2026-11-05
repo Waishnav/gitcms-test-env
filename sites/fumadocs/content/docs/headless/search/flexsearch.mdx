@@ -1,0 +1,292 @@
+---
+title: FlexSearch
+description: Fast & minimal document search
+---
+
+## Setup
+
+```npm
+npm install flexsearch
+```
+
+```npm
+npm install @types/flexsearch -D
+```
+
+### From Source
+
+Create the server from source object.
+
+```ts tab="Next.js" title="app/api/search/route.ts"
+import { source } from '@/lib/source';
+import { flexsearchFromSource } from 'fumadocs-core/search/flexsearch';
+
+export const { GET } = flexsearchFromSource(source);
+```
+
+```ts tab="React Router" title="app/routes/search.ts"
+import type { Route } from './+types/search';
+import { flexsearchFromSource } from 'fumadocs-core/search/flexsearch';
+import { source } from '@/lib/source';
+
+const server = flexsearchFromSource(source);
+
+export async function loader({ request }: Route.LoaderArgs) {
+  return server.GET(request);
+}
+```
+
+```ts tab="TanStack Start" title="src/routes/api/search.ts"
+import { createFileRoute } from '@tanstack/react-router';
+import { flexsearchFromSource } from 'fumadocs-core/search/flexsearch';
+import { source } from '@/lib/source';
+
+const server = flexsearchFromSource(source);
+
+export const Route = createFileRoute('/api/search')({
+  server: {
+    handlers: {
+      GET: async ({ request }) => server.GET(request),
+    },
+  },
+});
+```
+
+```ts tab="Waku" title="src/pages/_api/api/search.ts"
+import { source } from '@/lib/source';
+import { flexsearchFromSource } from 'fumadocs-core/search/flexsearch';
+
+export const { GET } = flexsearchFromSource(source);
+```
+
+```ts tab="Astro" title="src/pages/api/search.ts"
+import type { APIRoute } from 'astro';
+import { flexsearchFromSource } from 'fumadocs-core/search/flexsearch';
+import { source } from '@/lib/source';
+
+// render per request, needs an adapter
+export const prerender = false;
+
+const server = flexsearchFromSource(source);
+
+export const GET: APIRoute = ({ request }) => server.GET(request);
+```
+
+### From Search Indexes
+
+Create the server from search indexes, each index needs a `structuredData` field.
+
+Usually, it is provided by your content source (e.g. Fumadocs MDX). You can also extract it from Markdown/MDX document using the [Remark Structure](/docs/headless/mdx/structure) plugin.
+
+Serve it from your search route in place of `flexsearchFromSource()`:
+
+```ts
+import { source } from '@/lib/source';
+import { flexsearch } from 'fumadocs-core/search/flexsearch';
+
+const server = flexsearch({
+  indexes: source.getPages().map((page) => ({
+    title: page.data.title!,
+    description: page.data.description,
+    url: page.url,
+    id: page.url,
+    structuredData: page.data.structuredData,
+  })),
+});
+```
+
+### Searching Documents
+
+You can search documents using:
+
+- **Fumadocs UI**: Supported out-of-the-box, see [Search UI](/docs/search/flexsearch) for details.
+- **Search Client**:
+
+```ts twoslash
+import { useFetchSearch } from 'fumadocs-core/search/client';
+
+const { search, onSearchChange, isLoading, data } = useFetchSearch();
+```
+
+<auto-type-table type='import("fumadocs-core/search/client/fetch").FetchOptions' />
+
+## Configurations
+
+### Tag Filter
+
+Support filtering results by tag, it's useful for implementing multi-docs similar to this documentation.
+
+```ts
+import { source } from '@/lib/source';
+import { flexsearchFromSource } from 'fumadocs-core/search/flexsearch';
+
+const server = flexsearchFromSource(source, {
+  buildIndex(page) {
+    return {
+      title: page.data.title!,
+      description: page.data.description,
+      url: page.url,
+      id: page.url,
+      structuredData: page.data.structuredData,
+      // use your desired value, like page.slugs[0] [!code ++:2]
+      tag: '<value>',
+    };
+  },
+});
+```
+
+and update your search client:
+
+- **Fumadocs UI**: Configure [Tag Filter](/docs/search/flexsearch#tag-filter) on Search UI.
+- **Search Client**: pass a tag to `useFetchSearch()`.
+
+```ts
+import { useFetchSearch } from 'fumadocs-core/search/client';
+
+const { search, onSearchChange, isLoading, data } = useFetchSearch({
+  tag: '<value>', // [!code ++]
+});
+```
+
+### Static Mode [#static-export]
+
+To support usage with static site, use `staticGET` from search server and make the route static or pre-rendered.
+
+```ts tab="Next.js" title="app/api/search/route.ts"
+import { source } from '@/lib/source';
+import { flexsearchFromSource } from 'fumadocs-core/search/flexsearch';
+
+// statically cached [!code highlight:3]
+export const revalidate = false;
+export const { staticGET: GET } = flexsearchFromSource(source);
+```
+
+```ts tab="React Router" title="app/routes/search.ts"
+// make sure this route is pre-rendered in `react-router.config.ts`.
+export async function loader() {
+  // [!code highlight]
+  return server.staticGET();
+}
+```
+
+```ts tab="TanStack Start" title="src/routes/api/search.ts"
+import { createFileRoute } from '@tanstack/react-router';
+
+export const Route = createFileRoute('/api/search')({
+  server: {
+    handlers: {
+      // [!code highlight]
+      GET: async () => server.staticGET(),
+    },
+  },
+});
+```
+
+```ts tab="TanStack Start" title="vite.config.ts"
+import { tanstackStart } from '@tanstack/react-start/plugin/vite';
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+  plugins: [
+    tanstackStart({
+      prerender: {
+        enabled: true,
+      },
+      // [!code ++:2] pre-render the index file
+      pages: [{ path: '/api/search' }],
+    }),
+  ],
+});
+```
+
+```ts tab="Waku" title="src/pages/_api/api/search.ts"
+import { source } from '@/lib/source';
+import { flexsearchFromSource } from 'fumadocs-core/search/flexsearch';
+
+// [!code highlight]
+export const { staticGET: GET } = flexsearchFromSource(source);
+
+// statically cached [!code highlight:4]
+export const getConfig = async () => ({
+  render: 'static',
+});
+```
+
+```ts tab="Astro" title="src/pages/api/search.ts"
+import type { APIRoute } from 'astro';
+import { flexsearchFromSource } from 'fumadocs-core/search/flexsearch';
+import { source } from '@/lib/source';
+
+const server = flexsearchFromSource(source);
+
+// prerendered by default [!code highlight]
+export const GET: APIRoute = () => server.staticGET();
+```
+
+> `staticGET` is also available on `flexsearch()`.
+
+and update your search clients:
+
+- **Fumadocs UI**: use [static client](/docs/search/flexsearch#static) on Search UI.
+
+- **Search Client**: change your client adapter.
+
+  ```ts
+  import { useFlexsearchStatic } from 'fumadocs-core/search/client/flexsearch-static';
+
+  const { search, onSearchChange, isLoading, data } = useFlexsearchStatic({
+    // optional: pass tag & locale
+    tag,
+  });
+  ```
+
+  <auto-type-table type='import("fumadocs-core/search/client/flexsearch-static").FlexsearchStaticOptions' />
+
+<Callout type='warn' title="Be Careful">
+
+    Static Search requires clients to download the exported search indexes.
+    For large docs sites, it can be expensive.
+
+    You should use cloud solutions like Orama Cloud or Algolia for these cases.
+
+</Callout>
+
+## Internationalization
+
+Flexsearch doesn't require configurations to work for other languages, but you can improve the results by specifying Flexsearch options for each locale.
+
+```ts tab="From Source"
+import { source } from '@/lib/source';
+import { flexsearchFromSource } from 'fumadocs-core/search/flexsearch';
+import { Charset } from 'flexsearch';
+
+const server = flexsearchFromSource(source, {
+  localeMap: {
+    // [locale]: Flexsearch options [!code ++:2]
+    jp: { encoder: Charset.CJK },
+  },
+});
+```
+
+```ts tab="From Search Indexes"
+import { source } from '@/lib/source';
+import { flexsearchI18n } from 'fumadocs-core/search/flexsearch';
+import { i18n } from '@/lib/i18n';
+import { Charset } from 'flexsearch';
+
+const server = flexsearchI18n({
+  i18n, // [!code ++]
+  localeMap: {
+    // [locale]: Flexsearch options [!code ++:2]
+    jp: { encoder: Charset.CJK },
+  },
+  indexes: source.getPages().map((page) => ({
+    title: page.data.title!,
+    description: page.data.description,
+    structuredData: page.data.structuredData,
+    id: page.url,
+    url: page.url,
+    locale: page.locale!,
+  })),
+});
+```

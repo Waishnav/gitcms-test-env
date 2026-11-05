@@ -14,6 +14,12 @@
       "root_path": "sites/danto-hugo"
     },
     {
+      "key": "fumadocs",
+      "display_name": "Fumadocs",
+      "website_url": "https://fumadocs.dev",
+      "root_path": "sites/fumadocs"
+    },
+    {
       "key": "inngest",
       "display_name": "Inngest",
       "website_url": "https://www.inngest.com",

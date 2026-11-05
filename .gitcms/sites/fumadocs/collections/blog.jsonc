@@ -1,0 +1,50 @@
+{
+  "label": "Blog",
+  "description": "",
+  "git_path": "/content/blog/",
+  "file_extension": ".mdx",
+  "filename_pattern": "",
+  "collection_type": "flat",
+  "frontmatter_schema": [
+    {
+      "name": "title",
+      "type": "title",
+      "label": "Title",
+      "required": false
+    },
+    {
+      "name": "description",
+      "type": "text",
+      "label": "Description",
+      "required": false
+    },
+    {
+      "name": "authors",
+      "type": "multiselect",
+      "label": "Authors",
+      "required": false,
+      "options": [
+        "fuma"
+      ],
+      "allowCustom": true,
+      "color": "blue"
+    },
+    {
+      "name": "tags",
+      "type": "multiselect",
+      "label": "Tags",
+      "required": false,
+      "options": [
+        "Release"
+      ],
+      "allowCustom": true,
+      "color": "blue"
+    },
+    {
+      "name": "date",
+      "type": "datetime",
+      "label": "Date",
+      "required": false
+    }
+  ]
+}

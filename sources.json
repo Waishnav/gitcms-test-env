@@ -41,6 +41,22 @@
       "gitlinks": []
     },
     {
+      "directory": "sites/fumadocs",
+      "repository": "https://github.com/fuma-nama/fumadocs",
+      "commit": "14f9183dbe69f7970eeadc1dcc5c960f7567d5ee",
+      "ref": "dev",
+      "framework": "Fumadocs / Next.js",
+      "source_path": "apps/docs",
+      "gitlinks": [],
+      "omitted_files": [
+        "apps/docs/.env"
+      ],
+      "additional_files": {
+        "LICENSE": "LICENSE",
+        "upstream-package.json": "package.json"
+      }
+    },
+    {
       "directory": "sites/opencode",
       "repository": "https://github.com/anomalyco/opencode",
       "commit": "e31136bdbdb43e934d8bbd81e75a2065a2625699",

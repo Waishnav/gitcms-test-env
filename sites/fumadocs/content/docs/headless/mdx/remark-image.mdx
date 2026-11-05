@@ -1,0 +1,146 @@
+---
+title: Remark Image
+description: Adding size attributes to images.
+---
+
+A remark plugin that adds `width` and `height` attributes to your image elements, which is needed for Image Optimization on Next.js and some other frameworks.
+
+## Usage
+
+Fumadocs MDX enables it by default. Pass options with `remarkImageOptions`. The options are the same on unified and Sätteri.
+
+Supported:
+
+- Local Images
+- External URLs
+- Next.js static imports
+
+### How It Works
+
+With `useImport`, local images become **static imports** for your bundler to handle. Fumadocs MDX enables it except in `dynamic` collections.
+On Next.js, the built-in image loader handles them, which supports the `placeholder` option of Next.js Image.
+
+Otherwise, it uses the file system or an HTTP request to download the image and obtain its size.
+
+<Callout type="warn">
+
+Do not pass untrusted image URLs. They are fetched when compiling, private hosts included. Set `external: false` to skip external images.
+
+</Callout>
+
+### Options
+
+<auto-type-table
+  path="../props.ts"
+  name="RemarkImageOptions"
+/>
+
+### Example: With Imports
+
+```mdx
+![Hello](/hello.png)
+![Test](https://example.com/image.png)
+```
+
+Yields:
+
+```mdx
+import HelloImage from './public/hello.png';
+
+<img alt="Hello" src={HelloImage} />
+<img alt="Test" src="https://example.com/image.png" width="1980" height="1080" />
+```
+
+Where `./public/hello.png` points to the image in public directory.
+
+### Example: Without Imports
+
+For Next.js, you can disable static imports on local images.
+
+```ts tab="unified" title="source.config.ts"
+import { defineConfig } from 'fumadocs-mdx/config';
+
+export default defineConfig({
+  mdxOptions: {
+    remarkImageOptions: {
+      useImport: false,
+    },
+  },
+});
+```
+
+```ts tab="Sätteri" title="source.config.ts"
+import { defineConfig, defineDocs } from 'fumadocs-mdx/config';
+
+export const docs = defineDocs({
+  docs: { compiler: 'satteri' },
+});
+
+export default defineConfig({
+  satteriOptions: {
+    remarkImageOptions: {
+      useImport: false,
+    },
+  },
+});
+```
+
+```mdx
+![Hello](/hello.png)
+![Test](https://example.com/image.png)
+```
+
+Yields:
+
+```mdx
+<img alt="Hello" src="/hello.png" width="1980" height="1080" />
+<img alt="Test" src="https://example.com/image.png" width="1980" height="1080" />
+```
+
+### Example: Relative Paths
+
+When `useImport` is enabled, you can reference local images using relative paths.
+
+```mdx
+![Hello](./hello.png)
+```
+
+Be careful that using it with `useImport` disabled **doesn't work**.
+Next.js will not add the image to public assets unless you have imported it in code.
+For images in public directory, you can just reference them without relative paths.
+
+### Example: Public Directory
+
+Customize the path of public directory.
+
+```ts tab="unified" title="source.config.ts"
+import { defineConfig } from 'fumadocs-mdx/config';
+import path from 'node:path';
+
+export default defineConfig({
+  mdxOptions: {
+    remarkImageOptions: {
+      publicDir: path.join(process.cwd(), 'dir'),
+    },
+  },
+});
+```
+
+```ts tab="Sätteri" title="source.config.ts"
+import { defineConfig, defineDocs } from 'fumadocs-mdx/config';
+import path from 'node:path';
+
+export const docs = defineDocs({
+  docs: { compiler: 'satteri' },
+});
+
+export default defineConfig({
+  satteriOptions: {
+    remarkImageOptions: {
+      publicDir: path.join(process.cwd(), 'dir'),
+    },
+  },
+});
+```
+
+`publicDir` accepts a base URL too, like `https://my-cdn.com/images`.
