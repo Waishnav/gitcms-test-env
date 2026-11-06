@@ -2,18 +2,20 @@
 title: QA preservation
 ---
 
+[fixture]: https://example.com "Example"
+
 import { Callout } from 'fumadocs-ui/components/callout'
 
 export const target = '/docs'
 
 A paragraph with inline <strong>JSX</strong> stays intact.
 
-A [reference link][fixture].
-
-[fixture]: https://example.com "Example"
+A [reference link][fixture]. Edited.
 
 {/* Preserve this comment. */}
 
 <Card title="Dynamic" href={target} />
+
 <MyWidget foo="bar" />
+
 <Callout type="info">Consecutive component.</Callout>
