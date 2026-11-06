@@ -29,8 +29,5 @@
   "collections": [
     "posts",
     "authors"
-  ],
-  "components": [
-    "youtube"
   ]
 }
