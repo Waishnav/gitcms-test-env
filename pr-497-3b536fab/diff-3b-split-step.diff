@@ -1,0 +1,15 @@
+@@ -6,8 +6,15 @@
+ <Steps>
+ 
+-1. First step with **emphasis**.
++1. Inserted
++2. step
++   ```
++   npm install
++   ```
+ 2. Second step.     <-- BUG: should be 3.
++   ```
++   yarn add foo
++   ```
+ 
+ </Steps>
