@@ -1,0 +1,12 @@
+{
+  // QA fixture: a card with an in-place title, a children region and two props.
+  "label": "Widget",
+  "dialect": "mdx-jsx",
+  "attributeRegions": [{ "attribute": "title", "region": "title", "placeholder": "Widget title" }],
+  "childrenRegion": { "region": "body" },
+  "props": [
+    { "name": "tone", "label": "Tone", "type": "select", "options": ["calm", "loud"], "allowCustom": true },
+    { "name": "eyebrow", "label": "Eyebrow", "type": "text" }
+  ],
+  "import": { "from": "@/components/my-widget", "name": "MyWidget" }
+}
