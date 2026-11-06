@@ -1,0 +1,14 @@
+--- before/s4-fumadocs-nested
++++ after/s4-fumadocs-nested
+@@ -6,7 +6,9 @@
+ <Callout title="Nested lists">
+ 
+ - a
+-    - b
+-    - c
++
++  -
++  - Nb
++  - c
+ 
+ </Callout>

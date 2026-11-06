@@ -1,0 +1,13 @@
+--- before/s3-fumadocs-cut-paste
++++ after/s3-fumadocs-cut-paste
+@@ -6,8 +6,8 @@
+ <Callout title="Cut and paste">
+ 
+ 1. A
+-2. B
+-3. C
++2. C
++3. B
+ 4. D
+ 
+ </Callout>

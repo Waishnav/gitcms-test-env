@@ -1,0 +1,19 @@
+--- before/s1a-run1-starlight-steps-a
++++ after/s1a-run1-starlight-steps-a
+@@ -8,12 +8,14 @@
+ 
+ 1. Install the package
+ 
++2. Inserted step
++
+    ```sh
+    npm install example
+    ```
+ 
+-2. Configure the site
++3. Configure the site
+ 
+-3. Run the dev server
++4. Run the dev server
+ 
+ </Steps>

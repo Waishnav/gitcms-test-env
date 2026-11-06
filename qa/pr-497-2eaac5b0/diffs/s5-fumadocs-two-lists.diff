@@ -1,0 +1,15 @@
+--- before/s5-fumadocs-two-lists
++++ after/s5-fumadocs-two-lists
+@@ -7,10 +7,7 @@
+ 
+ 1. a
+ 2. b
+-
+-Note
+-
+-1. c
+-2. d
++1) c
++2) d
+ 
+ </Callout>

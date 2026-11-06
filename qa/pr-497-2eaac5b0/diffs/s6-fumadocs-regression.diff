@@ -1,0 +1,16 @@
+--- before/s6-fumadocs-regression
++++ after/s6-fumadocs-regression
+@@ -5,11 +5,11 @@
+ 
+ <Callout title="Todo items">
+ 
+-- [ ] A
++- [ ] AXY
+ 
+ </Callout>
+ 
+-<Callout title="Callout title edit">
++<Callout title="Callout title edit QA">
+ 
+ Body text.
+ 

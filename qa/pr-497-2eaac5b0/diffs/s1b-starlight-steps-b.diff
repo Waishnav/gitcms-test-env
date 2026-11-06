@@ -1,0 +1,13 @@
+--- before/s1b-starlight-steps-b
++++ after/s1b-starlight-steps-b
+@@ -14,6 +14,10 @@
+ 
+ 2. Configure the site
+ 
++   ```
++   npm run dev
++   ```
++
+ 3. Run the dev server
+ 
+ </Steps>
