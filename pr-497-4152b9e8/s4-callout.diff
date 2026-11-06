@@ -1,0 +1,11 @@
+--- callouts-main.mdx	2026-11-06 18:40:50.239942758 +0530
++++ /proc/self/fd/12	2026-11-06 18:41:01.625765912 +0530
+@@ -2,7 +2,7 @@
+ title: QA callouts
+ ---
+ 
+-<Callout type="info" title="Information">
++<Callout type="info" title="Information edited">
+   **Bold** and *italic* with a [link](https://example.com).
+ 
+   - First item
