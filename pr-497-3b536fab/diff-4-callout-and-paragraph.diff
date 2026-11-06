@@ -1,0 +1,8 @@
+@@ -4,8 +4,8 @@ title: QA asides and tabs
+ 
+-<Aside type="note" title="A note">
+-  **Rich** body and a [link](https://example.com).
++<Aside type="note" title="A note edited">
++  **Rich** body and a [link](https://example.com). More.
+ </Aside>
+(:::note / :::tip directive blocks: unchanged)
