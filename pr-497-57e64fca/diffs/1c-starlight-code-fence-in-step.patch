@@ -1,0 +1,13 @@
+--- before/1c-starlight-code-fence-in-step
++++ after/1c-starlight-code-fence-in-step
+@@ -15,6 +15,10 @@
+ 
+ 2. Inserted step
+ 
++   ```
++   npm test
++   ```
++
+ 3. Add the
+ 
+ 4. Split component to a page.

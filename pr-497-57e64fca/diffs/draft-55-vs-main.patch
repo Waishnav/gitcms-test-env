@@ -1,0 +1,78 @@
+diff --git a/sites/fumadocs/content/docs/qa-497-callouts.mdx b/sites/fumadocs/content/docs/qa-497-callouts.mdx
+new file mode 100644
+index 00000000..579964ed
+--- /dev/null
++++ b/sites/fumadocs/content/docs/qa-497-callouts.mdx
+@@ -0,0 +1,72 @@
++---
++title: QA 497 Fumadocs callouts
++description: Disposable QA fixture for PR 497 Fumadocs checks.
++---
++
++Plain paragraph for typing comparison.
++
++<Callout title="Long list">
++
++- Item 01
++- Item 02
++- Item 03
++- Item 04
++- Item 05
++- Item 06
++- Item 07
++- Item 08
++- Item 09
++- Item 10
++- Item 11
++- Item 12
++- Item 13
++- Item 14
++- Item 15
++- Item 16
++- Item 17
++- Item 18
++- Item 19
++- Item 20 Typing speed check: the quick brown fox jumps over the lazy dog.
++- Item 21
++- Item 22
++- Item 23
++- Item 24
++- Item 25
++- Item 26
++- Item 27
++- Item 28
++- Item 29
++- Item 30
++- Item 31
++- Item 32
++- Item 33
++- Item 34
++- Item 35
++- Item 36
++- Item 37
++- Item 38
++- Item 39
++- Item 40
++
++</Callout>
++
++<Callout title="Zero start">
++
++0. a
++1. b more text
++
++</Callout>
++
++<Callout title="Cut and paste">
++
++- one
++- three
++- two
++
++</Callout>
++
++<Callout title="Todo">
++
++- [ ] A task
++
++</Callout>

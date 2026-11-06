@@ -1,0 +1,15 @@
+--- before/1b-starlight-split-step-mid-text
++++ after/1b-starlight-split-step-mid-text
+@@ -15,8 +15,10 @@
+ 
+ 2. Inserted step
+ 
+-3. Add the component to a page.
++3. Add the
+ 
+-4. Start the dev server.
++4. Split component to a page.
++
++5. Start the dev server.
+ 
+ </Steps>

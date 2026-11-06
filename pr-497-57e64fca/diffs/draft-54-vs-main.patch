@@ -1,0 +1,34 @@
+diff --git a/sites/starlight/src/content/docs/gitcms-qa/steps-qa-497.mdx b/sites/starlight/src/content/docs/gitcms-qa/steps-qa-497.mdx
+new file mode 100644
+index 00000000..070330a8
+--- /dev/null
++++ b/sites/starlight/src/content/docs/gitcms-qa/steps-qa-497.mdx
+@@ -0,0 +1,28 @@
++---
++title: Steps QA 497
++description: Disposable QA fixture for PR 497 Steps editing checks.
++---
++
++import { Steps } from '@astrojs/starlight/components'
++
++<Steps>
++
++1. Install the package.
++
++   ```bash
++   npm install @astrojs/starlight
++   ```
++
++2. Inserted step
++
++   ```
++   npm test
++   ```
++
++3. Add the
++
++4. Split component to a page.
++
++5. Start the dev server.
++
++</Steps>

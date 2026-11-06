@@ -1,0 +1,11 @@
+--- before/5-astro-untouched-paragraph
++++ after/5-astro-untouched-paragraph
+@@ -15,7 +15,7 @@
+ 
+ A little over a month ago, the first public beta for Astro was released to the world. Since then, we have been fixing bugs and gathering your feedback on what to tackle next. Today, we are excited to announce the release of some of our most requested features.
+ 
+-We are excited to introduce Astrœo v0.18, featuring:
++We are excited to introduce Astrœo v0.18, featuring: QA 497 edit
+ 
+ - **[Responsive partial hydration:](#responsive-partial-hydration)** Hydrate components with CSS media queries.
+ - **[Named slots:](#named-slots-in-astro-components)** Support multiple content entrypoints inside of Astro components.

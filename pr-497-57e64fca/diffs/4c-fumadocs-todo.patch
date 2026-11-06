@@ -1,0 +1,10 @@
+--- before/4c-fumadocs-todo
++++ after/4c-fumadocs-todo
+@@ -67,6 +67,6 @@
+ 
+ <Callout title="Todo">
+ 
+-- [ ] A
++- [ ] A task
+ 
+ </Callout>
