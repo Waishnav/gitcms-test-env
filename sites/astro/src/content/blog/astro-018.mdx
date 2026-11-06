@@ -13,14 +13,13 @@ import litLogo from "/src/content/blog/_images/astro-018/lit-logo.svg?raw"
 import solidLogo from "/src/content/blog/_images/astro-018/solid-logo-dark.svg?raw"
 import BlogContentImage from "/src/components/BlogContentImage.astro"
 
-A little over a month ago, the first public beta for Astro was released to the world. Since then, we have been fixing bugs and gathering your feedback on what to tackle next. Today, we are excited to announce the release of some of our most requested features.
+A little over a month ago, the first public beta for Astro was released to the world. Since then, we have been fixing bugs and gathering your feedback on what to tackle next. Today, we are excited to announce the release of some of our most requested features. QA edit.
 
 We are excited to introduce Astrœo v0.18, featuring:
-
-- **[Responsive partial hydration:](#responsive-partial-hydration)** Hydrate components with CSS media queries.
-- **[Named slots:](#named-slots-in-astro-components)** Support multiple content entrypoints inside of Astro components.
-- **[Solid.js support:](#solid-support)** Use [Solid.js](https://www.solidjs.com/) components in Astro.
-- **[Lit support:](#solid-support)** Use [Lit SSR](https://lit.dev/) to get server-side rendering for web components.
+- [**Responsive partial hydration:**](#responsive-partial-hydration) Hydrate components with CSS media queries.
+- [**Named slots:**](#named-slots-in-astro-components) Support multiple content entrypoints inside of Astro components.
+- [**Solid.js support:**](#solid-support) Use [Solid.js](https://www.solidjs.com/) components in Astro.
+- [**Lit support:**](#solid-support) Use [Lit SSR](https://lit.dev/) to get server-side rendering for web components.
 - [`<style global>` support](https://docs.astro.build/guides/styling#overview), [GitHub syntax highlighting](https://twitter.com/n_moore/status/1417881860051509250) and a [shiny new docs site.](https://docs.astro.build/)
 
 ## Responsive partial hydration
@@ -32,7 +31,7 @@ We are excited to introduce Astrœo v0.18, featuring:
 
 Responsive websites often load components that are only visible on certain device sizes, like a mobile sidebar menu. As a developer, it can be difficult (impossible?) to avoid loading mobile-only code on non-mobile devices. The result is wasted time spent on code that will never even be seen by the end user.
 
-Astro solves the problem of unnecessary JavaScript with [partial hydration](https://docs.astro.build/core-concepts/component-hydration), a technique that involves only hydrating the components that need interactivity and leaving the rest as static HTML. **Astro v0.18 adds a new way to customize partial hydration using [CSS media queries](https://docs.astro.build/core-concepts/component-hydration#mycomponent-clientmediaquery-) that avoid sending code to devices that don't need it.**
+Astro solves the problem of unnecessary JavaScript with [partial hydration](https://docs.astro.build/core-concepts/component-hydration), a technique that involves only hydrating the components that need interactivity and leaving the rest as static HTML. **Astro v0.18 adds a new way to customize partial hydration using** [**CSS media queries**](https://docs.astro.build/core-concepts/component-hydration#mycomponent-clientmediaquery-) **that avoid sending code to devices that don't need it.**
 
 Add the `client:media` directive to a component and it will only hydrate once the media condition is met. On a mobile phone? Skip any expensive and unneccesary JavaScript for the desktop header that you'll never see. On a desktop or laptop? Don't load that mobile hamburger menu. This is all part of Astro's commitment to minimizing the unnecesary JavaScript that you send to your users.
 
@@ -50,6 +49,7 @@ Named slots are particularly useful for page layouts. A layout can now specify s
 ## Solid support
 
 <p class="box" class="rounded-lg bg-astro-gray-500 p-8" set:html={solidLogo}></p>
+
 <style
 	is:inline
 	set:text={".box { border-radius: 0.75rem; padding: 2rem 4rem; } p.box svg { box-shadow: none; }"}
@@ -74,7 +74,6 @@ The Lit SSR renderer is experimental, and some existing web components may not w
 ## Community
 
 We've been absolutely blown away by the love Astro has received in such a short amount of time:
-
 - Featured articles and guides from [Netlify](https://www.netlify.com/blog/2021/07/23/build-a-modern-shopping-site-with-astro-and-serverless-functions/), [Cloudflare](https://developers.cloudflare.com/pages/framework-guides/astro), [CSS Tricks](https://css-tricks.com/a-look-at-building-with-astro/), and more.
 - Over 2,000 developers have downloaded the [Astro VSCode extension](https://marketplace.visualstudio.com/items?itemName=astro-build.astro-vscode)
 - Over 500 weekly visitors to our [amazing Discord](https://astro.build/chat/)
