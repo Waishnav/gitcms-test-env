@@ -1,0 +1,12 @@
+--- main/cards-steps.mdx
++++ draft/cards-steps.mdx
+@@ -19,4 +19,9 @@
+ 
+     Another paragraph.
+   </Step>
++  <Step>
++    ### Publish the page
++
++    Publish the page body text.
++  </Step>
+ </Steps>
