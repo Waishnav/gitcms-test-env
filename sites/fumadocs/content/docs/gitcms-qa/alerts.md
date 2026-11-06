@@ -4,8 +4,10 @@ title: GitHub alerts
 
 GitHub-style alerts load as callouts.
 
-> [!NOTE]
-> Useful information that users should know, even when skimming.
+> [!CAUTION]
+> Useful information that users should know, even when skimming. Check the rollback plan first.
+>
+> Second paragraph in the alert.
 
 > [!TIP]
 > Helpful advice for doing things better or more easily.
