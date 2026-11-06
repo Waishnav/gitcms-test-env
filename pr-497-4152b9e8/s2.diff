@@ -1,0 +1,27 @@
+--- loose.mdx	2026-11-06 18:35:00.624586835 +0530
++++ s2-final.mdx	2026-11-06 18:40:59.743180109 +0530
+@@ -6,20 +6,16 @@
+ 
+ <Steps>
+ 
+-1. Loose first.
++1. Loose second.
+ 
+-2. Loose second.
+-
+-3. Loose third.
++2. Loose third.
+ 
+ </Steps>
+ 
+ <Aside type="note" title="Loose in aside">
+ 
+-1. Alpha
+-
+-2. Beta
++1. Beta
+ 
+-3. Gamma
++2. Gamma
+ 
+ </Aside>
