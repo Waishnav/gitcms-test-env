@@ -23,6 +23,7 @@
       }
     ]
   },
+  "components": { "presets": ["fumadocs"] },
   "ssg_framework": "nextjs",
   "docs_framework": "fumadocs",
   "frontmatter_format": "yaml",

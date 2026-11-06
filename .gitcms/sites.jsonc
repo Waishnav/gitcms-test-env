@@ -36,6 +36,12 @@
       "display_name": "Plausible",
       "website_url": "https://plausible.io",
       "root_path": "sites/plausible"
+    },
+    {
+      "key": "starlight",
+      "display_name": "Starlight",
+      "website_url": "https://starlight.astro.build",
+      "root_path": "sites/starlight"
     }
   ]
 }

@@ -1,0 +1,9 @@
+{
+  "version": "1.4",
+  "media_path": "public",
+  "ssg_framework": "astro",
+  "frontmatter_format": "yaml",
+  "publishing_mode": "editorial_workflow",
+  "components": { "presets": ["starlight"] },
+  "collections": ["docs"]
+}
