@@ -1,0 +1,16 @@
+--- s1-main.mdx	2026-11-06 18:40:58.783156163 +0530
++++ s1-final.mdx	2026-11-06 18:40:57.876133534 +0530
+@@ -7,7 +7,12 @@
+ <Steps>
+ 
+ 1. First step with **emphasis**.
+-2. Second step.
++2. Inse
++3. rted step
++   ```
++   npm install
++   ```
++4. Second step.
+ 
+ </Steps>
+ 
