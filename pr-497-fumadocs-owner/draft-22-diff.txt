@@ -1,0 +1,102 @@
+=== sites/fumadocs/content/docs/gitcms-qa/callouts.mdx
+@@ -11,7 +11,11 @@ title: QA callouts
+ 
+ <Callout type="warn">Warning without title.</Callout>
+ 
+-<Callout type="error" title="Error">Error body.</Callout>
++<Callout type="success" title="Failure">
++Error body. Then **strong** and [docs](https://example.com/qa)
++- one
++- two
++</Callout>
+ 
+ <Callout type="idea">Idea without title.</Callout>
+ 
+=== sites/fumadocs/content/docs/gitcms-qa/cards-steps.mdx
+@@ -3,7 +3,7 @@ title: QA cards and steps
+ ---
+ 
+ <Cards>
+-  <Card title="Description" href="/docs" description="Attribute description" />
++  <Card title="Description v2" href="https://example.com/x" description="Attribute description v2" external />
+   <Card title="Children" href="/docs">Child description with **emphasis**.</Card>
+   <Card title="Both" href="/docs" description="Attribute text">Child text.</Card>
+ </Cards>
+@@ -12,11 +12,14 @@ title: QA cards and steps
+   <Step>
+     ### First step
+ 
+-    Edit this paragraph.
++    Edit this paragraph. Done.
+   </Step>
+   <Step>
+     ### Second step
+ 
+     Another paragraph.
+   </Step>
++  <Step>
++    Third step text
++  </Step>
+ </Steps>
+=== sites/fumadocs/content/docs/gitcms-qa/files-types.mdx
+@@ -3,11 +3,12 @@ title: QA files and types
+ ---
+ 
+ <Files>
+-  <Folder name="src" defaultOpen>
++  <Folder name="source" defaultOpen>
+     <File name="index.ts" />
+     <Folder name="nested">
+       <File name="config.ts" />
+     </Folder>
++    <File name="util.ts" />
+   </Folder>
+ </Files>
+ 
+=== sites/fumadocs/content/docs/gitcms-qa/preservation.mdx
+@@ -2,18 +2,20 @@
+ title: QA preservation
+ ---
+ 
++[fixture]: https://example.com "Example"
++
+ import { Callout } from 'fumadocs-ui/components/callout'
+ 
+ export const target = '/docs'
+ 
+ A paragraph with inline <strong>JSX</strong> stays intact.
+ 
+-A [reference link][fixture].
+-
+-[fixture]: https://example.com "Example"
++A [reference link][fixture]. Edited.
+ 
+ {/* Preserve this comment. */}
+ 
+ <Card title="Dynamic" href={target} />
++
+ <MyWidget foo="bar" />
++
+ <Callout type="info">Consecutive component.</Callout>
+=== sites/fumadocs/content/docs/gitcms-qa/tabs-accordions.mdx
+@@ -2,17 +2,16 @@
+ title: QA tabs and accordions
+ ---
+ 
+-<Tabs items={['Alpha', 'Beta']}>
+-  <Tab value="Alpha">
++<Tabs items={['Alpine']}>
++  <Tab value="Alpine">
+     Alpha text.
+ 
+     <Callout type="info" title="Nested">Keep **this** intact.</Callout>
+   </Tab>
+-  <Tab value="Beta">Beta text.</Tab>
+ </Tabs>
+ 
+ <Accordions>
+-  <Accordion title="First answer">
++  <Accordion title="First answer edited">
+     Answer with **rich text**.
+   </Accordion>
+   <Accordion title="Second answer">Another answer.</Accordion>
