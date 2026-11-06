@@ -1,0 +1,10 @@
+@@ -7,6 +7,9 @@
+ <Steps>
+ 
+ 1. First step with **emphasis**.
++   ```
++   npm install
++   ```
+ 2. Second step.
+ 
+ </Steps>
