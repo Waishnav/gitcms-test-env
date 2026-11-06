@@ -1,0 +1,11 @@
+--- after-s6d.mdx	2026-11-07 01:30:14.235269594 +0530
++++ after-s7.mdx	2026-11-07 01:30:58.488076812 +0530
+@@ -9,7 +9,7 @@
+     <Callout type="info" title="Nested">Keep **this** intact.</Callout>
+   </Tab>
+   <Tab>
+-    Gamma text.
++    Gamma text. Reviewed in the second tab.
+   </Tab>
+ </Tabs>
+ 

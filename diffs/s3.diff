@@ -1,0 +1,11 @@
+--- base-sl-asides-tabs.mdx	2026-11-07 01:36:53.313557181 +0530
++++ after-s3.mdx	2026-11-07 01:37:44.965501411 +0530
+@@ -4,7 +4,7 @@
+ 
+ import { Tabs, TabItem, Steps, Card, CardGrid, LinkCard, Aside, Badge, FileTree } from '@astrojs/starlight/components'
+ 
+-<Aside type="note" title="A note">
++<Aside type="caution" title="Watch the cache">
+   **Rich** body and a [link](https://example.com).
+ </Aside>
+ 

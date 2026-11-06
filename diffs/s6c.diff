@@ -1,0 +1,21 @@
+--- base-tabs.mdx	2026-11-07 01:27:29.108260290 +0530
++++ after-s6c.mdx	2026-11-07 01:29:53.630893847 +0530
+@@ -2,13 +2,15 @@
+ title: QA tabs and accordions
+ ---
+ 
+-<Tabs items={['Alpha', 'Beta']}>
+-  <Tab value="Alpha">
++<Tabs items={['Gamma', 'Overview']}>
++  <Tab>
++    Gamma text.
++  </Tab>
++  <Tab value="Overview">
+     Alpha text.
+ 
+     <Callout type="info" title="Nested">Keep **this** intact.</Callout>
+   </Tab>
+-  <Tab value="Beta">Beta text.</Tab>
+ </Tabs>
+ 
+ <Accordions>

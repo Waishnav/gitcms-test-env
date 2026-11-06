@@ -1,0 +1,11 @@
+--- base-tabs.mdx	2026-11-07 01:27:29.108260290 +0530
++++ after-s7-clean.mdx	2026-11-07 01:35:23.507915919 +0530
+@@ -8,7 +8,7 @@
+ 
+     <Callout type="info" title="Nested">Keep **this** intact.</Callout>
+   </Tab>
+-  <Tab value="Beta">Beta text.</Tab>
++  <Tab value="Beta">Beta text. Edited for review.</Tab>
+ </Tabs>
+ 
+ <Accordions>

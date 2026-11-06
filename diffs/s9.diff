@@ -1,0 +1,11 @@
+--- seed-plain-page.md	2026-11-07 01:45:16.071753420 +0530
++++ after-s9.md	2026-11-07 01:45:52.847426457 +0530
+@@ -4,7 +4,7 @@
+ 
+ # Plain page
+ 
+-The first paragraph has *emphasis* and a [link](https://example.com).
++The first paragraph has *emphasis* and a [link](https://example.com). Regression edit here.
+ 
+ The second paragraph should not change.
+ 

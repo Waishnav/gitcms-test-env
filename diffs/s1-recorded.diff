@@ -1,0 +1,19 @@
+--- base-callouts.mdx	2026-11-07 01:19:21.882422694 +0530
++++ after-s1-recorded.mdx	2026-11-07 01:23:47.830236870 +0530
+@@ -2,11 +2,15 @@
+ title: QA callouts
+ ---
+ 
+-<Callout type="info" title="Information">
++<Callout type="warning" title="Heads up: cache warning">
+   **Bold** and *italic* with a [link](https://example.com).
+ 
+   - First item
+   - Second item
++
++  **Purge the CDN first** and then:
++
++  - Clear the edge cache
+ </Callout>
+ 
+ <Callout type="warn">Warning without title.</Callout>

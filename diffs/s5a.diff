@@ -1,0 +1,13 @@
+--- sl-cards-steps-code.mdx	2026-11-07 01:39:16.566176324 +0530
++++ after-s5a.mdx	2026-11-07 01:40:33.497583347 +0530
+@@ -12,7 +12,9 @@
+    npm install example
+    ```
+ 
+-2. Second step.
++2. Inserted step
++
++3. Second step.
+ 
+ </Steps>
+ 

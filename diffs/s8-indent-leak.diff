@@ -1,0 +1,11 @@
+--- after-s1-recorded.mdx	2026-11-07 01:23:47.830236870 +0530
++++ after-s8-probe.mdx	2026-11-07 01:42:17.015477025 +0530
+@@ -8,7 +8,7 @@
+   - First item
+   - Second item
+ 
+-  **Purge the CDN first** and then:
++    **Purge the CDN first** and then:
+ 
+   - Clear the edge cache
+ </Callout>

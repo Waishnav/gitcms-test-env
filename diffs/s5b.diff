@@ -1,0 +1,11 @@
+--- after-s5a.mdx	2026-11-07 01:40:33.497583347 +0530
++++ after-s5b.mdx	2026-11-07 01:40:56.473003604 +0530
+@@ -9,7 +9,7 @@
+ 1. First step with **emphasis**.
+ 
+    ```bash
+-   npm install example
++   npm install example --save-dev
+    ```
+ 
+ 2. Inserted step

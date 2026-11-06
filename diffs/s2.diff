@@ -1,0 +1,15 @@
+--- base-alerts.md	2026-11-07 01:24:06.128569079 +0530
++++ after-s2.md	2026-11-07 01:25:07.222678967 +0530
+@@ -4,8 +4,10 @@
+ 
+ GitHub-style alerts load as callouts.
+ 
+-> [!NOTE]
+-> Useful information that users should know, even when skimming.
++> [!CAUTION]
++> Useful information that users should know, even when skimming. Check the rollback plan first.
++>
++> Second paragraph in the alert.
+ 
+ > [!TIP]
+ > Helpful advice for doing things better or more easily.

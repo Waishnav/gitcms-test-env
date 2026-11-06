@@ -1,0 +1,20 @@
+--- base-cards-steps.mdx	2026-11-07 01:25:26.243024720 +0530
++++ after-s4.mdx	2026-11-07 01:27:02.358773284 +0530
+@@ -10,13 +10,13 @@
+ 
+ <Steps>
+   <Step>
+-    ### First step
++    ### Setup the workspace
+ 
+-    Edit this paragraph.
++    Edit this paragraph. Use the sidebar to create it.
+   </Step>
+   <Step>
+-    ### Second step
++    Publish the page
+ 
+-    Another paragraph.
++    Check the preview before going live.
+   </Step>
+ </Steps>

@@ -1,0 +1,11 @@
+--- after-s3.mdx	2026-11-07 01:37:44.965501411 +0530
++++ after-s6sl.mdx	2026-11-07 01:38:07.569914687 +0530
+@@ -9,7 +9,7 @@
+ </Aside>
+ 
+ <Tabs syncKey="language">
+-  <TabItem label="JavaScript" icon="star">JavaScript text.</TabItem>
++  <TabItem label="JS" icon="star">JavaScript text.</TabItem>
+   <TabItem label="TypeScript">TypeScript text.</TabItem>
+ </Tabs>
+ 
