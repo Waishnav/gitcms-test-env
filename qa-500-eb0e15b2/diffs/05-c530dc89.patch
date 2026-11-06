@@ -1,0 +1,27 @@
+From c530dc89854331d8a76c5bc35e6dc3c05961a7dd Mon Sep 17 00:00:00 2001
+From: Waishnav <86405648+Waishnav@users.noreply.github.com>
+Date: Sat, 7 Nov 2026 00:29:53 +0530
+Subject: [PATCH] QA 500: valid Callout override (task 57)
+
+---
+ .gitcms/sites/fumadocs/components/Callout.jsonc | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+ create mode 100644 .gitcms/sites/fumadocs/components/Callout.jsonc
+
+diff --git a/.gitcms/sites/fumadocs/components/Callout.jsonc b/.gitcms/sites/fumadocs/components/Callout.jsonc
+new file mode 100644
+index 00000000..3090705d
+--- /dev/null
++++ b/.gitcms/sites/fumadocs/components/Callout.jsonc
+@@ -0,0 +1,11 @@
++{
++  // QA fixture (valid override): replaces the Fumadocs Callout settings with these props.
++  "label": "Callout",
++  "dialect": "mdx-jsx",
++  "attributeRegions": [{ "attribute": "title", "region": "title", "placeholder": "Callout title" }],
++  "childrenRegion": { "region": "body" },
++  "props": [
++    { "name": "qaTone", "label": "QA tone", "type": "select", "options": ["qa-alpha", "qa-beta"] }
++  ],
++  "import": { "from": "@/components/callout", "name": "Callout" }
++}

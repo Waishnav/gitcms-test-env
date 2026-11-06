@@ -1,0 +1,8 @@
+{
+  // QA fixture (invalid override): a children region and child components at once.
+  "label": "Callout",
+  "dialect": "mdx-jsx",
+  "childrenRegion": { "region": "body" },
+  "childComponent": "Item",
+  "props": []
+}

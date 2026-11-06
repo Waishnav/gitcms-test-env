@@ -1,0 +1,19 @@
+From 580badaa6a11075d7ba7dcfb8723c719a742152e Mon Sep 17 00:00:00 2001
+From: GitCMS QA Owner <noreply@gitcms.dev>
+Date: Fri, 6 Nov 2026 19:00:50 +0000
+Subject: [PATCH] Update qa-500-widget.mdx
+
+---
+ sites/fumadocs/content/docs/gitcms-qa/qa-500-widget.mdx | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/sites/fumadocs/content/docs/gitcms-qa/qa-500-widget.mdx b/sites/fumadocs/content/docs/gitcms-qa/qa-500-widget.mdx
+index ca563993..ee0238e1 100644
+--- a/sites/fumadocs/content/docs/gitcms-qa/qa-500-widget.mdx
++++ b/sites/fumadocs/content/docs/gitcms-qa/qa-500-widget.mdx
+@@ -5,4 +5,4 @@ description: Site-defined component QA page for PR 500
+ 
+ <MyWidget title=" QA ok" tone="loud" data-x={1} eyebrow="Kicker">Some **bold** text.  Child edit.</MyWidget>
+ 
+-<Callout title="Preset">Fumadocs callout body. Second save.</Callout>
++<Callout title="Preset" qaTone="qa-beta">Fumadocs callout body. Second save.</Callout>

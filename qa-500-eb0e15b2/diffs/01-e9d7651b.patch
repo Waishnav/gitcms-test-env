@@ -1,0 +1,28 @@
+From e9d7651b7f762f2b929ebbf81fd3dac5a15c56ed Mon Sep 17 00:00:00 2001
+From: Waishnav <86405648+Waishnav@users.noreply.github.com>
+Date: Sat, 7 Nov 2026 00:25:28 +0530
+Subject: [PATCH] QA 500: add MyWidget definition (task 57)
+
+---
+ .gitcms/sites/fumadocs/components/MyWidget.jsonc | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+ create mode 100644 .gitcms/sites/fumadocs/components/MyWidget.jsonc
+
+diff --git a/.gitcms/sites/fumadocs/components/MyWidget.jsonc b/.gitcms/sites/fumadocs/components/MyWidget.jsonc
+new file mode 100644
+index 00000000..c819914b
+--- /dev/null
++++ b/.gitcms/sites/fumadocs/components/MyWidget.jsonc
+@@ -0,0 +1,12 @@
++{
++  // QA fixture: a card with an in-place title, a children region and two props.
++  "label": "Widget",
++  "dialect": "mdx-jsx",
++  "attributeRegions": [{ "attribute": "title", "region": "title", "placeholder": "Widget title" }],
++  "childrenRegion": { "region": "body" },
++  "props": [
++    { "name": "tone", "label": "Tone", "type": "select", "options": ["calm", "loud"], "allowCustom": true },
++    { "name": "eyebrow", "label": "Eyebrow", "type": "text" }
++  ],
++  "import": { "from": "@/components/my-widget", "name": "MyWidget" }
++}

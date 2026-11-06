@@ -1,0 +1,24 @@
+From dd204b17a9be53a6255189080136dc5a8f23d14a Mon Sep 17 00:00:00 2001
+From: Waishnav <86405648+Waishnav@users.noreply.github.com>
+Date: Sat, 7 Nov 2026 00:25:32 +0530
+Subject: [PATCH] QA 500: seed widget test page (task 57)
+
+---
+ sites/fumadocs/content/docs/gitcms-qa/qa-500-widget.mdx | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+ create mode 100644 sites/fumadocs/content/docs/gitcms-qa/qa-500-widget.mdx
+
+diff --git a/sites/fumadocs/content/docs/gitcms-qa/qa-500-widget.mdx b/sites/fumadocs/content/docs/gitcms-qa/qa-500-widget.mdx
+new file mode 100644
+index 00000000..a018ecfa
+--- /dev/null
++++ b/sites/fumadocs/content/docs/gitcms-qa/qa-500-widget.mdx
+@@ -0,0 +1,8 @@
++---
++title: QA 500 widget
++description: Site-defined component QA page for PR 500
++---
++
++<MyWidget title="Hello" tone="calm" data-x={1}>Some **bold** text.</MyWidget>
++
++<Callout title="Preset">Fumadocs callout body.</Callout>

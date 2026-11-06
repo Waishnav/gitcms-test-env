@@ -1,0 +1,28 @@
+From 1da453d4cc35b5b3ee01d54aed8034114814cca6 Mon Sep 17 00:00:00 2001
+From: Waishnav <86405648+Waishnav@users.noreply.github.com>
+Date: Sat, 7 Nov 2026 00:31:25 +0530
+Subject: [PATCH] QA 500: invalid Callout override (task 57)
+
+---
+ .gitcms/sites/fumadocs/components/Callout.jsonc | 9 +++------
+ 1 file changed, 3 insertions(+), 6 deletions(-)
+
+diff --git a/.gitcms/sites/fumadocs/components/Callout.jsonc b/.gitcms/sites/fumadocs/components/Callout.jsonc
+index 3090705d..7247c57d 100644
+--- a/.gitcms/sites/fumadocs/components/Callout.jsonc
++++ b/.gitcms/sites/fumadocs/components/Callout.jsonc
+@@ -1,11 +1,8 @@
+ {
+-  // QA fixture (valid override): replaces the Fumadocs Callout settings with these props.
++  // QA fixture (invalid override): a children region and child components at once.
+   "label": "Callout",
+   "dialect": "mdx-jsx",
+-  "attributeRegions": [{ "attribute": "title", "region": "title", "placeholder": "Callout title" }],
+   "childrenRegion": { "region": "body" },
+-  "props": [
+-    { "name": "qaTone", "label": "QA tone", "type": "select", "options": ["qa-alpha", "qa-beta"] }
+-  ],
+-  "import": { "from": "@/components/callout", "name": "Callout" }
++  "childComponent": "Item",
++  "props": []
+ }
