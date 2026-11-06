@@ -1,0 +1,50 @@
+--- /home/waishnav/tmp/qa497/starlight-lists.mdx	2026-11-06 19:14:34.007799708 +0530
++++ /home/waishnav/tmp/qa497/s3-star-after.mdx	2026-11-06 19:16:16.876525120 +0530
+@@ -8,37 +8,38 @@
+ 
+ 1. First step with **emphasis**.
+ 
++2. Inserted step
++
+    ```sh
+    npm install
+    ```
+ 
+-2. Second step.
++3. Second step.
+ 
+ </Steps>
+ 
+ <Steps>
+ 
+-1. Loose first.
+-
+-2. Loose second.
++1. Loose second.
+ 
+-3. Loose third.
++2. Loose third.
+ 
+ </Steps>
+ 
+ <Aside type="note" title="Loose in aside">
+ 
+-1. Alpha
+-
+-2. Beta
++1. Beta
+ 
+-3. Gamma
++2. Gamma
+ 
+ </Aside>
+ 
+ <Steps>
+ 
+ 1. Code step one.
++   ```
++   npm i
++   ```
+ 2. Plain step two.
+ 
+ </Steps>

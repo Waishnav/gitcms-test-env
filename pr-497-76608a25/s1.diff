@@ -1,0 +1,40 @@
+--- /home/waishnav/tmp/qa497/lists-497.mdx	2026-11-06 19:04:35.187664720 +0530
++++ /home/waishnav/tmp/qa497/s1-after.mdx	2026-11-06 19:09:50.890441293 +0530
+@@ -4,32 +4,29 @@
+ 
+ <Callout title="Numbered">
+   1) A
+-  2) B
+ 
+   Between numbered.
+ 
+   1. C
+-  2. D
++  2. B
++  3. D
+ </Callout>
+ 
+ <Callout title="Bullets">
+   - A
+-  - B
+ 
+   Between bullets.
+ 
+   * C
++  * B
+   * D
+ </Callout>
+ 
+ <Callout title="Join">
+   1. J1
+   2. J2
+-
+-  Delete this paragraph
+-
+-  1. J3
+-  2. J4
++  3. J3
++  4. J4
+ </Callout>
+ 
+ <Callout title="Empty">

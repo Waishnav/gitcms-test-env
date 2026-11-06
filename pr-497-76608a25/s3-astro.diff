@@ -1,0 +1,13 @@
+--- /home/waishnav/tmp/qa497/astro-lists.mdx	2026-11-06 19:17:58.936290789 +0530
++++ /home/waishnav/tmp/qa497/s3-astro-after.mdx	2026-11-06 19:19:12.439590099 +0530
+@@ -4,8 +4,8 @@
+ 
+ Intro paragraph for list QA.
+ 
+-1. One
+-2. Two
++1. Two
++2. Inserted mid
+ 3. Three
+ 4. Four
+ 

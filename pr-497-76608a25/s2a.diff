@@ -1,0 +1,12 @@
+--- /home/waishnav/tmp/qa497/s1-after.mdx	2026-11-06 19:09:50.890441293 +0530
++++ /home/waishnav/tmp/qa497/s2-after.mdx	2026-11-06 19:11:02.250473994 +0530
+@@ -31,6 +31,7 @@
+ 
+ <Callout title="Empty">
+   1. A
+-  2. B
+-  3. C
++  2.
++  3. B
++  4. C
+ </Callout>
