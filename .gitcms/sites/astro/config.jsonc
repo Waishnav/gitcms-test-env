@@ -35,5 +35,8 @@
     "quotes",
     "careers",
     "partials"
+  ],
+  "components": [
+    "youtube"
   ]
 }

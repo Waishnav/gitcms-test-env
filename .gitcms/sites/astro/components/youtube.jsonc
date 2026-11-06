@@ -1,0 +1,12 @@
+{
+  "tag": "YouTube",
+  "syntax": "jsx",
+  "label": "YouTube",
+  "fields": [
+    {
+      "name": "id",
+      "type": "text",
+      "required": true
+    }
+  ]
+}
