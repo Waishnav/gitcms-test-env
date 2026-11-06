@@ -1,0 +1,37 @@
+--- lists.mdx	2026-11-06 18:36:35.932279875 +0530
++++ s3-fuma-final.mdx	2026-11-06 18:41:01.623226982 +0530
+@@ -4,21 +4,22 @@
+ 
+ Intro paragraph for list QA.
+ 
+-1. One
+-2. Two
++1. Two
++2. Inserted mid
+ 3. Three
+ 4. Four
+ 
+ Between the lists.
+ 
+ 1. Second list A
+-2. Second list B
++2. Second list B edited
+ 3. Second list C
+ 
+ Part c: lists around a top-level code block.
+ 
+ 1. Before code a
+ 2. Before code b
++3. Before code c
+ 
+ ```js
+ const x = 1
+@@ -31,6 +32,7 @@
+ 
+ 1. Num one
+    - bullet a
+-   - bullet b
++   - bullet new
++   - bullet b edited
+ 2. Num two
+ 3. Num three
