@@ -1,0 +1,12 @@
+--- main/cards-steps.mdx
++++ draft/cards-steps.mdx
+@@ -7,7 +7,8 @@
+ <Steps>
+ 
+ 1. First step with **emphasis**.
+-2. Second step.
++2. Inserted after step one.
++3. Second step.
+ 
+ </Steps>
+ 
