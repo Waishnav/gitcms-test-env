@@ -24,6 +24,7 @@
     ]
   },
   "ssg_framework": "astro",
+  "docs_framework": "starlight",
   "frontmatter_format": "yaml",
   "publishing_mode": "editorial_workflow",
   "collections": [
