@@ -1,0 +1,11 @@
+{
+  // QA fixture (valid override): replaces the Fumadocs Callout settings with these props.
+  "label": "Callout",
+  "dialect": "mdx-jsx",
+  "attributeRegions": [{ "attribute": "title", "region": "title", "placeholder": "Callout title" }],
+  "childrenRegion": { "region": "body" },
+  "props": [
+    { "name": "qaTone", "label": "QA tone", "type": "select", "options": ["qa-alpha", "qa-beta"] }
+  ],
+  "import": { "from": "@/components/callout", "name": "Callout" }
+}
