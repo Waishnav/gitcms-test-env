@@ -1,0 +1,24 @@
+diff --git a/sites/starlight/src/content/docs/qa-497-69d20f78/steps-noimport.mdx b/sites/starlight/src/content/docs/qa-497-69d20f78/steps-noimport.mdx
+new file mode 100644
+index 00000000..7e1fa6a6
+--- /dev/null
++++ b/sites/starlight/src/content/docs/qa-497-69d20f78/steps-noimport.mdx
+@@ -0,0 +1,18 @@
++---
++title: QA 497 steps noimport
++description: Disposable QA fixture for scenario 5 steps, without an import line
++---
++
++<Steps>
++
++1. Install the package
++
++2. Configure it
++
++   ```bash
++   echo configure
++   ```
++
++3. Run the app
++
++</Steps>

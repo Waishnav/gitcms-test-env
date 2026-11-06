@@ -1,0 +1,13 @@
+diff --git a/sites/fumadocs/content/docs/qa-497-69d20f78/nested.mdx b/sites/fumadocs/content/docs/qa-497-69d20f78/nested.mdx
+index dffcc674..d1c0a0b4 100644
+--- a/sites/fumadocs/content/docs/qa-497-69d20f78/nested.mdx
++++ b/sites/fumadocs/content/docs/qa-497-69d20f78/nested.mdx
+@@ -5,7 +5,7 @@ description: Disposable QA fixture for scenario 3
+ 
+ <Callout type="info" title="Nested">
+ 
+-1. A
++1. A X
+ 2.
+    - n1
+    - n2

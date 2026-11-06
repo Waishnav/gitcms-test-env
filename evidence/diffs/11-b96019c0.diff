@@ -1,0 +1,21 @@
+diff --git a/sites/fumadocs/content/docs/qa-497-69d20f78/lists.mdx b/sites/fumadocs/content/docs/qa-497-69d20f78/lists.mdx
+new file mode 100644
+index 00000000..3aa27c51
+--- /dev/null
++++ b/sites/fumadocs/content/docs/qa-497-69d20f78/lists.mdx
+@@ -0,0 +1,15 @@
++---
++title: QA 497 lists
++description: Disposable QA fixture for scenario 2
++---
++
++<Callout type="info" title="Lists">
++
++1) A
++
++Paragraph between lists.
++
++1. C
++2. D
++
++</Callout>

@@ -1,0 +1,26 @@
+diff --git a/sites/starlight/src/content/docs/qa-497-69d20f78/steps.mdx b/sites/starlight/src/content/docs/qa-497-69d20f78/steps.mdx
+new file mode 100644
+index 00000000..8e165200
+--- /dev/null
++++ b/sites/starlight/src/content/docs/qa-497-69d20f78/steps.mdx
+@@ -0,0 +1,20 @@
++---
++title: QA 497 steps
++description: Disposable QA fixture for scenario 5 regressions
++---
++
++import { Steps } from '@astrojs/starlight/components'
++
++<Steps>
++
++1. Install the package
++
++2. Configure it
++
++   ```bash
++   echo configure
++   ```
++
++3. Run the app
++
++</Steps>

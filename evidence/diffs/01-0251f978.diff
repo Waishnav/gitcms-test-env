@@ -1,0 +1,17 @@
+diff --git a/sites/fumadocs/content/docs/qa-497-69d20f78/todo.mdx b/sites/fumadocs/content/docs/qa-497-69d20f78/todo.mdx
+new file mode 100644
+index 00000000..7c8d93d0
+--- /dev/null
++++ b/sites/fumadocs/content/docs/qa-497-69d20f78/todo.mdx
+@@ -0,0 +1,11 @@
++---
++title: QA 497 todo
++description: Disposable QA fixture for scenario 1
++---
++
++<Callout type="info" title="Todo">
++
++- [ ] A
++- [x] B
++
++</Callout>

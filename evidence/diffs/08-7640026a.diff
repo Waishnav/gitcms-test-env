@@ -1,0 +1,18 @@
+diff --git a/sites/fumadocs/content/docs/qa-497-69d20f78/bullets.mdx b/sites/fumadocs/content/docs/qa-497-69d20f78/bullets.mdx
+new file mode 100644
+index 00000000..d3b45532
+--- /dev/null
++++ b/sites/fumadocs/content/docs/qa-497-69d20f78/bullets.mdx
+@@ -0,0 +1,12 @@
++---
++title: QA 497 bullets
++description: Disposable QA fixture for scenario 4
++---
++
++<Callout type="info" title="Bullets">
++
++- A
++- B
++- C
++
++</Callout>

@@ -1,0 +1,20 @@
+diff --git a/sites/fumadocs/content/docs/qa-497-69d20f78/nested.mdx b/sites/fumadocs/content/docs/qa-497-69d20f78/nested.mdx
+new file mode 100644
+index 00000000..dffcc674
+--- /dev/null
++++ b/sites/fumadocs/content/docs/qa-497-69d20f78/nested.mdx
+@@ -0,0 +1,14 @@
++---
++title: QA 497 nested
++description: Disposable QA fixture for scenario 3
++---
++
++<Callout type="info" title="Nested">
++
++1. A
++2.
++   - n1
++   - n2
++3. B
++
++</Callout>

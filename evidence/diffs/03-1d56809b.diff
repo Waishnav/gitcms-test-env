@@ -1,0 +1,13 @@
+diff --git a/sites/fumadocs/content/docs/qa-497-69d20f78/todo.mdx b/sites/fumadocs/content/docs/qa-497-69d20f78/todo.mdx
+index a4d226b1..304ba022 100644
+--- a/sites/fumadocs/content/docs/qa-497-69d20f78/todo.mdx
++++ b/sites/fumadocs/content/docs/qa-497-69d20f78/todo.mdx
+@@ -5,7 +5,7 @@ description: Disposable QA fixture for scenario 1
+ 
+ <Callout type="info" title="Todo">
+ 
+-- [ ] A X
++- [x] A X Y
+ - [ ] B
+ 
+ </Callout>
