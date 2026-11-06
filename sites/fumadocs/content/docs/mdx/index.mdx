@@ -30,11 +30,11 @@ export const source = loader({
 
 Available collections:
 
-<Tabs items={["doc", "meta", 'docs']}>
+<Tabs items={["doc", "metadata"]}>
 
     <Tab value='doc'>
 
-Compile Markdown & MDX files into a React component, with useful properties like **Table of Contents**.
+    QA S3: Compile Markdown & MDX files into a React component, with useful properties like **Table of  Contents**.
 
 ```ts
 import { defineCollections } from 'fumadocs-mdx/macro';
@@ -47,7 +47,7 @@ export const test = defineCollections({
 
     </Tab>
 
-    <Tab value='meta'>
+    <Tab value='metadata'>
 
 Transform YAML/JSON files into an array of data.
 
@@ -57,26 +57,6 @@ import { defineCollections } from 'fumadocs-mdx/macro';
 export const test = defineCollections({
   type: 'meta',
   dir: 'content/docs',
-});
-```
-
-    </Tab>
-
-    <Tab value='docs'>
-
-Combination of `meta` and `doc` collections, which is needed for Fumadocs.
-
-```ts
-import { defineDocs } from 'fumadocs-mdx/macro';
-
-export const docs = defineDocs({
-  dir: 'content/docs',
-  docs: {
-    // options for `doc` collection
-  },
-  meta: {
-    // options for `meta` collection
-  },
 });
 ```
 
