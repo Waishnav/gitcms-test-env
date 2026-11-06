@@ -1,0 +1,13 @@
+--- baseline (code in step 1)
++++ after Enter at end of step 1 + "Inserted step"
+@@ Steps @@
+ 1. First step with **emphasis**.
+-   ```
+-   npm install
+-   ```
++2. Inserted step
++   ```
++   npm install
++   ```
+-2. Second step.
++3. Second step.
