@@ -1,0 +1,14 @@
+--- sites/starlight/src/content/docs/gitcms-qa/asides-tabs.mdx
+@@ -10,9 +10,11 @@ import { Tabs, TabItem, Steps, Card, CardGrid, LinkCard, Aside, Badge, FileTree
+ 
+ <Tabs syncKey="language">
+   <TabItem label="JavaScript" icon="star">JavaScript text.</TabItem>
+-  <TabItem label="TypeScript">TypeScript text.</TabItem>
++  <TabItem label="TypeScript2">TypeScript text.</TabItem>
+ </Tabs>
+ 
++Above note again
++
+ :::note[Directive title]
+ A directive note.
+ :::

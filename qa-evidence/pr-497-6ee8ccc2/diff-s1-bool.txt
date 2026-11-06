@@ -1,0 +1,29 @@
+--- sites/fumadocs/content/docs/gitcms-qa/callouts.mdx
+@@ -2,11 +2,12 @@
+ title: QA callouts
+ ---
+ 
+-<Callout type="info" title="Information">
++<Callout type="warn" title="Information">
+   **Bold** and *italic* with a [link](https://example.com).
+ 
+   - First item
+   - Second item
++  - Third item
+ </Callout>
+ 
+ <Callout type="warn">Warning without title.</Callout>
+--- sites/fumadocs/content/docs/gitcms-qa/cards-steps.mdx
+@@ -3,9 +3,9 @@ title: QA cards and steps
+ ---
+ 
+ <Cards>
+-  <Card title="Description" href="/docs" description="Attribute description" />
+-  <Card title="Children" href="/docs">Child description with **emphasis**.</Card>
+-  <Card title="Both" href="/docs" description="Attribute text">Child text.</Card>
++  <Card title="Description" href="/docsxyz123" description="Attribute description" external />
++  <Card title="Children" href="/docsesc">Child description with **emphasis**.</Card>
++  <Card title="Both" href="/docsbtn" description="Attribute text">Child text.</Card>
+ </Cards>
+ 
+ <Steps>
