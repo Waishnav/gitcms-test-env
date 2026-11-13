@@ -1,0 +1,1 @@
+{"label":"Widget","dialect":"mdx-jsx","attributeRegions":[{"attribute":"title","region":"title","placeholder":"Widget title"}],"childrenRegion":{"region":"body"},"props":[{"name":"wide","label":"Wide","type":"boolean","default":true}]}
