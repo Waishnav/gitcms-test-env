@@ -2,7 +2,7 @@
 title: GitHub alerts
 ---
 
-GitHub-style alerts load as callouts.
+GitHub-style alerts load as callouts. QA Gemini pass.
 
 > [!NOTE]
 > Useful information that users should know, even when skimming.
