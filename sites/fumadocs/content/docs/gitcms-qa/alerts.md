@@ -2,7 +2,7 @@
 title: GitHub alerts
 ---
 
-GitHub-style alerts load as callouts. QA
+GitHub-style alerts load as callouts. QA owner
 
 > [!NOTE]
 > Useful information that users should know, even when skimming.
