@@ -1,0 +1,12 @@
+{
+  "dialect": "mdx-jsx",
+  "attributeRegions": [{ "attribute": "title", "region": "title" }],
+  "childrenRegion": { "region": "body" },
+  "props": [
+    {
+      "name": "wide",
+      "type": "boolean",
+      "default": true
+    }
+  ]
+}
