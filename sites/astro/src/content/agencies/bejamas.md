@@ -12,4 +12,16 @@ Bejamas guides businesses through the complexity of consulting, designing, and d
 
 With 7 years in business and over 200 completed projects, we offer end-to-end services—from understanding your needs and goals to designing, developing, maintaining, and optimizing your websites. Whether you're a startup or an enterprise, we tailor our services to suit your needs.
 
-We turn ambitious ideas into spectacular websites, with obsessive attention to every detail.
+We turn ambitious ideas into spectacular web
+
+```mdx
+<Callout type="warning" title="Information QANew item">
+  **Bold** and *italic* with a [link](https://example.com).
+
+  - First item **bold**
+  -
+  - Second item
+</Callout>
+```
+
+sites, with obsessive attention to every detail.
