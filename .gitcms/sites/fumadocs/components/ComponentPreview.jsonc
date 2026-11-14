@@ -1,0 +1,10 @@
+{
+  "label": "shadcn Component Preview",
+  "dialect": "mdx-jsx",
+  "attributeRegions": [{ "attribute": "name", "region": "preview-name", "placeholder": "Component name…" }],
+  "children": { "kind": "none" },
+  "props": [
+    { "name": "styleName", "label": "Style", "type": "text" },
+    { "name": "previewClassName", "label": "Preview classes", "type": "text" }
+  ]
+}
