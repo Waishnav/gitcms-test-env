@@ -1,0 +1,11 @@
+{
+  // Synthetic PR #500 QA definition, applied only to disposable task branch.
+  "label": "QA Widget",
+  "dialect": "mdx-jsx",
+  "attributeRegions": [{ "attribute": "foo", "region": "label", "placeholder": "Widget label" }],
+  "children": { "kind": "none" },
+  "props": [
+    { "name": "tone", "label": "Tone", "type": "select", "options": ["calm", "loud"], "allowCustom": true },
+    { "name": "wide", "label": "Wide", "type": "boolean" }
+  ]
+}
