@@ -12,7 +12,7 @@ Paragraph before the include. QA5
   link="/most-accurate-web-analytics"
 %}
 
-Paragraph after the include with {{ site.title }} and a filter {{ page.date | date: "%Y" }}.
+Paragraph after the include with \{\{ site.title }} and a filter \{\{ page.date | date: "%Y" }}. QA5
 
 {% raw %}
 Literal {{ not_a_variable }} inside raw.
