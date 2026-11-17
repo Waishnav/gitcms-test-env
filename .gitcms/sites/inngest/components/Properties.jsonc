@@ -1,0 +1,12 @@
+{
+  // A list of Property rows: `Properties` in shared/Docs/mdx.tsx.
+  "label": "Properties",
+  "dialect": "mdx-jsx",
+  "childComponent": "Property",
+  "props": [
+    { "name": "nested", "label": "Nested", "type": "boolean", "description": "Shown inside another property" },
+    { "name": "collapse", "label": "Collapsed", "type": "boolean" },
+    { "name": "name", "label": "Heading", "type": "text", "description": "Defaults to Properties" }
+  ],
+  "import": { "from": "src/shared/Docs/mdx", "name": "Properties" }
+}

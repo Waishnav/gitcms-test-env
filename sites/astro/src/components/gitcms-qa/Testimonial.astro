@@ -1,0 +1,9 @@
+---
+// GitCMS QA fixture: a customer quote.
+interface Props { quote: string; author: string; role?: string; avatar?: string }
+const { quote, author, role, avatar } = Astro.props
+---
+<figure>
+	<blockquote>{quote}</blockquote>
+	<figcaption>{avatar && <img src={avatar} alt="" />}{author}{role && `, ${role}`}</figcaption>
+</figure>

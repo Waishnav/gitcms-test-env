@@ -1,0 +1,11 @@
+{
+  // An embedded video, written self-closing: <YouTube id="…" title="…" />
+  "label": "YouTube video",
+  "dialect": "mdx-jsx",
+  "children": { "kind": "none" },
+  "props": [
+    { "name": "id", "label": "Video ID", "type": "text", "required": true },
+    { "name": "title", "label": "Title", "type": "text" },
+    { "name": "start", "label": "Start at (seconds)", "type": "number" }
+  ]
+}

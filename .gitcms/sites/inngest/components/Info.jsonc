@@ -1,0 +1,10 @@
+{
+  // An info callout with an icon: `Info` in shared/Docs/mdx.tsx.
+  "label": "Info",
+  "dialect": "mdx-jsx",
+  "childrenRegion": { "region": "body" },
+  "props": [
+    { "name": "skipSearchCrawler", "label": "Hide from search", "type": "boolean" }
+  ],
+  "import": { "from": "src/shared/Docs/mdx", "name": "Info" }
+}

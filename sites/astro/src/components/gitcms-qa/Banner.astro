@@ -1,0 +1,9 @@
+---
+// GitCMS QA fixture: a highlighted band with a title and a tone.
+interface Props { title?: string; tone?: 'info' | 'success' | 'warning' }
+const { title, tone = 'info' } = Astro.props
+---
+<aside data-tone={tone}>
+	{title && <strong>{title}</strong>}
+	<slot />
+</aside>

@@ -1,0 +1,13 @@
+{
+  // An embedded video (react-youtube-embed, re-exported by shared/Docs/mdx.tsx).
+  // <YouTube id="6OAQ6dNhCGY" height={300} />
+  "label": "YouTube video",
+  "dialect": "mdx-jsx",
+  "children": { "kind": "none" },
+  "props": [
+    { "name": "id", "label": "Video ID", "type": "text", "required": true },
+    { "name": "title", "label": "Title", "type": "text" },
+    { "name": "height", "label": "Height (px)", "type": "number" }
+  ],
+  "import": { "from": "src/shared/Docs/mdx", "name": "YouTube" }
+}
