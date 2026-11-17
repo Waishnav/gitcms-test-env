@@ -38,7 +38,7 @@ then the next line.
 
 2. Run step
 
-Closing paragraph with **bold** and `code`.
+Closing paragraph with **bold** and `code`. QA5
 
 [docs-ref]: https://pinggy.io/docs
 [logo-img]: /images/logo.png "Logo title"
