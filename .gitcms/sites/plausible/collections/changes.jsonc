@@ -1,0 +1,28 @@
+{
+  "label": "Changes",
+  "git_path": "/_changes/",
+  "file_extension": ".md",
+  "filename_pattern": "",
+  "collection_type": "flat",
+  "frontmatter_schema": [
+    {
+      "name": "title",
+      "type": "title",
+      "label": "Title",
+      "required": false
+    },
+    {
+      "name": "layout",
+      "type": "text",
+      "label": "Layout",
+      "required": false
+    },
+    {
+      "name": "date",
+      "type": "datetime",
+      "label": "Date",
+      "required": false,
+      "withTime": true
+    }
+  ]
+}
