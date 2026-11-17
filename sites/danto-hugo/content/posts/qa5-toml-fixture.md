@@ -10,7 +10,11 @@ name = "QA"
 role = "tester"
 +++
 
-Intro paragraph with a reference link [the docs][docs-ref] and a reference image ![logo][logo-img] in the middle.
+Intro paragraph with a reference link [the docs][docs-ref] and a reference image&#x20;
+
+![logo][logo-img]
+
+&#x20;in the middle. QA5
 
 Second paragraph is one line and ends the intro section. QA5
 
