@@ -46,6 +46,21 @@
         "gpx",
         "kml"
       ]
+    },
+    {
+      "name": "routes",
+      "type": "list",
+      "label": "Routes",
+      "fields": [
+        {
+          "name": "track",
+          "type": "file",
+          "label": "Track",
+          "extensions": [
+            "gpx"
+          ]
+        }
+      ]
     }
   ]
 }
