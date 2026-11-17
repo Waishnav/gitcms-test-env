@@ -1,6 +1,5 @@
 {
   "label": "Careers",
-  "description": "",
   "git_path": "/src/content/careers/",
   "file_extension": ".md",
   "filename_pattern": "",
@@ -26,7 +25,7 @@
     },
     {
       "name": "team",
-      "type": "group",
+      "type": "text",
       "label": "Team",
       "required": false
     },
@@ -35,32 +34,6 @@
       "type": "text",
       "label": "Type",
       "required": false
-    },
-    {
-      "name": "route",
-      "type": "file",
-      "label": "",
-      "description": "",
-      "required": false,
-      "extensions": [
-        "gpx",
-        "kml"
-      ]
-    },
-    {
-      "name": "routes",
-      "type": "list",
-      "label": "Routes",
-      "fields": [
-        {
-          "name": "track",
-          "type": "file",
-          "label": "Track",
-          "extensions": [
-            "gpx"
-          ]
-        }
-      ]
     }
   ]
 }
