@@ -60,22 +60,19 @@ Both the world and the tunnel have to stay running. If you close either one, eve
 If you want a server that stays up independently of your game client, use the Minecraft server JAR.
 
 - **Download the Minecraft server software**:
-
   - Visit the <a href="https://www.minecraft.net/en-us/download/server" target="_blank">official website</a>.
   - Download the server software suitable for your operating system.
 
 - **Setting up the server**:
-
   - Once downloaded, navigate to the directory where the server file is located.
-  - Open a terminal or command prompt in that directory.
+  - Open a terminal or command prompt in that directory. QA5
 
 - **Launch the server**:
-
   - Run the following command:
     ```bash
     java -Xmx1024M -Xms1024M -jar server.jar nogui
     ```
-    Replace `server.jar` with the actual name of your server file if different.
+    Replace `server.jar` with the actual name of your server file if different. QA5
 
 - **Configuring the server**:
   - After the server starts, follow the console prompts to configure settings such as game mode, difficulty, etc.
