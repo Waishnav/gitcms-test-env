@@ -1,5 +1,6 @@
 {
   "label": "Careers",
+  "description": "",
   "git_path": "/src/content/careers/",
   "file_extension": ".md",
   "filename_pattern": "",
@@ -34,6 +35,17 @@
       "type": "text",
       "label": "Type",
       "required": false
+    },
+    {
+      "name": "route",
+      "type": "file",
+      "label": "",
+      "description": "",
+      "required": false,
+      "extensions": [
+        "gpx",
+        "kml"
+      ]
     }
   ]
 }
