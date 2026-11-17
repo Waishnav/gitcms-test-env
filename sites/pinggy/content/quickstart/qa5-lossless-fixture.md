@@ -42,5 +42,3 @@ Closing paragraph with **bold** and `code`. QA5
 
 [docs-ref]: https://pinggy.io/docs
 [logo-img]: /images/logo.png "Logo title"
-
-[^1]: Footnote text.
