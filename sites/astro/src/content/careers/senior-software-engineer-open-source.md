@@ -1,9 +1,13 @@
 ---
 title: Senior Software Engineer, Open Source
-published: 2022-11-24
+published: "2022-11-24"
 location: Remote
 team: Engineering
 type: Full Time
+route: /qa-route.gpx
+routes:
+  - track: /qa-route.gpx
+  - track: /qa-uploaded-route.gpx
 ---
 
 ## The Role:
