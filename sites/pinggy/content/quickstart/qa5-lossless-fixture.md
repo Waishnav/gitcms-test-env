@@ -17,6 +17,8 @@ This sentence is hard wrapped across three source lines so the wrap matters for 
 Footnote reference here.[^1] And a hard break with a backslash\
 then the next line.
 
+​
+
 | Column A | Column B |
 | --- | --- |
 | one | two |
