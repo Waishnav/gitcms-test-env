@@ -10,7 +10,7 @@ author = { name = "QA", role = 'tester' }
 
 Intro paragraph with a reference link [the docs][docs-ref] and a reference image ![logo][logo-img] in the middle.
 
-Second paragraph is one line and ends the intro section.
+Second paragraph is one line and ends the intro section. QA5
 
 Plain soft wrap paragraph
 on two source lines.
