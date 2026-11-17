@@ -35,3 +35,5 @@ routes:
 - Bonus: Experience with a formal software design process (RFCs, design docs, etc.).
 - Bonus: Experience in open source, like contributing to a project that wasn’t your own.
 - Bonus: Experience with any of the following technologies: Go, TypeScript, compilers, bundlers, build tools.
+
+![](/qa-image-one.png)
