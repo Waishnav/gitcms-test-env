@@ -2,7 +2,7 @@
 title: QA lists probe
 ---
 
-1. Install the package:
+1. Install the package:now x
 
    ```bash
    pnpm add fumadocs-ui
