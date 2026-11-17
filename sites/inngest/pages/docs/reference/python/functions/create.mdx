@@ -241,7 +241,7 @@ async def fn(ctx: inngest.Context):
         The event payload data.
       </Property>
 
-      <Property name="id" type="str" attribute />
+      <Property name="event_id" type="str | None" attribute required />
 
       <Property name="name" type="str" attribute />
 
