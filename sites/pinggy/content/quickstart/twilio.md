@@ -7,9 +7,7 @@
  og_image: "/quickstart/images/twilio.svg"
 ---
 
-This guide covers how to use [pinggy.io](https://pinggy.io) to integrate your localhost app
-with Twilio by using webhooks. Twilio webhooks can be used to notify an external application
-whenever specific events occur in your Twilio account.
+This guide covers how to use [pinggy.io](https://pinggy.io) to integrate your localhost app with Twilio by using webhooks. Twilio webhooks can be used to notify an external application whenever specific events occur in your Twilio account. QA5
 
 ## Step 1: Start Your App
 
