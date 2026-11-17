@@ -1,10 +1,12 @@
 ---
- title: "Sharing Nextcloud from localhost" 
- description: "Nextcloud is a suite of client-server software for creating and using file hosting services."
- date: 2023-05-26T01:15:25+05:30 
- draft: false 
- tags: ["guide"]
- og_image: "/quickstart/images/nextcloud.svg"
+title: Sharing Nextcloud from localhost
+description: |
+  Nextcloud is a suite of client-server software for creating and using file hosting services. QA5
+date: "2023-05-26T01:15:25+05:30"
+draft: false
+tags:
+  - guide
+og_image: /quickstart/images/nextcloud.svg
 ---
 
 With [pinggy.io](https://pinggy.io) you can share your Nextcloud server from localhost with just a single command. **Replace the port 80 with the port where your server is running.**
