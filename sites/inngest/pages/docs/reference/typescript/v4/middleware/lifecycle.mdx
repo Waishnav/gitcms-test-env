@@ -75,7 +75,7 @@ Called once on the very first attempt of a run (attempt 0, no memoized steps). N
 Will not call if the first attempt fails to reach the app (e.g. a network error). (QA3)
 
 <Properties>
-  <Property required name="ctx">
+  <Property name="context" type="Context">
     The function context.
   </Property>
   <Property required name="functionInfo">
