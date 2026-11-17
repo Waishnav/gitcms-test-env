@@ -40,7 +40,7 @@ inngest.createFunction({
 ```
 
 <Callout>
-A fresh middleware instance is created for every request, so you can safely use instance properties (`this`) to store per-request state without worrying about leaks between runs.
+A fresh middleware instance is created for every request, so you can safely use instance properties (`this`) to store per-request state without worrying about leaks between runs. (QA3)
 </Callout>
 
 ## Execution lifecycle
@@ -78,7 +78,7 @@ Will not call if the first attempt fails to reach the app (e.g. a network error)
   <Property name="context" type="Context">
     The function context.
   </Property>
-  <Property required name="functionInfo">
+  <Property required name="functionInfo" type="FunctionInfo">
     Metadata about the function being executed.
   </Property>
 </Properties>
