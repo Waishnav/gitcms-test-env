@@ -6,7 +6,11 @@ draft: false
 tags: ["qa"]
 ---
 
-Intro paragraph with a reference link [the docs][docs-ref] and a reference image ![logo][logo-img] in the middle.
+Intro paragraph with a reference link [the docs][docs-ref] and a reference image&#x20;
+
+![logo][logo-img]
+
+&#x20;in the middle. QA5
 
 This sentence is hard wrapped across
 three source lines so the wrap matters
