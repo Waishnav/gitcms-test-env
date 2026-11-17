@@ -1,0 +1,8 @@
+{
+  "label": "Snippets",
+  "git_path": "/snippets/",
+  "file_extension": ".md",
+  "filename_pattern": "",
+  "collection_type": "grouped",
+  "frontmatter_schema": []
+}
