@@ -174,11 +174,11 @@
       "frontmatter_schema": []
     },
     {
-      "name": "(pages)",
+      "name": "landing-pages",
       "git_path": "/app/(v0)/landing/(pages)/",
       "file_extension": ".mdx",
       "filename_pattern": "",
-      "label": "(pages)",
+      "label": "Landing pages",
       "collection_type": "grouped",
       "frontmatter_schema": []
     },
