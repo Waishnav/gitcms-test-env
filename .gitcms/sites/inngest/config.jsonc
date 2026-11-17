@@ -31,7 +31,7 @@
       "name": "docs",
       "git_path": "/pages/docs/",
       "file_extension": ".mdx",
-      "filename_pattern": "",
+      "filename_pattern": [],
       "label": "Docs",
       "collection_type": "grouped",
       "frontmatter_schema": []
@@ -40,7 +40,7 @@
       "name": "blog",
       "git_path": "/content/blog/",
       "file_extension": ".mdx",
-      "filename_pattern": "",
+      "filename_pattern": [],
       "label": "Blog",
       "collection_type": "flat",
       "frontmatter_schema": [
@@ -95,7 +95,7 @@
       "name": "changelog",
       "git_path": "/content/changelog/",
       "file_extension": ".mdx",
-      "filename_pattern": "",
+      "filename_pattern": [],
       "label": "Changelog",
       "collection_type": "flat",
       "frontmatter_schema": []
@@ -104,7 +104,7 @@
       "name": "customers",
       "git_path": "/content/customers/",
       "file_extension": ".mdx",
-      "filename_pattern": "",
+      "filename_pattern": [],
       "label": "Customers",
       "collection_type": "flat",
       "frontmatter_schema": [
@@ -168,7 +168,7 @@
       "name": "shared",
       "git_path": "/shared/",
       "file_extension": ".mdx",
-      "filename_pattern": "",
+      "filename_pattern": [],
       "label": "Shared",
       "collection_type": "grouped",
       "frontmatter_schema": []
@@ -177,16 +177,16 @@
       "name": "landing-pages",
       "git_path": "/app/(v0)/landing/(pages)/",
       "file_extension": ".mdx",
-      "filename_pattern": "",
+      "filename_pattern": [],
       "label": "Landing pages",
       "collection_type": "grouped",
       "frontmatter_schema": []
     },
     {
-      "name": "docs",
+      "name": "repo-docs",
       "git_path": "/docs/",
       "file_extension": ".md",
-      "filename_pattern": "",
+      "filename_pattern": [],
       "label": "Docs",
       "collection_type": "grouped",
       "frontmatter_schema": []
@@ -195,7 +195,7 @@
       "name": "snippets",
       "git_path": "/snippets/",
       "file_extension": ".md",
-      "filename_pattern": "",
+      "filename_pattern": [],
       "label": "Snippets",
       "collection_type": "grouped",
       "frontmatter_schema": []
