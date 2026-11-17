@@ -12,9 +12,7 @@ Intro paragraph with a reference link [the docs][docs-ref] and a reference image
 
 &#x20;in the middle. QA5
 
-This sentence is hard wrapped across
-three source lines so the wrap matters
-for the lossless check.
+This sentence is hard wrapped across three source lines so the wrap matters for the lossless check. QA5
 
 Footnote reference here.[^1] And a hard break with a backslash\
 then the next line.
