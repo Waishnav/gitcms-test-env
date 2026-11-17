@@ -13,7 +13,7 @@ With [pinggy.io](https://pinggy.io), you can share your Minecraft server from lo
 {{% tldr %}}
 
 1. In Minecraft, launch a map and initiate the server setup. Click on **Open to LAN**.
-2. Note the port number. Example: **25565**.
+2. Note the port number. Example: **25565**. QA5
 3. Open a terminal / cmd, and run the following command (replace 25565 with your port):
    ```bash
    ssh -p 443 -R0:localhost:25565 tcp@free.pinggy.io
