@@ -11,6 +11,14 @@ export const description = "Set the signing key, base URL, streaming mode, and a
 
 The `serve()` API handler is used to serve your application's [functions](/docs/reference/typescript/v3/functions/create) via HTTP. This handler enables Inngest to remotely and securely read your functions' configuration and invoke your function code. This enables you to host your function code on any platform.
 
+​
+
+<Callout type="info">
+Fumadocs note text.
+
+<Property name="id" type="str" required />
+</Callout>
+
 <CodeGroup>
 ```ts {{ title: "v3" }}
 import { serve } from "inngest/next"; // or your preferred framework
