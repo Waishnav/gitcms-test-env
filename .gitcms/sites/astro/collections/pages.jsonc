@@ -56,34 +56,6 @@
       "type": "image",
       "label": "Image",
       "required": false
-    },
-    {
-      "name": "route",
-      "type": "file",
-      "label": "Route",
-      "required": false,
-      "extensions": [
-        "gpx",
-        "kml"
-      ]
-    },
-    {
-      "name": "routes",
-      "type": "list",
-      "label": "Routes",
-      "required": false,
-      "fields": [
-        {
-          "name": "track",
-          "type": "file",
-          "label": "Track",
-          "required": false,
-          "extensions": [
-            "gpx",
-            "kml"
-          ]
-        }
-      ]
     }
   ]
 }
