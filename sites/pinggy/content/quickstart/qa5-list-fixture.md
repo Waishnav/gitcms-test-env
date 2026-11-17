@@ -9,12 +9,10 @@ tags: ["qa"]
 Intro line before the list.
 
 - **Setting up the server**:
-
   - Once downloaded, navigate to the directory.
-  - Open a terminal in that directory.
+  - Open a terminal in that directory. QA5
 
 - **Launch the server**:
-
   - Run the command.
   - Check the output.
 
