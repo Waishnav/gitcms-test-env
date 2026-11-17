@@ -1,0 +1,19 @@
+---
+title: 'HTML tables QA'
+description: 'Original description'
+---
+Signing order uses _italics_.
+
+<table><thead><tr><th>Stage</th><th>Signed first</th></tr></thead><tbody><tr><td>Draft</td><td>Kyle</td></tr></tbody></table>
+
+-   first step
+
+-   second step
+
+<table>
+  <tr><td>Draft</td></tr>
+
+  <tr><td>Review</td></tr>
+</table>
+
+Thanks for reading.
