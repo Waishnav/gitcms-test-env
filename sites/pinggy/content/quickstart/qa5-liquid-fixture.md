@@ -14,9 +14,7 @@ Paragraph before the include. QA5
 
 Paragraph after the include with \{\{ site.title }} and a filter \{\{ page.date | date: "%Y" }}. QA5
 
-{% raw %}
-Literal {{ not_a_variable }} inside raw.
-{% endraw %}
+\{% raw %} Literal \{\{ not\_a\_variable }} inside raw. \{% endraw %} QA5
 
 {% highlight ruby %}
 puts "hi"
