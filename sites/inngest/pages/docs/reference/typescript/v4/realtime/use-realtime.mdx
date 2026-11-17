@@ -88,7 +88,7 @@ function Pipeline({ contentId }: { contentId: string }) {
   <Property name="connectionStatus" type={"\"idle\" | \"connecting\" | \"open\" | \"paused\" | \"closed\" | \"error\""}>
     The WebSocket connection status.
   </Property>
-  <Property name="runStatus" type={`"unknown" | "running" | "completed" | "failed" | "cancelled"`}>
+  <Property name="runStatus" type={"\"unknown\" | \"running\" | \"completed\" | \"failed\" | \"cancelled\""}>
     The lifecycle status of the Inngest function run. Updated from run-level messages on the channel.
   </Property>
   <Property name="isPaused" type="boolean">
