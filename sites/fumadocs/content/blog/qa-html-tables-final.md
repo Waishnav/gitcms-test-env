@@ -1,6 +1,6 @@
 ---
-title: 'HTML tables QA'
-description: 'Original description'
+title: HTML tables QA
+description: Editor metadata check
 ---
 Signing order uses _italics_.
 
