@@ -4,7 +4,7 @@ description: 'Original description'
 ---
 Signing order uses _italics_.
 
-<table><thead><tr><th>Stage</th><th>Signed first</th></tr></thead><tbody><tr><td>Draft</td><td>Kyle</td></tr></tbody></table>
+<table><thead><tr><th>Stage</th><th>Signed first</th></tr></thead><tbody><tr><td>Draft</td><td>Kim</td></tr></tbody></table>
 
 -   first step
 
