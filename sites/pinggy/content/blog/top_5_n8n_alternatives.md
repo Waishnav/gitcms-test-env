@@ -23,6 +23,7 @@ aliases:
 Whether you're seeking simpler setup, more integrations, better pricing, or enhanced enterprise features, there are several excellent alternatives to n8n available in 2026. The workflow automation landscape has evolved significantly with AI-native platforms and improved open-source options. In this guide, we'll explore the **top 5 n8n alternatives** that can help you streamline your workflows and boost productivity, plus two honorable mentions worth considering.
 
 {{% tldr %}}
+
 1. **Zapier**
    - Most popular with 7,000+ app integrations
    - User-friendly drag-and-drop interface
@@ -47,7 +48,7 @@ Whether you're seeking simpler setup, more integrations, better pricing, or enha
    - Visual orchestration with code scripts
    - <a target="_blank" href="https://windmill.dev" >Try Windmill</a >
 
-5. **Temporal**
+5. **Temporal QA R2.**
    - Enterprise-grade reliability and durable execution
    - Mission-critical workflow handling
    - Advanced observability and monitoring
