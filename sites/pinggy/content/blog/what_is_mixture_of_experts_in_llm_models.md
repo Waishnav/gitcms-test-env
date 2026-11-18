@@ -23,7 +23,7 @@ Understanding MoE architecture is crucial for developers working with AI models,
 **What is Mixture of Experts (MoE)?**
 - **Architecture**: Uses multiple specialized "expert" networks instead of one monolithic model
 - **Sparse Activation**: Only activates a subset of experts for each input, not the entire model
-- **Routing**: A gating network decides which experts to use for each token/input
+- **Routing**: A gating network decides which experts to use for each token/input QA R3
 - **Efficiency**: Achieves larger model capacity with similar computational cost to smaller dense models
 
 **Key Benefits:**
