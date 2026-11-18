@@ -1,4 +1,5 @@
 {
+  "import": { "from": "/src/components/gitcms-qa/YouTube.astro", "default": true },
   // An embedded video, written self-closing: <YouTube id="…" title="…" />
   "label": "YouTube video",
   "dialect": "mdx-jsx",

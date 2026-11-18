@@ -1,4 +1,5 @@
 {
+  "import": { "from": "/src/components/gitcms-qa/Testimonial.astro", "default": true },
   // A customer quote, written self-closing: a form card in the editor.
   // <Testimonial author="…" role="…" quote="…" />
   "label": "Testimonial",

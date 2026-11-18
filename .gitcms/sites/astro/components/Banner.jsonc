@@ -1,4 +1,5 @@
 {
+  "import": { "from": "/src/components/gitcms-qa/Banner.astro", "default": true },
   // A highlighted band: its title in place, a tone, and a body.
   // <Banner title="…" tone="info">Body…</Banner>
   "label": "Banner",
