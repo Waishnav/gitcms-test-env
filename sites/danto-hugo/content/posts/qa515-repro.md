@@ -1,8 +1,10 @@
 ---
-title: 'QA 515 Customer Repro MD'
-description: 'single quoted description'
-date: 2026-01-01
-tags: ['a', 'b']
+title: QA 515 Customer Repro MD edited
+description: single quoted description
+date: "2026-01-01"
+tags:
+  - a
+  - b
 ---
 Intro with _italic_ text and a **bold** word.
 Second line of the same paragraph is a soft break.
