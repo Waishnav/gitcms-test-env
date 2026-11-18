@@ -40,13 +40,12 @@ inngest.createFunction({
 ```
 
 <Callout>
-A fresh middleware instance is created for every request, so you can safely use instance properties (`this`) to store per-request state without worrying about leaks between runs.
+  A fresh middleware instance is created for every request, so you can safely use instance properties (`this`) to store per-request state without worrying about leaks between runs.
 </Callout>
 
 ## Execution lifecycle
 
 The following shows the order in which hooks are called during a request. This is the key mental model for understanding middleware:
-
 1. **`wrapRequest()`** - Outermost wrapper around the entire HTTP request
 2. **`transformFunctionInput()`** - Modify `ctx` before the function handler runs
 3. **`wrapFunctionHandler()`** - Wrap function execution (e.g. for `AsyncLocalStorage`)
@@ -59,7 +58,7 @@ The following shows the order in which hooks are called during a request. This i
 Event sending (`transformSendEvent()` → `wrapSendEvent()`) is not part of this fixed sequence. It runs whenever `inngest.send()` or `step.sendEvent()` is called.
 
 <Callout>
-Hooks you don't define have zero overhead: the SDK skips them entirely. Only override the hooks you need.
+  Hooks you don't define have zero overhead: the SDK skips them entirely. Only override the hooks you need.
 </Callout>
 
 ## Observable hooks
@@ -75,10 +74,10 @@ Called once on the very first attempt of a run (attempt 0, no memoized steps). N
 Will not call if the first attempt fails to reach the app (e.g. a network error).
 
 <Properties>
-  <Property required name="ctx">
+  <Property required="true" name="ctx">
     The function context.
   </Property>
-  <Property required name="functionInfo">
+  <Property required="true" name="functionInfo">
     Metadata about the function being executed.
   </Property>
 </Properties>
@@ -90,13 +89,13 @@ Will not call if the first attempt fails to reach the app (e.g. a network error)
 Called when a function completes successfully.
 
 <Properties>
-  <Property required name="ctx">
+  <Property required="true" name="ctx">
     The function context.
   </Property>
-  <Property required name="functionInfo">
+  <Property required="true" name="functionInfo">
     Metadata about the function.
   </Property>
-  <Property required name="output">
+  <Property required="true" name="output">
     The successful return value of the function.
   </Property>
 </Properties>
@@ -108,16 +107,16 @@ Called when a function completes successfully.
 Called each time a function throws an error.
 
 <Properties>
-  <Property required name="ctx">
+  <Property required="true" name="ctx">
     The function context.
   </Property>
-  <Property required name="error">
+  <Property required="true" name="error">
     The error that was thrown.
   </Property>
-  <Property required name="functionInfo">
+  <Property required="true" name="functionInfo">
     Metadata about the function.
   </Property>
-  <Property required name="isFinalAttempt">
+  <Property required="true" name="isFinalAttempt">
     Whether this is the last retry attempt before the run permanently fails.
   </Property>
 </Properties>
@@ -129,13 +128,13 @@ Called each time a function throws an error.
 Called before a step handler runs. Only called for `step.run` and `step.sendEvent`.
 
 <Properties>
-  <Property required name="ctx">
+  <Property required="true" name="ctx">
     The function context.
   </Property>
-  <Property required name="functionInfo">
+  <Property required="true" name="functionInfo">
     Metadata about the function.
   </Property>
-  <Property required name="stepInfo">
+  <Property required="true" name="stepInfo">
     Metadata about the step being executed.
   </Property>
 </Properties>
@@ -147,16 +146,16 @@ Called before a step handler runs. Only called for `step.run` and `step.sendEven
 Called when a step succeeds. Only called for `step.run` and `step.sendEvent`. Never called for memoized steps.
 
 <Properties>
-  <Property required name="ctx">
+  <Property required="true" name="ctx">
     The function context.
   </Property>
-  <Property required name="functionInfo">
+  <Property required="true" name="functionInfo">
     Metadata about the function.
   </Property>
-  <Property required name="output">
+  <Property required="true" name="output">
     The successful return value of the step.
   </Property>
-  <Property required name="stepInfo">
+  <Property required="true" name="stepInfo">
     Metadata about the step.
   </Property>
 </Properties>
@@ -168,19 +167,19 @@ Called when a step succeeds. Only called for `step.run` and `step.sendEvent`. Ne
 Called when a step throws an error. Only called for `step.run` and `step.sendEvent`. Never called for memoized steps.
 
 <Properties>
-  <Property required name="ctx">
+  <Property required="true" name="ctx">
     The function context.
   </Property>
-  <Property required name="error">
+  <Property required="true" name="error">
     The error that was thrown.
   </Property>
-  <Property required name="functionInfo">
+  <Property required="true" name="functionInfo">
     Metadata about the function.
   </Property>
-  <Property required name="isFinalAttempt">
+  <Property required="true" name="isFinalAttempt">
     Whether this is the last retry attempt for this step.
   </Property>
-  <Property required name="stepInfo">
+  <Property required="true" name="stepInfo">
     Metadata about the step.
   </Property>
 </Properties>
@@ -194,10 +193,10 @@ Called once per request after all memoized steps have resolved. On the first req
 Use cases for this hook are limited. It's primarily useful for logging or metrics that should run after all memoized steps have resolved.
 
 <Properties>
-  <Property required name="ctx">
+  <Property required="true" name="ctx">
     The function context.
   </Property>
-  <Property required name="functionInfo">
+  <Property required="true" name="functionInfo">
     Metadata about the function.
   </Property>
 </Properties>
@@ -229,16 +228,16 @@ Wraps the entire HTTP request
 Example use cases: auth, top-level metrics, or error boundaries.
 
 <Properties>
-  <Property required name="functionInfo">
+  <Property required="true" name="functionInfo">
     Metadata about the function.
   </Property>
-  <Property required name="next">
+  <Property required="true" name="next">
     Must call to continue processing. Returns the HTTP response.
   </Property>
-  <Property required name="requestInfo">
+  <Property required="true" name="requestInfo">
     The incoming HTTP request metadata (headers, URL, method).
   </Property>
-  <Property required name="runId">
+  <Property required="true" name="runId">
     The ID of the current run.
   </Property>
 </Properties>
@@ -252,17 +251,17 @@ Wraps function execution. `next()` resolves when the function completes.
 Example use cases: `AsyncLocalStorage`, error transformation, timing, or [inserting steps](/docs/reference/typescript/v4/middleware/examples#inserting-steps).
 
 <Callout>
-`next()` only resolves when the function fully completes or errors. When a new step is discovered, `next()` never resolves for that request. It intentionally hangs until garbage collection deletes it.
+  `next()` only resolves when the function fully completes or errors. When a new step is discovered, `next()` never resolves for that request. It intentionally hangs until garbage collection deletes it.
 </Callout>
 
 <Properties>
-  <Property required name="ctx">
+  <Property required="true" name="ctx">
     The function context.
   </Property>
-  <Property required name="functionInfo">
+  <Property required="true" name="functionInfo">
     Metadata about the function.
   </Property>
-  <Property required name="next">
+  <Property required="true" name="next">
     Must call to execute the function handler.
   </Property>
 </Properties>
@@ -276,20 +275,20 @@ Wraps every step, including memoized steps and all step kinds (`step.run`, `step
 Example use cases: deserialize memoized data, [insert steps](/docs/reference/typescript/v4/middleware/examples#inserting-steps).
 
 <Callout>
-If the step is not memoized, `next()` never resolves for that request. The method intentionally hangs until garbage collection deletes it.
+  If the step is not memoized, `next()` never resolves for that request. The method intentionally hangs until garbage collection deletes it.
 </Callout>
 
 <Properties>
-  <Property required name="ctx">
+  <Property required="true" name="ctx">
     The function context.
   </Property>
-  <Property required name="functionInfo">
+  <Property required="true" name="functionInfo">
     Metadata about the function.
   </Property>
-  <Property required name="next">
+  <Property required="true" name="next">
     Must call to continue processing the step.
   </Property>
-  <Property required name="stepInfo">
+  <Property required="true" name="stepInfo">
     Metadata about the step. Check `stepInfo.memoized` to differentiate memoized vs fresh.
   </Property>
 </Properties>
@@ -303,16 +302,16 @@ Wraps step handler execution. Only called for `step.run` and `step.sendEvent`.
 Example use cases: serialize step output, [error handling](/docs/reference/typescript/v4/middleware/examples#error-handling), or timing.
 
 <Properties>
-  <Property required name="ctx">
+  <Property required="true" name="ctx">
     The function context.
   </Property>
-  <Property required name="functionInfo">
+  <Property required="true" name="functionInfo">
     Metadata about the function.
   </Property>
-  <Property required name="next">
+  <Property required="true" name="next">
     Must call to execute the step handler.
   </Property>
-  <Property required name="stepInfo">
+  <Property required="true" name="stepInfo">
     Metadata about the step.
   </Property>
 </Properties>
@@ -326,13 +325,13 @@ Wraps event sending via `inngest.send()` or `step.sendEvent()`.
 Example use cases: backup on send failure, metrics.
 
 <Properties>
-  <Property required name="events">
+  <Property required="true" name="events">
     The events being sent.
   </Property>
-  <Property required name="functionInfo">
+  <Property required="true" name="functionInfo">
     Metadata about the function, or `null` if called outside a function (e.g. `inngest.send()`).
   </Property>
-  <Property required name="next">
+  <Property required="true" name="next">
     Must call to send the events.
   </Property>
 </Properties>
@@ -350,13 +349,13 @@ Modify the function context before the handler runs.
 Example use cases: dependency injection, deserialize event data.
 
 <Properties>
-  <Property required name="ctx">
+  <Property required="true" name="ctx">
     The function context. Add properties here to inject them into the function handler.
   </Property>
-  <Property required name="functionInfo">
+  <Property required="true" name="functionInfo">
     Metadata about the function.
   </Property>
-  <Property required name="steps">
+  <Property required="true" name="steps">
     A record of memoized step data keyed by hashed step ID.
   </Property>
 </Properties>
@@ -370,16 +369,16 @@ Modify step options or input before a step runs.
 Example use cases: serialize `step.invoke` data, bust memoization cache (i.e. change step ID).
 
 <Properties>
-  <Property required name="functionInfo">
+  <Property required="true" name="functionInfo">
     Metadata about the function.
   </Property>
-  <Property required name="stepInfo">
+  <Property required="true" name="stepInfo">
     Partial step metadata.
   </Property>
-  <Property required name="stepOptions">
+  <Property required="true" name="stepOptions">
     The options passed to the step (first argument).
   </Property>
-  <Property required name="input">
+  <Property required="true" name="input">
     Arguments passed to the step function (after ID and handler).
   </Property>
 </Properties>
@@ -393,10 +392,10 @@ Modify events before they are sent.
 Example use cases: serialize event data, add metadata.
 
 <Properties>
-  <Property required name="events">
+  <Property required="true" name="events">
     The events being sent. Return a modified copy to change them.
   </Property>
-  <Property required name="functionInfo">
+  <Property required="true" name="functionInfo">
     Metadata about the function, or `null` if called outside a function.
   </Property>
 </Properties>
@@ -408,7 +407,7 @@ Output type transforms are `declare` properties that control how TypeScript type
 By default, the SDK assumes all return values are serialized to JSON, so types like `Date` become `string`. If your middleware changes serialization behavior at runtime (e.g. via [`wrapStepHandler`](#wrapstephandler)), declare a corresponding type transform so TypeScript reflects the actual runtime types.
 
 <Callout>
-Type transforms only affect types. You are responsible for ensuring the declared transform matches your runtime transformation.
+  Type transforms only affect types. You are responsible for ensuring the declared transform matches your runtime transformation.
 </Callout>
 
 Both transforms use the `Middleware.StaticTransform` pattern to imitate higher-kinded types. For example, a normal generic type that preserves `Date` instead of Jsonifying it:
@@ -430,10 +429,10 @@ interface PreserveDate extends Middleware.StaticTransform {
 ```
 
 <Properties>
-  <Property required name="In">
+  <Property required="true" name="In">
     The original return type. Set automatically by the SDK — do not set this yourself.
   </Property>
-  <Property required name="Out">
+  <Property required="true" name="Out">
     The transformed type. Define this to compute the output type based on `In`.
   </Property>
 </Properties>
@@ -498,10 +497,10 @@ class MyMiddleware extends Middleware.BaseMiddleware {
 ```
 
 <Properties>
-  <Property required name="client">
+  <Property required="true" name="client">
     The Inngest client instance.
   </Property>
-  <Property required name="functionInfo">
+  <Property required="true" name="functionInfo">
     Metadata about the function, or `null` for client-level middleware.
   </Property>
 </Properties>
@@ -511,4 +510,4 @@ class MyMiddleware extends Middleware.BaseMiddleware {
 - **Performance** - Undefined hooks have zero overhead. The SDK checks for hook presence and skips entirely if not defined.
 - **Immutability** - Observable and wrapping hook arguments are deeply read-only. Do not mutate them.
 - **`next()` is required** - Wrapping hooks must call `next()` or the request will hang.
-- **Instance per request** - A new middleware instance is created for each request, so instance state is safe to use within a single request. perf perf perf perf
+- **Instance per request** - A new middleware instance is created for each request, so instance state is safe to use within a single request. perf perf perf perf perf
