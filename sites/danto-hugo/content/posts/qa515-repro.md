@@ -20,7 +20,7 @@ A paragraph directly before a list:
     <tr><th>Name</th><th>Value</th></tr>
   </thead>
   <tbody>
-    <tr><td>alpha</td><td>1</td></tr>
+    <tr><td>alpha-EDITED</td><td>1</td></tr>
     <tr><td>beta</td><td>2</td></tr>
   </tbody>
 </table>
