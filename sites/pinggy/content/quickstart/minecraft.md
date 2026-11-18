@@ -67,7 +67,7 @@ If you want a server that stays up independently of your game client, use the Mi
 - **Setting up the server**:
 
   - Once downloaded, navigate to the directory where the server file is located.
-  - Open a terminal or command prompt in that directory.
+  - Open a terminal or command prompt in that directory. QA R2.
 
 - **Launch the server**:
 
