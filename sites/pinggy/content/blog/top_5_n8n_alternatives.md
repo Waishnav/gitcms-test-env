@@ -75,7 +75,7 @@ Before diving into the alternatives, let's understand why teams look beyond n8n.
 1. {{< link href="https://zapier.com" >}}Zapier{{< /link >}}
 2. {{< link href="https://make.com" >}}Make (formerly Integromat){{< /link >}}
 3. {{< link href="https://pipedream.com" >}}Pipedream{{< /link >}}
-4. {{< link href="https://windmill.dev" >}}Windmill{{< /link >}}
+4. {{< link href="https://windmill.dev" >}}Windmill{{< /link >}} QA R3
 5. {{< link href="https://temporal.io" >}}Temporal{{< /link >}}
 
 ## 1. Zapier
