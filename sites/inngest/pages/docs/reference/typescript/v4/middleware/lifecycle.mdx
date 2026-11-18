@@ -511,4 +511,4 @@ class MyMiddleware extends Middleware.BaseMiddleware {
 - **Performance** - Undefined hooks have zero overhead. The SDK checks for hook presence and skips entirely if not defined.
 - **Immutability** - Observable and wrapping hook arguments are deeply read-only. Do not mutate them.
 - **`next()` is required** - Wrapping hooks must call `next()` or the request will hang.
-- **Instance per request** - A new middleware instance is created for each request, so instance state is safe to use within a single request.
+- **Instance per request** - A new middleware instance is created for each request, so instance state is safe to use within a single request. perf
