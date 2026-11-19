@@ -18,4 +18,4 @@ This paragraph has an inline <!-- inline note --> comment in the middle. EDITED
 |---|---|
 | a | 1 |
 
-Closing paragraph.
+Closing paragraph. \<Tabs>
