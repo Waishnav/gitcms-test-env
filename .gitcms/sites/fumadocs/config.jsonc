@@ -28,8 +28,7 @@
   "publishing_mode": "editorial_workflow",
   "components": {
     "presets": [
-      "fumadocs",
-      "github-alerts"
+      "fumadocs"
     ]
   },
   "collections": [
