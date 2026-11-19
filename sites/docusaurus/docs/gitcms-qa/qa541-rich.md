@@ -10,25 +10,25 @@ Info plain.
 
 :::
 
-::::warning[Outer title]
+::::note[Outer title]
 
 Outer body.
 
-:::danger Inner legacy
+:::danger Inner legacy Y
 
-Inner body.
+Inner body. X1
 
 :::
 
 ::::
 
-:::caution[Title with **bold**]
+:::caution[Title with **bold** more]
 
 Caution body.
 
 :::
 
-::::tip
+::::tip[Tip4]
 
 Four-colon standalone.
 
