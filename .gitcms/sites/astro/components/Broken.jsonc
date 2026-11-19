@@ -1,0 +1,5 @@
+{
+  "label": "Broken",
+  "dialect": "mdx-jsx",
+  "props": [{ "name": "tone", "label": "Tone", "type": "selekt", "options": ["info"] }]
+}
