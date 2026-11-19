@@ -1,0 +1,16 @@
+{
+  "label": "MDX docs",
+  "description": "",
+  "git_path": "/docs-mdx/",
+  "file_extension": ".mdx",
+  "filename_pattern": "",
+  "collection_type": "grouped",
+  "frontmatter_schema": [
+    {
+      "name": "title",
+      "type": "title",
+      "label": "Title",
+      "required": false
+    }
+  ]
+}
