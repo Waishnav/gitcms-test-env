@@ -7,9 +7,9 @@ import TabItem from '@theme/TabItem'
 
 Two plus two is {2 + 2}, computed at build time. EDITED
 
-<Tabs>
+<Tabs>T
   <TabItem value="a" label="A">Alpha content.</TabItem>
   <TabItem value="b" label="B">Beta content.</TabItem>
-</Tabs>
+</Tabs>abs>
 
 Last paragraph. TAIL
