@@ -4,10 +4,10 @@ title: QA comments
 
 <!-- A standalone comment before the intro. -->
 
-This paragraph has an inline <!-- inline note --> comment in the middle.
-
+This paragraph has an inline <!-- inline note --> comment in the middle. EDITED
 - First item
-- Second item with a comment
+
+- Second item with a comment ITEMEDIT
 
   <!-- comment inside a list item -->
 
