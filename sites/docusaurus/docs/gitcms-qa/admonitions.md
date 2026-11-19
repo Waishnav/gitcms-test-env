@@ -2,7 +2,7 @@
 title: QA admonitions
 ---
 
-Before the admonitions.
+Before the admonitions. EDITED
 
 :::tip
 
@@ -23,4 +23,4 @@ A note with a space-separated title.
 
 :::
 
-After the admonitions.
+After the admonitions. TAIL
