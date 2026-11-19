@@ -7,7 +7,8 @@ title: QA comments
 This paragraph has an inline <!-- inline note --> comment in the middle. PONLY
 
 - First item
-- Second item with a comment
+
+- Second item with a comment LONLY
 
   <!-- comment inside a list item -->
 
