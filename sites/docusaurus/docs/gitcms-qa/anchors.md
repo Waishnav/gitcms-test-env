@@ -2,11 +2,11 @@
 title: QA anchors
 ---
 
-## Getting started {#getting-started}
+## New Getting started {#getting-started}
 
-Intro text.
+Intro text. X
 
-## Using `npm` and yarn {#package-managers}
+## New Using `npm` and yarn {#package-managers}
 
 More text.
 
