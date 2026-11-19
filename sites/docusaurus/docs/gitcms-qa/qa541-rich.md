@@ -15,7 +15,7 @@ Info plain.
 const a = 1
 ```
 
-tail **bold** end
+tail **bold** [end](https://example.com/qa)
 
 :::
 
