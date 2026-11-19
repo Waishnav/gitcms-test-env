@@ -8,6 +8,15 @@ Intro paragraph.
 
 Info plain.
 
+- one
+- two
+
+```
+const a = 1
+```
+
+tail **bold** end
+
 :::
 
 ::::note[Outer title]
