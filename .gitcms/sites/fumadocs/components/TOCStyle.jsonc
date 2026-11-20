@@ -1,0 +1,26 @@
+{
+  "dialect": "mdx-jsx",
+  "import": {
+    "from": "./page.client",
+    "name": "TOCStyle"
+  },
+  "childrenRegion": {
+    "region": "body"
+  },
+  "children": {
+    "kind": "markdown"
+  },
+  "props": [
+    {
+      "name": "value",
+      "label": "Style name",
+      "required": true,
+      "type": "select",
+      "options": [
+        "normal",
+        "clerk",
+        "block"
+      ]
+    }
+  ]
+}
