@@ -5,17 +5,7 @@
   "filename_pattern": "",
   "collection_type": "grouped",
   "frontmatter_schema": [
-    {
-      "name": "title",
-      "type": "title",
-      "label": "Title",
-      "required": true
-    },
-    {
-      "name": "description",
-      "type": "text",
-      "label": "Description",
-      "required": false
-    }
+    { "name": "title", "type": "title", "label": "Title", "required": true },
+    { "name": "description", "type": "text", "label": "Description", "required": false }
   ]
 }
