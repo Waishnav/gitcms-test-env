@@ -1,0 +1,14 @@
+{
+  "dialect": "mdx-jsx",
+  "children": {
+    "kind": "none"
+  },
+  "props": [
+    {
+      "name": "chart",
+      "label": "Chart",
+      "required": true,
+      "type": "text"
+    }
+  ]
+}
