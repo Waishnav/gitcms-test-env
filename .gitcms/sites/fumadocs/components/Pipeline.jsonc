@@ -1,0 +1,18 @@
+{
+  "dialect": "mdx-jsx",
+  "import": {
+    "from": "./v16-17/pipeline",
+    "name": "Pipeline"
+  },
+  "children": {
+    "kind": "none"
+  },
+  "props": [
+    {
+      "name": "from",
+      "label": "From",
+      "required": true,
+      "type": "text"
+    }
+  ]
+}
