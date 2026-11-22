@@ -25,7 +25,6 @@
   },
   "ssg_framework": "hugo",
   "frontmatter_format": "yaml",
-  "sitemap_url": "https://docs.astro.build/sitemap-index.xml",
   "publishing_mode": "editorial_workflow",
   "collections": [
     "posts",
