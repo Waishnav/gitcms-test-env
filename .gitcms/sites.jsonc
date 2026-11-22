@@ -10,7 +10,7 @@
     {
       "key": "danto-hugo",
       "display_name": "Danto Hugo",
-      "website_url": "https://gohugo.io",
+      "website_url": "https://docs.astro.build",
       "root_path": "sites/danto-hugo"
     },
     {
