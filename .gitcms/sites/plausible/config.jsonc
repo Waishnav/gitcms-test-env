@@ -18,7 +18,7 @@
         },
         "driver": "git",
         "storage": {
-          "root_path": "assets/images"
+          "root_path": "uploads"
         }
       }
     ]
