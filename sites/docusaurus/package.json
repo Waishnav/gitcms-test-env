@@ -1,0 +1,11 @@
+{
+  "name": "gitcms-qa-docusaurus",
+  "private": true,
+  "scripts": { "start": "docusaurus start", "build": "docusaurus build" },
+  "dependencies": {
+    "@docusaurus/core": "^3.9.0",
+    "@docusaurus/preset-classic": "^3.9.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
