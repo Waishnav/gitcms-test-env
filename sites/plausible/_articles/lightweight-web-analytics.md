@@ -8,6 +8,11 @@ cta_headline: "Ready for analytics that won't slow you down?"
 Most websites are slowed down by the very tools used to measure them. Google Analytics is one of the heaviest third-party scripts you can add to a site, and it brings hidden costs beyond just file size.
 
 [Plausible](https://plausible.io/) is built differently: a minimal script that collects what matters without adding meaningful weight to your pages.
+1. asldkjfasd
+
+​
+
+![](/assets/images/articles/lightweight-web-analytics/resurf.so-2026-11-22t17-18-29.webp)
 
 <figure class="my-6 pl-5 border-l-4 border-indigo-200">
   <p class="italic text-gray-700 leading-relaxed">
