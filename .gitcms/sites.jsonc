@@ -42,6 +42,12 @@
       "display_name": "Starlight",
       "website_url": "https://starlight.astro.build",
       "root_path": "sites/starlight"
+    },
+    {
+      "key": "docusaurus",
+      "display_name": "Docusaurus",
+      "website_url": "https://docusaurus.io",
+      "root_path": "sites/docusaurus"
     }
   ]
 }
