@@ -1,0 +1,10 @@
+{
+  "dialect": "directive",
+  "childrenRegion": {
+    "region": "body"
+  },
+  "children": {
+    "kind": "markdown"
+  },
+  "props": []
+}
