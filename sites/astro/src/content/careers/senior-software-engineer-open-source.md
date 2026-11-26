@@ -1,7 +1,7 @@
 ---
 title: Senior Software Engineer, Open Source
-published: 2022-11-24
-location: Remote
+published: "2022-11-24"
+location: Remote (QA)
 team: Engineering
 type: Full Time
 ---
