@@ -1,0 +1,27 @@
+{
+  "label": "Docs",
+  "git_path": "/content/docs/",
+  "file_extension": ".mdx",
+  "filename_pattern": "",
+  "collection_type": "grouped",
+  "frontmatter_schema": [
+    {
+      "name": "title",
+      "type": "title",
+      "label": "Title",
+      "required": false
+    },
+    {
+      "name": "description",
+      "type": "richtext",
+      "label": "Description",
+      "required": false
+    },
+    {
+      "name": "icon",
+      "type": "text",
+      "label": "Icon",
+      "required": false
+    }
+  ]
+}

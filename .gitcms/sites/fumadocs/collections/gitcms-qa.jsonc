@@ -1,0 +1,15 @@
+{
+  "label": "Gitcms qa",
+  "git_path": "/gitcms-qa/",
+  "file_extension": ".mdx",
+  "filename_pattern": "",
+  "collection_type": "flat",
+  "frontmatter_schema": [
+    {
+      "name": "title",
+      "type": "title",
+      "label": "Title",
+      "required": false
+    }
+  ]
+}

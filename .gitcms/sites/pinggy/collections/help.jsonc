@@ -1,0 +1,8 @@
+{
+  "label": "Help",
+  "git_path": "/content/help/",
+  "file_extension": ".md",
+  "filename_pattern": "",
+  "collection_type": "flat",
+  "frontmatter_schema": []
+}

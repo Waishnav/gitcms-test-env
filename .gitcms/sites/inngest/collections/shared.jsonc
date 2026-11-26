@@ -1,0 +1,8 @@
+{
+  "label": "Shared",
+  "git_path": "/shared/",
+  "file_extension": ".mdx",
+  "filename_pattern": "",
+  "collection_type": "grouped",
+  "frontmatter_schema": []
+}

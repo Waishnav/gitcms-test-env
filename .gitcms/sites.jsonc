@@ -6,6 +6,48 @@
       "display_name": "Plausible",
       "website_url": "https://plausible.io",
       "root_path": "sites/plausible"
+    },
+    {
+      "key": "astro",
+      "display_name": "Astro",
+      "website_url": "https://astro.build",
+      "root_path": "sites/astro"
+    },
+    {
+      "key": "danto-hugo",
+      "display_name": "Danto Hugo",
+      "website_url": "https://gohugo.io",
+      "root_path": "sites/danto-hugo"
+    },
+    {
+      "key": "docusaurus",
+      "display_name": "Docusaurus",
+      "website_url": "https://docusaurus.io",
+      "root_path": "sites/docusaurus"
+    },
+    {
+      "key": "fumadocs",
+      "display_name": "Fumadocs",
+      "website_url": "https://fumadocs.dev",
+      "root_path": "sites/fumadocs"
+    },
+    {
+      "key": "inngest",
+      "display_name": "Inngest",
+      "website_url": "https://www.inngest.com",
+      "root_path": "sites/inngest"
+    },
+    {
+      "key": "opencode",
+      "display_name": "Opencode",
+      "website_url": "https://opencode.ai",
+      "root_path": "sites/opencode"
+    },
+    {
+      "key": "pinggy",
+      "display_name": "Pinggy",
+      "website_url": "https://pinggy.io",
+      "root_path": "sites/pinggy"
     }
   ]
 }

@@ -1,0 +1,61 @@
+{
+  "label": "Pages",
+  "git_path": "/src/content/pages/",
+  "file_extension": ".md",
+  "filename_pattern": "",
+  "collection_type": "grouped",
+  "frontmatter_schema": [
+    {
+      "name": "seo",
+      "type": "object",
+      "label": "Seo",
+      "required": false,
+      "fields": [
+        {
+          "name": "title",
+          "type": "title",
+          "label": "Title",
+          "required": false
+        },
+        {
+          "name": "description",
+          "type": "richtext",
+          "label": "Description",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "object",
+          "label": "Image",
+          "required": false,
+          "fields": [
+            {
+              "name": "src",
+              "type": "image",
+              "label": "Src",
+              "required": false
+            },
+            {
+              "name": "alt",
+              "type": "text",
+              "label": "Alt",
+              "required": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "pageLayout",
+      "type": "text",
+      "label": "Page Layout",
+      "required": false
+    },
+    {
+      "name": "image",
+      "type": "image",
+      "label": "Image",
+      "required": false
+    }
+  ]
+}

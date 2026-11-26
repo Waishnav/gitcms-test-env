@@ -1,0 +1,39 @@
+{
+  "label": "Careers",
+  "git_path": "/src/content/careers/",
+  "file_extension": ".md",
+  "filename_pattern": "",
+  "collection_type": "flat",
+  "frontmatter_schema": [
+    {
+      "name": "title",
+      "type": "title",
+      "label": "Title",
+      "required": false
+    },
+    {
+      "name": "published",
+      "type": "datetime",
+      "label": "Published",
+      "required": false
+    },
+    {
+      "name": "location",
+      "type": "text",
+      "label": "Location",
+      "required": false
+    },
+    {
+      "name": "team",
+      "type": "text",
+      "label": "Team",
+      "required": false
+    },
+    {
+      "name": "type",
+      "type": "text",
+      "label": "Type",
+      "required": false
+    }
+  ]
+}

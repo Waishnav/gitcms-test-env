@@ -1,0 +1,79 @@
+{
+  "label": "Blog",
+  "git_path": "/content/blog/",
+  "file_extension": ".md",
+  "filename_pattern": "",
+  "collection_type": "grouped",
+  "frontmatter_schema": [
+    {
+      "name": "title",
+      "type": "title",
+      "label": "Title",
+      "required": false
+    },
+    {
+      "name": "description",
+      "type": "richtext",
+      "label": "Description",
+      "required": false
+    },
+    {
+      "name": "date",
+      "type": "datetime",
+      "label": "Date",
+      "required": false,
+      "withTime": true
+    },
+    {
+      "name": "lastmod",
+      "type": "datetime",
+      "label": "Lastmod",
+      "required": false,
+      "withTime": true
+    },
+    {
+      "name": "draft",
+      "type": "boolean",
+      "label": "Draft",
+      "required": false,
+      "default": false
+    },
+    {
+      "name": "tags",
+      "type": "multiselect",
+      "label": "Tags",
+      "required": false,
+      "options": [
+        "http",
+        "troubleshooting",
+        "web development"
+      ],
+      "allowCustom": true,
+      "color": "blue"
+    },
+    {
+      "name": "og_image",
+      "type": "image",
+      "label": "Og image",
+      "required": false
+    },
+    {
+      "name": "schemahowto",
+      "type": "richtext",
+      "label": "Schemahowto",
+      "required": false
+    },
+    {
+      "name": "outputs",
+      "type": "multiselect",
+      "label": "Outputs",
+      "required": false,
+      "options": [
+        "HTML",
+        "AMP"
+      ],
+      "allowCustom": true,
+      "color": "blue"
+    }
+  ]
+}

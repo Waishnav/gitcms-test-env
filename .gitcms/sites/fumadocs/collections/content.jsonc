@@ -1,0 +1,21 @@
+{
+  "label": "Content",
+  "git_path": "/app/(landing)/sections/write/content/",
+  "file_extension": ".mdx",
+  "filename_pattern": "",
+  "collection_type": "flat",
+  "frontmatter_schema": [
+    {
+      "name": "title",
+      "type": "title",
+      "label": "Title",
+      "required": false
+    },
+    {
+      "name": "description",
+      "type": "richtext",
+      "label": "Description",
+      "required": false
+    }
+  ]
+}

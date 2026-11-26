@@ -1,0 +1,46 @@
+{
+  "label": "Compare",
+  "git_path": "/content/compare/",
+  "file_extension": ".md",
+  "filename_pattern": "",
+  "collection_type": "flat",
+  "frontmatter_schema": [
+    {
+      "name": "title",
+      "type": "title",
+      "label": "Title",
+      "required": false
+    },
+    {
+      "name": "description",
+      "type": "richtext",
+      "label": "Description",
+      "required": false
+    },
+    {
+      "name": "hero_heading",
+      "type": "text",
+      "label": "Hero heading",
+      "required": false
+    },
+    {
+      "name": "hero_subheading",
+      "type": "text",
+      "label": "Hero subheading",
+      "required": false
+    },
+    {
+      "name": "date",
+      "type": "datetime",
+      "label": "Date",
+      "required": false
+    },
+    {
+      "name": "draft",
+      "type": "boolean",
+      "label": "Draft",
+      "required": false,
+      "default": false
+    }
+  ]
+}

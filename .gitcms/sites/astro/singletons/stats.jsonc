@@ -1,0 +1,44 @@
+{
+  "label": "Stats",
+  "file": "src/data/stats.json",
+  "fields": [
+    {
+      "name": "downloads",
+      "type": "number",
+      "label": "Downloads",
+      "required": false
+    },
+    {
+      "name": "stars",
+      "type": "number",
+      "label": "Stars",
+      "required": false
+    },
+    {
+      "name": "followers",
+      "type": "object",
+      "label": "Followers",
+      "required": false,
+      "fields": [
+        {
+          "name": "bluesky",
+          "type": "number",
+          "label": "Bluesky",
+          "required": false
+        },
+        {
+          "name": "mastodon",
+          "type": "number",
+          "label": "Mastodon",
+          "required": false
+        },
+        {
+          "name": "twitter",
+          "type": "number",
+          "label": "Twitter",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "label": "Know your port",
+  "git_path": "/content/know_your_port/",
+  "file_extension": ".md",
+  "filename_pattern": "",
+  "collection_type": "flat",
+  "frontmatter_schema": [
+    {
+      "name": "title",
+      "type": "title",
+      "label": "Title",
+      "required": false
+    },
+    {
+      "name": "date",
+      "type": "datetime",
+      "label": "Date",
+      "required": false
+    },
+    {
+      "name": "publishdate",
+      "type": "datetime",
+      "label": "Publishdate",
+      "required": false
+    },
+    {
+      "name": "cascade",
+      "type": "list",
+      "label": "Cascade",
+      "required": false,
+      "fields": [
+        {
+          "name": "target",
+          "type": "object",
+          "label": "Target",
+          "required": false,
+          "fields": [
+            {
+              "name": "kind",
+              "type": "text",
+              "label": "Kind",
+              "required": false
+            }
+          ]
+        },
+        {
+          "name": "outputs",
+          "type": "multiselect",
+          "label": "Outputs",
+          "required": false,
+          "options": [
+            "HTML",
+            "AMP"
+          ],
+          "allowCustom": true,
+          "color": "blue"
+        }
+      ]
+    }
+  ]
+}
