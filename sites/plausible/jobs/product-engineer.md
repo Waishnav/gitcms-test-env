@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "We are looking for a Product Engineer"
+title: We are looking for a Product Engineer (QA edit)
 description: Plausible Analytics is looking for a product engineer. Apply now.
 permalink: /jobs/product-engineer
 ---
