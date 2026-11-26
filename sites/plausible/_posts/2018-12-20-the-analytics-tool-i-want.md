@@ -1,6 +1,6 @@
 ---
 layout: post
-title: The analytics tool I want (QA)
+title: The analytics tool I want
 date: 2018-12-20
 author: uku-taht
 ---
