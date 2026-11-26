@@ -63,11 +63,13 @@
       "name": "mood",
       "type": "select",
       "label": "Mood",
+      "description": "",
       "required": false,
       "options": [
         "calm",
         "cheerful"
-      ]
+      ],
+      "allowCustom": false
     },
     {
       "name": "topics",
