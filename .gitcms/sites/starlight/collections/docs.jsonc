@@ -1,0 +1,88 @@
+{
+  "label": "Docs",
+  "git_path": "/src/content/docs/",
+  "file_extension": ".mdx",
+  "filename_pattern": "",
+  "collection_type": "grouped",
+  "frontmatter_schema": [
+    {
+      "name": "title",
+      "type": "title",
+      "label": "Title",
+      "required": false
+    },
+    {
+      "name": "description",
+      "type": "richtext",
+      "label": "Description",
+      "required": false
+    },
+    {
+      "name": "template",
+      "type": "text",
+      "label": "Template",
+      "required": false
+    },
+    {
+      "name": "hero",
+      "type": "object",
+      "label": "Hero",
+      "required": false,
+      "fields": [
+        {
+          "name": "tagline",
+          "type": "text",
+          "label": "Tagline",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "object",
+          "label": "Image",
+          "required": false,
+          "fields": [
+            {
+              "name": "file",
+              "type": "image",
+              "label": "File",
+              "required": false
+            }
+          ]
+        },
+        {
+          "name": "actions",
+          "type": "list",
+          "label": "Actions",
+          "required": false,
+          "itemLabel": "{text}",
+          "fields": [
+            {
+              "name": "text",
+              "type": "text",
+              "label": "Text",
+              "required": false
+            },
+            {
+              "name": "link",
+              "type": "text",
+              "label": "Link",
+              "required": false
+            },
+            {
+              "name": "icon",
+              "type": "text",
+              "label": "Icon",
+              "required": false
+            },
+            {
+              "name": "variant",
+              "type": "text",
+              "label": "Variant",
+              "required": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

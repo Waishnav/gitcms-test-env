@@ -48,6 +48,12 @@
       "display_name": "Pinggy",
       "website_url": "https://pinggy.io",
       "root_path": "sites/pinggy"
+    },
+    {
+      "key": "starlight",
+      "display_name": "Starlight",
+      "website_url": "https://starlight.astro.build",
+      "root_path": "sites/starlight"
     }
   ]
 }
