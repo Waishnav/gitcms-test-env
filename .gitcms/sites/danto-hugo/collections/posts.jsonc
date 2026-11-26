@@ -58,64 +58,6 @@
       "label": "Featured",
       "required": false,
       "default": true
-    },
-    {
-      "name": "mood",
-      "type": "select",
-      "label": "Mood",
-      "description": "",
-      "required": false,
-      "options": [
-        "calm",
-        "cheerful"
-      ],
-      "allowCustom": false
-    },
-    {
-      "name": "topics",
-      "type": "multiselect",
-      "label": "Topics",
-      "required": false,
-      "options": [
-        "cars",
-        "health"
-      ]
-    },
-    {
-      "name": "strict",
-      "type": "select",
-      "label": "Strict",
-      "required": false,
-      "options": [
-        "draft",
-        "final"
-      ],
-      "allowCustom": false
-    },
-    {
-      "name": "strictmany",
-      "type": "multiselect",
-      "label": "Strictmany",
-      "required": false,
-      "options": [
-        "north",
-        "south"
-      ],
-      "allowCustom": false
-    },
-    {
-      "name": "nothing",
-      "type": "select",
-      "label": "Nothing",
-      "required": false,
-      "allowCustom": false
-    },
-    {
-      "name": "nothingmany",
-      "type": "multiselect",
-      "label": "Nothingmany",
-      "required": false,
-      "allowCustom": false
     }
   ]
 }

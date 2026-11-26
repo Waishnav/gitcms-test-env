@@ -38,7 +38,6 @@
   "singletons": [
     "authors-authors",
     "last-modified",
-    "stats",
-    "qa-team"
+    "stats"
   ]
 }
