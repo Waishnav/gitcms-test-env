@@ -31,5 +31,8 @@
     "changes",
     "articles",
     "jobs"
+  ],
+  "singletons": [
+    "authors"
   ]
 }
