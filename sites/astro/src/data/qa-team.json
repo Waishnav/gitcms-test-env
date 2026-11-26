@@ -1,0 +1,14 @@
+{
+  "members": [
+    {
+      "name": "Ada",
+      "role": "design",
+      "tier": "gold"
+    },
+    {
+      "name": "Lin",
+      "role": "engineering",
+      "tier": "silver"
+    }
+  ]
+}
