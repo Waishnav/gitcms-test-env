@@ -6,7 +6,9 @@
       "name": "downloads",
       "type": "number",
       "label": "Downloads",
-      "required": false
+      "description": "",
+      "required": false,
+      "min": 3
     },
     {
       "name": "stars",
