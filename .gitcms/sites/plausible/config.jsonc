@@ -26,7 +26,6 @@
   "ssg_framework": "jekyll",
   "frontmatter_format": "yaml",
   "publishing_mode": "editorial_workflow",
-  "require_approval": true,
   "collections": [
     "posts",
     "changes",
