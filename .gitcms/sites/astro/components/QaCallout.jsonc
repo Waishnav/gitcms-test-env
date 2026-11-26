@@ -1,0 +1,17 @@
+{
+  "dialect": "mdx-jsx",
+  "import": {
+    "from": "/src/components/gitcms-qa/QaCallout.astro",
+    "default": true
+  },
+  "children": {
+    "kind": "none"
+  },
+  "props": [
+    {
+      "name": "tone",
+      "required": false,
+      "type": "text"
+    }
+  ]
+}
