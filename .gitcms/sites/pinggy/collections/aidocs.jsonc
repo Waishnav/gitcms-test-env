@@ -1,8 +1,0 @@
-{
-  "label": "Aidocs",
-  "git_path": "/aidocs/",
-  "file_extension": ".md",
-  "filename_pattern": "",
-  "collection_type": "flat",
-  "frontmatter_schema": []
-}

@@ -1,8 +1,0 @@
-{
-  "label": "Docs",
-  "git_path": "/pages/docs/",
-  "file_extension": ".mdx",
-  "filename_pattern": "",
-  "collection_type": "grouped",
-  "frontmatter_schema": []
-}

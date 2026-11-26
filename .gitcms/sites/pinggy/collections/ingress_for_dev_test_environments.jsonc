@@ -1,8 +1,0 @@
-{
-  "label": "Ingress for dev test environments",
-  "git_path": "/content/ingress_for_dev_test_environments/",
-  "file_extension": ".md",
-  "filename_pattern": "",
-  "collection_type": "flat",
-  "frontmatter_schema": []
-}
