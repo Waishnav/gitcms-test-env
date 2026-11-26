@@ -25,7 +25,7 @@
   },
   "ssg_framework": "jekyll",
   "frontmatter_format": "yaml",
-  "publishing_mode": "editorial_workflow",
+  "publishing_mode": "direct_publish",
   "collections": [
     "posts",
     "articles",
