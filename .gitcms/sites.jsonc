@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "sites": [
+    {
+      "key": "plausible",
+      "display_name": "Plausible",
+      "website_url": "https://plausible.io",
+      "root_path": "sites/plausible"
+    }
+  ]
+}

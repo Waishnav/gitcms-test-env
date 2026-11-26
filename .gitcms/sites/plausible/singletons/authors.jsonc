@@ -1,0 +1,86 @@
+{
+  "label": "Authors",
+  "file": "_data/authors.yml",
+  "fields": [
+    {
+      "name": "uku-taht",
+      "type": "object",
+      "label": "Uku taht",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "twitter",
+          "type": "text",
+          "label": "Twitter",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "marko-saric",
+      "type": "object",
+      "label": "Marko saric",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "twitter",
+          "type": "text",
+          "label": "Twitter",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "hricha-shandily",
+      "type": "object",
+      "label": "Hricha shandily",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "twitter",
+          "type": "text",
+          "label": "Twitter",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "greg-dickens",
+      "type": "object",
+      "label": "Greg dickens",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "twitter",
+          "type": "text",
+          "label": "Twitter",
+          "required": false
+        }
+      ]
+    }
+  ]
+}
