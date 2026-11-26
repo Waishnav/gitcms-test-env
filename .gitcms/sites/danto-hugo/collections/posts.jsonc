@@ -58,6 +58,29 @@
       "label": "Featured",
       "required": false,
       "default": true
+    },
+    {
+      "name": "mood",
+      "type": "select",
+      "label": "Mood",
+      "required": false,
+      "options": [
+        "calm",
+        "cheerful",
+        "curious"
+      ],
+      "allowCustom": true
+    },
+    {
+      "name": "audience",
+      "type": "multiselect",
+      "label": "Audience",
+      "required": false,
+      "options": [
+        "beginners",
+        "experts"
+      ],
+      "allowCustom": false
     }
   ]
 }
