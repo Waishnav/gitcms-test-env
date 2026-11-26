@@ -1,5 +1,5 @@
 ---
-title: QA plain format
+title: QA plain format (QA)
 format: md
 ---
 
