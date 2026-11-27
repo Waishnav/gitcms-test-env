@@ -1,0 +1,27 @@
+{
+  "dialect": "mdx-jsx",
+  "import": {
+    "from": "/src/components/gitcms-qa/Banner.astro",
+    "default": true
+  },
+  "childrenRegion": {
+    "region": "body"
+  },
+  "children": {
+    "kind": "markdown"
+  },
+  "props": [
+    {
+      "name": "title",
+      "label": "Title",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "name": "tone",
+      "label": "Tone",
+      "required": true,
+      "type": "text"
+    }
+  ]
+}
