@@ -1,0 +1,30 @@
+{
+  "dialect": "mdx-jsx",
+  "import": {
+    "from": "/src/components/Testimonial.astro",
+    "default": true
+  },
+  "childrenRegion": {
+    "region": "body"
+  },
+  "children": {
+    "kind": "markdown"
+  },
+  "props": [
+    {
+      "name": "quote",
+      "label": "Quote",
+      "type": "text"
+    },
+    {
+      "name": "author",
+      "label": "Author",
+      "type": "text"
+    },
+    {
+      "name": "role",
+      "label": "Role",
+      "type": "text"
+    }
+  ]
+}
