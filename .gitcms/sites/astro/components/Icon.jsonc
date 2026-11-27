@@ -1,0 +1,50 @@
+{
+  "dialect": "mdx-jsx",
+  "import": {
+    "from": "astro-icon/components",
+    "name": "Icon"
+  },
+  "children": {
+    "kind": "none"
+  },
+  "props": [
+    {
+      "name": "slot",
+      "label": "Slot",
+      "required": true,
+      "type": "select",
+      "options": [
+        "logo"
+      ]
+    },
+    {
+      "name": "name",
+      "label": "Name",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "name": "size",
+      "label": "Size",
+      "type": "select",
+      "options": [
+        "48"
+      ]
+    },
+    {
+      "name": "width",
+      "label": "Width",
+      "type": "text"
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "type": "text"
+    },
+    {
+      "name": "class",
+      "label": "Class",
+      "type": "text"
+    }
+  ]
+}
