@@ -27,6 +27,13 @@
   "frontmatter_format": "yaml",
   "sitemap_url": "http://gohugo.io/sitemap.xml",
   "publishing_mode": "editorial_workflow",
+  "i18n": {
+    "enabled": false,
+    "locales": [
+      "en"
+    ],
+    "default_locale": "en"
+  },
   "collections": [
     "posts",
     "authors"
