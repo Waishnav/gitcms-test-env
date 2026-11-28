@@ -1,0 +1,12 @@
+{
+  "label": "Last modified",
+  "file": "src/data/last-modified.json",
+  "fields": [
+    {
+      "name": "integrations",
+      "type": "text",
+      "label": "Integrations",
+      "required": false
+    }
+  ]
+}

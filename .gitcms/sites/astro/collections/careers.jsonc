@@ -34,31 +34,6 @@
       "type": "text",
       "label": "Type",
       "required": false
-    },
-    {
-      "name": "route",
-      "type": "file",
-      "label": "Route",
-      "required": false,
-      "extensions": [
-        "gpx",
-        "kml"
-      ]
-    },
-    {
-      "name": "routes",
-      "type": "list",
-      "label": "Routes",
-      "fields": [
-        {
-          "name": "track",
-          "type": "file",
-          "label": "Track",
-          "extensions": [
-            "gpx"
-          ]
-        }
-      ]
     }
   ]
 }

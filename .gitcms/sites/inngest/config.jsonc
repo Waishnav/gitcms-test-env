@@ -32,8 +32,11 @@
     "changelog",
     "customers",
     "shared",
-    "landing-pages",
-    "repo-docs",
+    "pages",
+    "docs-2",
     "snippets"
+  ],
+  "singletons": [
+    "github"
   ]
 }

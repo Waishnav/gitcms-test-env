@@ -1,0 +1,18 @@
+{
+  "dialect": "mdx-jsx",
+  "import": {
+    "from": "/src/components/Mention.astro",
+    "default": true
+  },
+  "children": {
+    "kind": "none"
+  },
+  "props": [
+    {
+      "name": "name",
+      "label": "Name",
+      "required": true,
+      "type": "text"
+    }
+  ]
+}

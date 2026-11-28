@@ -1,6 +1,5 @@
 {
   "label": "Blog",
-  "description": "",
   "git_path": "/src/content/blog/",
   "file_extension": ".mdx",
   "filename_pattern": "",
@@ -46,14 +45,6 @@
       "type": "image",
       "label": "Social Image",
       "required": false
-    },
-    {
-      "name": "slug",
-      "type": "slug",
-      "label": "",
-      "description": "",
-      "required": false,
-      "pattern": ""
     }
   ]
 }

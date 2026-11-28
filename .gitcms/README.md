@@ -6,4 +6,5 @@ This folder is managed by [GitCMS](https://gitcms.dev).
 - Per-site settings live in `sites/<site_key>/config.jsonc`.
 - Each collection is one file, `sites/<site_key>/collections/<name>.jsonc`.
 - Each piece of site data is one file, `sites/<site_key>/singletons/<name>.jsonc`.
+- Each of the site's own docs components is one file, `sites/<site_key>/components/<Name>.jsonc`.
 - Change these with the GitCMS app or `npx create-gitcms`; agents, see `AGENTS.md`.

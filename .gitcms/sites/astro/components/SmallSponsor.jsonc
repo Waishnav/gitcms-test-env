@@ -1,0 +1,25 @@
+{
+  "dialect": "mdx-jsx",
+  "children": {
+    "kind": "none"
+  },
+  "props": [
+    {
+      "name": "label",
+      "label": "Label",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "name": "href",
+      "label": "Href",
+      "required": true,
+      "type": "url"
+    },
+    {
+      "name": "src",
+      "label": "Src",
+      "type": "text"
+    }
+  ]
+}

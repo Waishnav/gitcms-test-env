@@ -1,6 +1,6 @@
 {
-  "label": "Landing pages",
-  "git_path": "/app/(v0)/landing/(pages)/",
+  "label": "Docs",
+  "git_path": "/src/docs/",
   "file_extension": ".mdx",
   "filename_pattern": "",
   "collection_type": "grouped",

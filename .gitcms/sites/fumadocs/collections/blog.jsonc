@@ -1,6 +1,5 @@
 {
   "label": "Blog",
-  "description": "",
   "git_path": "/content/blog/",
   "file_extension": ".mdx",
   "filename_pattern": "",
@@ -14,7 +13,7 @@
     },
     {
       "name": "description",
-      "type": "text",
+      "type": "richtext",
       "label": "Description",
       "required": false
     },
@@ -25,17 +24,6 @@
       "required": false,
       "options": [
         "fuma"
-      ],
-      "allowCustom": true,
-      "color": "blue"
-    },
-    {
-      "name": "tags",
-      "type": "multiselect",
-      "label": "Tags",
-      "required": false,
-      "options": [
-        "Release"
       ],
       "allowCustom": true,
       "color": "blue"

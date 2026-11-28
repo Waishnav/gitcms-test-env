@@ -24,9 +24,15 @@
     ]
   },
   "ssg_framework": "astro",
-  "docs_framework": "starlight",
   "frontmatter_format": "yaml",
   "publishing_mode": "editorial_workflow",
+  "i18n": {
+    "enabled": false,
+    "locales": [
+      "en"
+    ],
+    "default_locale": "en"
+  },
   "collections": [
     "blog",
     "casestudies",
@@ -35,5 +41,10 @@
     "quotes",
     "careers",
     "partials"
+  ],
+  "singletons": [
+    "authors-authors",
+    "last-modified",
+    "stats"
   ]
 }

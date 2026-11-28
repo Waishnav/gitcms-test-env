@@ -1,11 +1,27 @@
 {
-  // A highlighted band: its title in place, a tone, and a body.
-  // <Banner title="…" tone="info">Body…</Banner>
-  "label": "Banner",
   "dialect": "mdx-jsx",
-  "attributeRegions": [{ "attribute": "title", "region": "title", "placeholder": "Banner title" }],
-  "childrenRegion": { "region": "body", "placeholder": "What the banner says" },
+  "import": {
+    "from": "/src/components/gitcms-qa/Banner.astro",
+    "default": true
+  },
+  "childrenRegion": {
+    "region": "body"
+  },
+  "children": {
+    "kind": "markdown"
+  },
   "props": [
-    { "name": "tone", "label": "Tone", "type": "select", "options": ["info", "success", "warning"] }
+    {
+      "name": "title",
+      "label": "Title",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "name": "tone",
+      "label": "Tone",
+      "required": true,
+      "type": "text"
+    }
   ]
 }

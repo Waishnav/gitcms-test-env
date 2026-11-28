@@ -1,0 +1,18 @@
+{
+  "label": "Github",
+  "file": "data/github.json",
+  "fields": [
+    {
+      "name": "__generated",
+      "type": "text",
+      "label": "  generated",
+      "required": false
+    },
+    {
+      "name": "stars",
+      "type": "number",
+      "label": "Stars",
+      "required": false
+    }
+  ]
+}

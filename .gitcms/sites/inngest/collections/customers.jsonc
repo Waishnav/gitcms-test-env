@@ -39,7 +39,41 @@
       "name": "quote",
       "type": "object",
       "label": "Quote",
-      "required": false
+      "required": false,
+      "fields": [
+        {
+          "name": "text",
+          "type": "richtext",
+          "label": "Text",
+          "required": false
+        },
+        {
+          "name": "attribution",
+          "type": "object",
+          "label": "Attribution",
+          "required": false,
+          "fields": [
+            {
+              "name": "name",
+              "type": "title",
+              "label": "Name",
+              "required": false
+            },
+            {
+              "name": "title",
+              "type": "text",
+              "label": "Title",
+              "required": false
+            }
+          ]
+        },
+        {
+          "name": "avatar",
+          "type": "image",
+          "label": "Avatar",
+          "required": false
+        }
+      ]
     },
     {
       "name": "companyURL",

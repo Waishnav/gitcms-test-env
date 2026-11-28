@@ -1,0 +1,908 @@
+{
+  "label": "Authors authors",
+  "file": "src/data/authors/authors.json",
+  "fields": [
+    {
+      "name": "astro-team",
+      "type": "object",
+      "label": "Astro team",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "twitter",
+          "type": "url",
+          "label": "Twitter",
+          "required": false
+        },
+        {
+          "name": "bluesky",
+          "type": "url",
+          "label": "Bluesky",
+          "required": false
+        },
+        {
+          "name": "mastodon",
+          "type": "url",
+          "label": "Mastodon",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "alex",
+      "type": "object",
+      "label": "Alex",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "twitter",
+          "type": "url",
+          "label": "Twitter",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "armand",
+      "type": "object",
+      "label": "Armand",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "github",
+          "type": "url",
+          "label": "Github",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "ben",
+      "type": "object",
+      "label": "Ben",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "twitter",
+          "type": "url",
+          "label": "Twitter",
+          "required": false
+        },
+        {
+          "name": "bluesky",
+          "type": "url",
+          "label": "Bluesky",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "caleb",
+      "type": "object",
+      "label": "Caleb",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "github",
+          "type": "url",
+          "label": "Github",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "bjorn",
+      "type": "object",
+      "label": "Bjorn",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "twitter",
+          "type": "url",
+          "label": "Twitter",
+          "required": false
+        },
+        {
+          "name": "bluesky",
+          "type": "url",
+          "label": "Bluesky",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "chris",
+      "type": "object",
+      "label": "Chris",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "mastodon",
+          "type": "url",
+          "label": "Mastodon",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "dan",
+      "type": "object",
+      "label": "Dan",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "drew",
+      "type": "object",
+      "label": "Drew",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "twitter",
+          "type": "url",
+          "label": "Twitter",
+          "required": false
+        },
+        {
+          "name": "bluesky",
+          "type": "url",
+          "label": "Bluesky",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "elian",
+      "type": "object",
+      "label": "Elian",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "twitter",
+          "type": "url",
+          "label": "Twitter",
+          "required": false
+        },
+        {
+          "name": "mastodon",
+          "type": "url",
+          "label": "Mastodon",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "ema",
+      "type": "object",
+      "label": "Ema",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "twitter",
+          "type": "url",
+          "label": "Twitter",
+          "required": false
+        },
+        {
+          "name": "bluesky",
+          "type": "url",
+          "label": "Bluesky",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "erika",
+      "type": "object",
+      "label": "Erika",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "mastodon",
+          "type": "url",
+          "label": "Mastodon",
+          "required": false
+        },
+        {
+          "name": "bluesky",
+          "type": "url",
+          "label": "Bluesky",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "florian",
+      "type": "object",
+      "label": "Florian",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "github",
+          "type": "url",
+          "label": "Github",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "fred",
+      "type": "object",
+      "label": "Fred",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "twitter",
+          "type": "url",
+          "label": "Twitter",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "fuzzy",
+      "type": "object",
+      "label": "Fuzzy",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "twitter",
+          "type": "url",
+          "label": "Twitter",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "hideoo",
+      "type": "object",
+      "label": "Hideoo",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "twitter",
+          "type": "url",
+          "label": "Twitter",
+          "required": false
+        },
+        {
+          "name": "bluesky",
+          "type": "url",
+          "label": "Bluesky",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "jon",
+      "type": "object",
+      "label": "Jon",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "twitter",
+          "type": "url",
+          "label": "Twitter",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "kenji",
+      "type": "object",
+      "label": "Kenji",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "github",
+          "type": "url",
+          "label": "Github",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "louis",
+      "type": "object",
+      "label": "Louis",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "github",
+          "type": "url",
+          "label": "Github",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "luiz",
+      "type": "object",
+      "label": "Luiz",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "github",
+          "type": "url",
+          "label": "Github",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "mark",
+      "type": "object",
+      "label": "Mark",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "twitter",
+          "type": "url",
+          "label": "Twitter",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "martrapp",
+      "type": "object",
+      "label": "Martrapp",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "github",
+          "type": "url",
+          "label": "Github",
+          "required": false
+        },
+        {
+          "name": "bluesky",
+          "type": "url",
+          "label": "Bluesky",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "matt",
+      "type": "object",
+      "label": "Matt",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "twitter",
+          "type": "url",
+          "label": "Twitter",
+          "required": false
+        },
+        {
+          "name": "bluesky",
+          "type": "url",
+          "label": "Bluesky",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "matthew",
+      "type": "object",
+      "label": "Matthew",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "twitter",
+          "type": "url",
+          "label": "Twitter",
+          "required": false
+        },
+        {
+          "name": "bluesky",
+          "type": "url",
+          "label": "Bluesky",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "nate",
+      "type": "object",
+      "label": "Nate",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "twitter",
+          "type": "url",
+          "label": "Twitter",
+          "required": false
+        },
+        {
+          "name": "bluesky",
+          "type": "url",
+          "label": "Bluesky",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "reuben",
+      "type": "object",
+      "label": "Reuben",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "twitter",
+          "type": "url",
+          "label": "Twitter",
+          "required": false
+        },
+        {
+          "name": "bluesky",
+          "type": "url",
+          "label": "Bluesky",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "sarah",
+      "type": "object",
+      "label": "Sarah",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "mastodon",
+          "type": "url",
+          "label": "Mastodon",
+          "required": false
+        },
+        {
+          "name": "bluesky",
+          "type": "url",
+          "label": "Bluesky",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "shinya",
+      "type": "object",
+      "label": "Shinya",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "twitter",
+          "type": "url",
+          "label": "Twitter",
+          "required": false
+        },
+        {
+          "name": "bluesky",
+          "type": "url",
+          "label": "Bluesky",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "thuy",
+      "type": "object",
+      "label": "Thuy",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "twitter",
+          "type": "url",
+          "label": "Twitter",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "tony",
+      "type": "object",
+      "label": "Tony",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "mastodon",
+          "type": "url",
+          "label": "Mastodon",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "yan",
+      "type": "object",
+      "label": "Yan",
+      "required": false,
+      "fields": [
+        {
+          "name": "name",
+          "type": "title",
+          "label": "Name",
+          "required": false
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "required": false
+        },
+        {
+          "name": "twitter",
+          "type": "url",
+          "label": "Twitter",
+          "required": false
+        },
+        {
+          "name": "bluesky",
+          "type": "url",
+          "label": "Bluesky",
+          "required": false
+        }
+      ]
+    }
+  ]
+}

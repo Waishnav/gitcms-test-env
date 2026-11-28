@@ -1,11 +1,41 @@
 {
-  // An embedded video, written self-closing: <YouTube id="…" title="…" />
-  "label": "YouTube video",
   "dialect": "mdx-jsx",
-  "children": { "kind": "none" },
+  "import": {
+    "from": "@astro-community/astro-embed-youtube",
+    "name": "YouTube"
+  },
+  "children": {
+    "kind": "none"
+  },
   "props": [
-    { "name": "id", "label": "Video ID", "type": "text", "required": true },
-    { "name": "title", "label": "Title", "type": "text" },
-    { "name": "start", "label": "Start at (seconds)", "type": "number" }
+    {
+      "name": "id",
+      "label": "ID",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "name": "title",
+      "label": "Title",
+      "type": "text"
+    },
+    {
+      "name": "params",
+      "label": "Params",
+      "type": "text"
+    },
+    {
+      "name": "posterQuality",
+      "label": "Poster Quality",
+      "type": "select",
+      "options": [
+        "high"
+      ]
+    },
+    {
+      "name": "class",
+      "label": "Class",
+      "type": "text"
+    }
   ]
 }

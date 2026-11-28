@@ -1,0 +1,28 @@
+{
+  "dialect": "mdx-jsx",
+  "import": {
+    "from": "/src/components/Note.astro",
+    "default": true
+  },
+  "childrenRegion": {
+    "region": "body"
+  },
+  "children": {
+    "kind": "markdown"
+  },
+  "props": [
+    {
+      "name": "type",
+      "label": "Type",
+      "type": "select",
+      "options": [
+        "tip"
+      ]
+    },
+    {
+      "name": "title",
+      "label": "Title",
+      "type": "text"
+    }
+  ]
+}
