@@ -101,7 +101,14 @@ Pinggy only allows forwarding to port 4300, where it provides the web debugging 
 </table>
 
 ## Username for SSH
-Pinggy does not require any username or authentication to start the tunnel, as it does not provide any access to the server. However, this information goes to the server before `ssh` can establish the connection. So, we use the username to send the tunnel `token` and other keywords to the server. The `token` can be found in <dashboard.pinggy.io>. The `token` and keywords are separated by `+`. Pinggy has the following keywords:
+Pinggy does not require any username or authentication to start the tunnel, as it does not provide any access to the server. However, this information goes to the server before `ssh` can establish the connection. So, we use the username to send the tunnel `token` and other keywords to the server. The `token` can be found in \<dashboard.pinggy.io>. The `token` and keywords are separated by `+`. Pinggy has the following keywords:
+
+​
+
+| aksldfjkldsf |   |   |
+| -----------: | - | - |
+|              |   |   |
+|              |   |   |
 
 #### 1. http/tcp/tls/tlstcp
 These keywords set the tunnel type. The default tunnel is the `http` type.
