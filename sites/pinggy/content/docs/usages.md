@@ -106,7 +106,7 @@ Pinggy does not require any username or authentication to start the tunnel, as i
 ​
 
 | aksldfjkldsf |   |   |
-| -----------: | - | - |
+| :----------: | - | - |
 |              |   |   |
 |              |   |   |
 
